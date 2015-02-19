@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+{% block title %}Профиль{% endblock %}
+{% block customheadjs %}
+    <script>
+        function getQueryVariable(variable)
+        {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++) {
+                var pair = vars[i].split("=");
+                if(pair[0] == variable){return pair[1];}
+            }
+            return(false);
+        }
+    </script>
+    {% endblock %}
+
+    {% block nav %}
+    <ul class="nav nav-pills nav-stacked custom-nav">
+        <li class="menu-list "><a href=""><i class="fa fa-home"></i> <span>Реестр детей</span></a>
+            <ul class="sub-menu-list">
+                <li ><a href="index.php?np=good.html"><i class="fa fa-search"></i> <span>Обзор</span></a></li>
+                <li><a href="index.php?np=profile"> <span>Просмотр</span></a></li>
+                <li><a href="index.php?np=children_new"><i class="fa fa-plus"></i> <span>Добавить ребенка</span></a></li>
+
+            </ul>
+        </li>
+        <li class="menu-list nav-active"><a href=""><i class="fa fa-home"></i> <span>Реестр заявок</span></a>
+            <ul class="sub-menu-list">
+                <li><a href="index.php?np=request"><i class="fa fa-envelope"></i> <span>Обзор</span></a></li>
+                <li><a href="index.php?np=profilereq"><i class="fa fa-envelope"></i> <span>Просмотр</span></a></li>
+
+          </ul>
+        </li>
+        <li class="menu-list "><a href=""><i class="fa fa-home"></i> <span>Контракты</span></a>
+            <ul class="sub-menu-list">
+                <li > <a href="index.php?np=kontrakt"><i class="fa fa-book"></i> <span>Обзор</span></a></li>
+                <li><a href="index.php?np=new_kontrakt"><i class="fa fa-plus"></i> <span>Добавить Контракт</span></a></li>
+            </ul>
+        </li>
+        <li><a id="Myunidf" href="index.html"><i class="fa fa-sign-out"></i> <span>Выход</span></a></li>
+
+    </ul>
+            {% endblock %}
+
+            {% block heading %}
+
+        <div class="page-heading">
+            <h3 id="headernames">Фамилия Имя Отчество</h3>
+            <ul class="breadcrumb">
+                <li><a href="request.html"> Реестр Заявок</a></li>
+                <li class="active">Информация о Заявке</li>
+            </ul>
+
+        </div>
+        {% endblock %}
+
+        {% block content %}
+
+            <div class="row">
+                <form>
+
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="panel">
+                                <header class="panel-heading">Информация о ребенке </header>
+                                <div class="panel-body">
+                                    <div class="profile-desk">
+                                        <div class="form-group">
+                                            <label for="fioinp">Фамилия</label>
+                                            <input type="text" class="form-control" id="fioinp" required="">
+                                        </div>
+                                            <div class="form-group">
+                                                <label for="nameinp">Имя</label>
+                                                <input type="text" class="form-control" id="nameinp" required="">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="lastinp">Отчество</label>
+                                                <input type="text" class="form-control" id="lastinp" required="">
+                                            </div>
+                                        <div class="form-group">
+                                            <label for="svid">Свидетельство о рождении / паспорт</label>
+                                            <input type="text" class="form-control" id="svid" required="">
+                                        </div>
+                                            <div class="form-group">
+                                                <label for="celdr">Дата рождения</label>
+                                                <div id="celdr"></div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <header class="panel-heading">Информация о законном представителе </header>
+                                <div class="panel-body">
+                                    <div class="profile-desk">
+                                        <label for="fioroditelya">Отношение и ФИО </label>
+                                        <input type="text" class="form-control" id="fioroditelya">
+                                    </div>
+                                    <div class="profile-desk">
+                                        <label for="workstation">Место работы </label>
+                                        <input type="text" class="form-control" id="workstation">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="panel">
+                                <header class="panel-heading">Контактные телефоны</header>
+                                <div class="panel-body">
+                                    <div class="profile-desk">
+
+                                        <div class="form-group">
+                                            <label for="mobilinp">Сотовый</label>
+                                            <input type="text" class="form-control" id="mobilinp" >
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <div class="profile-desk">
+                                <div class="btn-group btn-group-justified">
+                                    <a class="btn btn-success btn-lg" onclick="sendsave()" >Сохранить</a>
+                                    <a class="btn btn-danger btn-lg"  href="#">Отменить</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </form>
+
+            </div>
+            {% endblock %}
+
+
+
+            {% block customjs %}
+
+
+<script>
+    webix.ready(function(){
+        webix.ui({
+            container:'celdr',inputWidth:150,view:'datepicker',name:'date',id:'date',stringResult:true
+
+        });
+        });
+
+
+
+
+</script>
+<script>
+    function gid(eid){
+        return document.getElementById(eid);
+    }
+    var ids = getQueryVariable('id');
+    webix.ready(function() {
+
+
+        webix.ajax('getprofilereq.php?id='+ids,function(text){
+            var jsons = jQuery.parseJSON(text);
+
+
+            gid('headernames').innerHTML = jsons[0].firstname+' '+jsons[0].name+' '+jsons[0].surname;
+            gid('nameinp').value = jsons[0].name;
+            gid('fioinp').value = jsons[0].firstname;
+            gid('lastinp').value = jsons[0].surname;
+            gid('svid').value = jsons[0].doc;
+            gid('fioroditelya').value = jsons[0].fiorod;
+            gid('workstation').value = jsons[0].workstation;
+            gid('mobilinp').value = jsons[0].tel;
+            $$("date").setValue(jsons[0].date);
+
+
+
+
+
+        } );
+    });
+    function sendsave(){
+        webix.ajax("savereq.php?nameinp="      +   gid('nameinp').value +
+                                "&fioinp="      +   gid('fioinp').value +
+                                "&lastinp="     +   gid('lastinp').value +
+                                "&svid="        +   gid('svid').value +
+                                "&fioroditelya="+   gid('fioroditelya').value +
+                                "&workstation=" +   gid('workstation').value +
+                                "&mobilinp="    +   gid('mobilinp').value +
+                                "&date="        +   $$('date').getValue() +
+                                "&ids="         +   ids,
+            {success:function(text){
+                if(text==0){
+                    webix.alert({text:"Данные обновлены"});
+                }else{
+                    webix.alert({type:"alert-warning",text:"Повторите позже"});
+                }}},
+
+            {error:function(text, data, XmlHttpRequest){
+                webix.alert({text:"Повторите позже"});
+            }}
+        );
+    }
+
+
+</script>
+
+{% endblock %}
