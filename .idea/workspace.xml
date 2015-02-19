@@ -116,7 +116,7 @@
           <file leaf-file-name="request.html" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/request.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="68" column="35" selection-start="2653" selection-end="2653" vertical-scroll-proportion="0.63924795" vertical-offset="612" max-vertical-offset="6103">
+                <state line="68" column="35" selection-start="2653" selection-end="2653" vertical-scroll-proportion="0.6491647" vertical-offset="612" max-vertical-offset="6103">
                   <folding />
                 </state>
               </provider>
@@ -578,7 +578,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32821077" sideWeight="0.49888143" order="10" side_tool="false" content_ui="tabs" />
@@ -964,7 +964,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/request.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="35" selection-start="2653" selection-end="2653" vertical-scroll-proportion="0.63924795" vertical-offset="612" max-vertical-offset="6103">
+        <state line="68" column="35" selection-start="2653" selection-end="2653" vertical-scroll-proportion="0.6491647" vertical-offset="612" max-vertical-offset="6103">
           <folding />
         </state>
       </provider>
