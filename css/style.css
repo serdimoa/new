@@ -1960,7 +1960,7 @@ ul.user-states li {
 
 .panel-heading .nav > li.active > a, .panel-heading .nav > li > a:hover {
     color: #65CEA7;
-    background: #fff;
+    background: #65CEA7;
 }
 
 .panel-heading .nav > li:first-child.active > a, .panel-heading .nav > li:first-child > a:hover {

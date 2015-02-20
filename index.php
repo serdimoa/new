@@ -8,16 +8,16 @@ $twig = new Twig_Environment($loader, array(
     'auto_reload' => true
 ));
 $namepage = $_GET['np'];
-if($namepage){
-echo $twig->render("$namepage.html");
-}
-else{
-    if(!$_SESSION["login"]){
+if(!$_SESSION["login"]){
         echo $twig->render("index.html");
     }
     else{
+      if($namepage){
+      echo $twig->render("$namepage.html");
+      }
+      else{
         echo $twig->render("good.html");
     }
-    
+
 }
 ?>

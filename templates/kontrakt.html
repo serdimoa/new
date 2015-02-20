@@ -46,6 +46,9 @@
                url: 'select/get_all_kontrakt.php',height:550, select: 'row',scrollX:false, on:{
                onBeforeLoad:function(){
                    this.showOverlay('Загрузка...');
+               },onSelectChange:function(){
+                 var selectedid = $$('datatable').getSelectedId(true).join();
+                 document.location.href = "index.php?np=contraktprofile&id="+selectedid;
                },
                onAfterLoad:function(){
                    if (!this.count())
@@ -53,7 +56,7 @@
                    else
                        this.hideOverlay();
                }
-        });
+        }});
 
        webix.ui({
             view:"contextmenu",
@@ -66,7 +69,7 @@
                     document.location.href = "index.php?np=contraktprofile&id="+context.id;
                     //delete
                     if(this.getItem(id).id=="Удалить"){
-                        webix.ajax("delete/deletefromgood.php?id="+context.id);
+                        webix.ajax("delete/deletefromkontrakt.php?id="+context.id);
                         $$("datatable").remove(context.id);
                     }
 
