@@ -12,7 +12,7 @@ if (!$_SESSION["login"]) {
     exit();
 }
 {
-    require_once("config.php");
+    require_once("../config.php");
     $id=$_GET["ids"];
     $edit=$_GET[""];
 

@@ -13,7 +13,7 @@ if (!$_SESSION["login"]) {
 else
 {
     $id = $_GET["id"];
-    require_once("config.php");
+    require_once("../config.php");
     $sql1 = "select * from children where id={$id}";
     $sql2 = "select * from aboutchildren where iduser={$id}";
     $show = mysql_query($sql1);

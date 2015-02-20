@@ -12,7 +12,7 @@ if (!$_SESSION["login"]) {
     exit();
 }else
 {
-    require_once("config.php");
+    require_once("../config.php");
     $data = new JSONDataConnector($conn, $dbtype);
     $data->render_table("requests","id","id,status,year,date,type,time,timeobj");
 }

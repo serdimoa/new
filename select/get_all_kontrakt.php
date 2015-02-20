@@ -11,10 +11,10 @@ if (!$_SESSION["login"]) {
     exit();
 }else
 {
-require_once("config.php");
+require_once("../config.php");
     $data = new JSONDataConnector($conn, $dbtype);
 
-    $data->render_table("children","id","name, firstname, surname, event, date");
+    $data->render_table("contract","id","name, put, price, days, date");
 
 
 }

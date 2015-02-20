@@ -51,7 +51,7 @@ webix.ready(function(){
             { id: 'event', header: "Вид отдыха", width: 80, sort: 'int'},
             { id: 'date', header: ['Дата рождения', {content: 'textFilter'}], width: 100, sort: 'string',
                 format: webix.Date.dateToStr('%Y-%m-%d')}],
-           url: 'get_all.php',height:550, select: 'row',scrollX:false, on:{
+           url: 'select/get_all.php',height:550, select: 'row',scrollX:false, on:{
            onBeforeLoad:function(){
                this.showOverlay('Загрузка...');
            },
@@ -63,7 +63,7 @@ webix.ready(function(){
            },onSelectChange:function(){
                selectedid = $$('datatable').getSelectedId(true).join();
                 $$('datatable1').clearAll();
-                $$('datatable1').load('putevka.php?ides='+selectedid);
+                $$('datatable1').load('select/putevka.php?ides='+selectedid);
 
 
 
@@ -79,10 +79,10 @@ webix.ready(function(){
             onItemClick:function(id){
                 var context = this.getContext();
                 if(this.getItem(id).id=="Просмотреть")
-                document.location.href = "index.php?np=profile?id="+context.id;
+                document.location.href = "index.php?np=profile&id="+context.id;
                 //delete
                 if(this.getItem(id).id=="Удалить"){
-                    webix.ajax("deletefromgood.php?id="+context.id);
+                    webix.ajax("delete/deletefromgood.php?id="+context.id);
                     $$("datatable").remove(context.id);
                 }
 

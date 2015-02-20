@@ -11,7 +11,7 @@ if (!$_SESSION["login"]) {
     exit();
 }else
 {
-    require_once("config.php");
+    require_once("../config.php");
     $sql = "select * from katlgot";
     $show = mysql_query($sql);
     $arr = array();

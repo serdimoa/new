@@ -12,7 +12,7 @@ if (!$_SESSION["login"]) {
 }
 else
 {
-    require_once("config.php");
+    require_once("../config.php");
     $ide = $_GET["ids"];
     $nameinp=$_GET["nameinp"];
     $fioinp=$_GET["fioinp"];

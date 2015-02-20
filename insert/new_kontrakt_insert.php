@@ -12,7 +12,7 @@ if (!$_SESSION["login"]) {
 }
 else
 {
-    require_once("config.php");
+    require_once("../config.php");
     $nameinp=$_GET["nameinp"];
     $fioinp=$_GET["fioinp"];
     $lastinp=$_GET["lastinp"];
@@ -26,11 +26,6 @@ else
     {
         return "1";
     }
-
-
-
-
-
 
 }
 

@@ -151,14 +151,12 @@
                 }
 
             ],
-            url:'get_req.php',autoheight:true,scrollX:false,select: 'row',on:{
+            url:'select/get_req.php',autoheight:true,scrollX:false,select: 'row',on:{
             onSelectChange:function(){
                 var selectedid = $$("datatabl").getSelectedId(true).join();
 
-                document.location.href = "profilereq.php?id="+selectedid;
+                document.location.href = "index.php?np=profilereq&id="+selectedid;
             }
-
-
             }
 
 
@@ -171,7 +169,7 @@
                 onItemClick:function(id){
                     var context = this.getContext();
                     if(this.getItem(id).id=="Просмотреть")
-                        document.location.href = "profilereq.php?id="+context.id;
+                        document.location.href = "index.php?np=profilereq&id="+context.id;
                     else
                         webix.alert("error");
 

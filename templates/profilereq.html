@@ -176,7 +176,7 @@
     webix.ready(function() {
 
 
-        webix.ajax('getprofilereq.php?id='+ids,function(text){
+        webix.ajax('select/getprofilereq.php?id='+ids,function(text){
             var jsons = jQuery.parseJSON(text);
 
 
@@ -197,7 +197,7 @@
         } );
     });
     function sendsave(){
-        webix.ajax("savereq.php?nameinp="      +   gid('nameinp').value +
+        webix.ajax("insert/savereq.php?nameinp="      +   gid('nameinp').value +
                                 "&fioinp="      +   gid('fioinp').value +
                                 "&lastinp="     +   gid('lastinp').value +
                                 "&svid="        +   gid('svid').value +

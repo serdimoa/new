@@ -11,7 +11,7 @@ if (!$_SESSION["login"]) {
     exit();
 }
 else{
-    require_once("config.php");
+    require_once("../config.php");
     $id=$_GET["id"];
     $sql1 ="delete from children where id='$id'";
     $sql2 ="delete from aboutchildren where iduser='$id'";

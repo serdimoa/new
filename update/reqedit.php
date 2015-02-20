@@ -12,7 +12,7 @@ if (!$_SESSION["login"]) {
 }
 else
 {
-    require_once("config.php");
+    require_once("../config.php");
 $id = $_GET["id"];
 $ogid = $_GET["ogid"];
 switch ($ogid){

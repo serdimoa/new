@@ -18,23 +18,22 @@
 
     {% block nav %}
 
-            <ul class="nav nav-pills nav-stacked custom-nav">
-                <li class="menu-list"><a href=""><i class="fa fa-home"></i> <span>Реестр детей</span></a>
-                    <ul class="sub-menu-list">
-                        <li ><a href="good.html"><i class="fa fa-search"></i> <span>Обзор</span></a></li>
-                        <li><a href="children_new.php"><i class="fa fa-plus"></i> <span>Добавить ребенка</span></a></li>
-                    </ul>
-                </li>
-                <li><a href="request.html"><i class="fa fa-envelope"></i> <span>Реестр заявок</span></a></li>
-                <li class="menu-list nav-active"><a href=""><i class="fa fa-home"></i> <span>Контракты</span></a>
-                    <ul class="sub-menu-list">
-                        <li > <a href="kontrakt.html"><i class="fa fa-book"></i> <span>Обзор</span></a></li>
-                        <li class="active"><a href="new_kontrakt.php"><i class="fa fa-plus"></i> <span>Добавить Контракт</span></a></li>
-                    </ul>
-                </li>
-                <li><a id="Myunidf" href="index.html"><i class="fa fa-sign-out"></i> <span>Выход</span></a></li>
-
+    <ul class="nav nav-pills nav-stacked custom-nav">
+        <li class="menu-list "><a href=""><i class="fa fa-home"></i> <span>Реестр детей</span></a>
+            <ul class="sub-menu-list">
+                <li ><a href="index.php?np=good"><i class="fa fa-search"></i> <span>Обзор</span></a></li>
+                <li ><a href="index.php?np=children_new"><i class="fa fa-plus"></i> <span>Добавить ребенка</span></a></li>
             </ul>
+        </li>
+        <li><a href="index.php?np=request"><i class="fa fa-envelope"></i> <span>Реестр заявок</span></a></li>
+        <li class="menu-list nav-active"><a href=""><i class="fa fa-home"></i> <span>Контракты</span></a>
+            <ul class="sub-menu-list">
+                <li> <a href="index.php?np=kontrakt"><i class="fa fa-book"></i> <span>Обзор</span></a></li>
+                <li class="active"><a href="index.php?np=new_kontrakt"><i class="fa fa-plus"></i> <span>Добавить Контракт</span></a></li>
+            </ul>
+        </li>
+        <li><a id="Myunidf" href="index.html"><i class="fa fa-sign-out"></i> <span>Выход</span></a></li>
+      </ul>
 {% endblock %}
 {% block heading %}
 
@@ -140,7 +139,7 @@
 
 
     function sendsave(){
-        webix.ajax("new_kontrakt_insert.php?nameinp="      +   gid('nameinp').value +
+        webix.ajax("insert/new_kontrakt_insert.php?nameinp="      +   gid('nameinp').value +
                                            "&fioinp="      +   gid('fioinp').value +
                                            "&lastinp="     +   gid('lastinp').value +
                                            "&svid="        +   gid('svid').value +

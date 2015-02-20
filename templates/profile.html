@@ -233,13 +233,13 @@
             container:'scholl',
             view:'combo',
             id:'school',
-            options:'scholl.php'
+            options:'select/scholl.php'
         });
         webix.ui({
             container:'lgotkat',
             view:'combo',
             id:'lgotkats',
-            options:'lgotkat.php'
+            options:'select/lgotkat.php'
         });
         webix.ui({
             container:'mer',
@@ -351,7 +351,7 @@
                 }
 
             ],
-            url:'putevka.php?ides='+idses,select:"row",
+            url:'select/putevka.php?ides='+idses,select:"row",
             on:{
                 onSelectChange:function(){
                     var selectedid;
@@ -370,14 +370,14 @@
                 onItemClick:function(id){
                     var context = this.getContext();
                     if(this.getItem(id).id=="В очереди")
-                        webix.ajax("reqedit.php?id="+context.id+"&ogid=1");
+                        webix.ajax("update/reqedit.php?id="+context.id+"&ogid=1");
                     else if(this.getItem(id).id=="Принято")
-                        webix.ajax("reqedit.php?id="+context.id+"&ogid=2");
+                        webix.ajax("update/reqedit.php?id="+context.id+"&ogid=2");
                     else if(this.getItem(id).id=="Отказано")
-                        webix.ajax("reqedit.php?id="+context.id+"&ogid=3");
+                        webix.ajax("update/reqedit.php?id="+context.id+"&ogid=3");
                     else if(this.getItem(id).id=="Исполнено")
-                        webix.ajax("reqedit.php?id="+context.id+"&ogid=4");
-                    $$("datatable").load('putevka.php?ides='+idses);
+                        webix.ajax("update/reqedit.php?id="+context.id+"&ogid=4");
+                    $$("datatable").load('select/putevka.php?ides='+idses);
 
 
 
@@ -401,7 +401,7 @@
     webix.ready(function(){
 
 
-        webix.ajax('getprofile.php?id='+ids,function(text){
+        webix.ajax('select/getprofile.php?id='+ids,function(text){
             var jsons = jQuery.parseJSON(text);
 
 
@@ -429,7 +429,7 @@
         } );
     });
     function sendsave(){
-        webix.ajax("updatedb.php?nameinp="      +   gid('nameinp').value +
+        webix.ajax("update/updatedb.php?nameinp="      +   gid('nameinp').value +
                                 "&fioinp="      +   gid('fioinp').value +
                                 "&lastinp="     +   gid('lastinp').value +
                                 "&svid="        +   gid('svid').value +
