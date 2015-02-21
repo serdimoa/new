@@ -74,49 +74,48 @@
                 </li>
               </ul>
             </header>
-            <div class="panel-body">
+            <div class="panel-body col-lg-12">
               <div class="tab-content">
                 <div class="tab-pane active" id="home2">
                   <div class="col-md-12">
                     <div class="row">
 
-                        <div class="panel">
-                          <div class="panel-body">
-                            <div class="profile-desk">
+                      <div class="panel">
+                        <div class="panel-body">
+                          <div class="profile-desk">
 
-                              <div class="form-group">
-                                <label for="nameinp">Наименование организации</label>
-                                <input type="text" class="form-control" id="nameinp" required="">
-                              </div>
+                            <div class="form-group">
+                              <label for="nameinp">Наименование организации</label>
+                              <input type="text" class="form-control" id="nameinp" required="">
+                            </div>
 
-                              <div class="form-group">
-                                <div id="celdr"></div>
-                              </div>
-                              <div class="form-group">
-                                <label for="put">Количество путевок</label>
-                                <input type="text" class="form-control" id="put" required="">
-                              </div>
-                              <div class="form-group">
-                                <label for="price">Цена контракта</label>
-                                <input type="text" class="form-control" id="price" required="">
-                              </div>
+                            <div class="form-group">
+                              <div id="celdr"></div>
+                            </div>
+                            <div class="form-group">
+                              <label for="put">Количество путевок</label>
+                              <input type="text" class="form-control" id="put" required="">
+                            </div>
+                            <div class="form-group">
+                              <label for="price">Цена контракта</label>
+                              <input type="text" class="form-control" id="price" required="">
+                            </div>
 
-                              <div class="form-group">
-                                <label for="days">Дней &nbsp;прибывания</label>
-                                <input type="text" class="form-control" id="days" required="">
-                              </div>
-                              <div class="form-group">
-                                <label for="daysprice">Стоимость одного дня</label>
-                                <input type="text" class="form-control" id="daysprice" disabled required="">
-                              </div>
-                              <div class="col-md-12">
-                                <div class="panel">
-                                  <div class="panel-body">
-                                    <div class="profile-desk">
-                                      <div class="btn-group btn-group-justified">
-                                        <a class="btn btn-success btn-lg" onclick="sendsave()">Сохранить</a>
-                                        <a class="btn btn-danger btn-lg" href="#">Отменить</a>
-                                      </div>
+                            <div class="form-group">
+                              <label for="days">Дней &nbsp;прибывания</label>
+                              <input type="text" class="form-control" id="days" required="">
+                            </div>
+                            <div class="form-group">
+                              <label for="daysprice">Стоимость одного дня</label>
+                              <input type="text" class="form-control" id="daysprice" disabled required="">
+                            </div>
+                            <div class="col-md-12">
+                              <div class="panel">
+                                <div class="panel-body">
+                                  <div class="profile-desk">
+                                    <div class="btn-group btn-group-justified">
+                                      <a class="btn btn-success btn-lg" onclick="sendsave()">Сохранить</a>
+                                      <a class="btn btn-danger btn-lg" href="#">Отменить</a>
                                     </div>
                                   </div>
                                 </div>
@@ -124,6 +123,7 @@
                             </div>
                           </div>
                         </div>
+                      </div>
 
                     </div>
                   </div>
@@ -134,7 +134,13 @@
 
                 </div>
                 <div class="tab-pane" id="contact2">
-                  <div id="periods"></div>
+<div class="row">
+  <div class="col-lg-12" id="periods"></div>
+
+</div>
+
+
+
                 </div>
                 <div class="tab-pane" id="newperiod">
                   <div class="col-md-6">
@@ -142,40 +148,40 @@
                       <div class="panel">
                         <div class="panel-body">
                           <div class="profile-desk">
-                  <div id="dpdatestart"></div>
-                  <div id="dpdatestop"></div>
-                  <div class="form-group">
-                    <label for="summinp">Количество путевок</label>
-                    <input type="text" class="form-control" id="summinp" required="">
-                  </div>
-                  <div class="form-group">
-                    <label for="serials">Серия</label>
-                    <input type="text" class="form-control" id="serials" required=""/>
-                  </div>
+                            <div id="dpdatestart"></div>
+                            <div id="dpdatestop"></div>
+                            <div class="form-group">
+                              <label for="summinp">Количество путевок</label>
+                              <input type="text" class="form-control" id="summinp" required="">
+                            </div>
+                            <div class="form-group">
+                              <label for="serials">Серия</label>
+                              <input type="text" class="form-control" id="serials" required="" />
+                            </div>
 
-                  <div class="form-group">
-                    <label for="numofser">Номер</label>
-                    <input type="text" class="form-control" id="numofser" required=""/>
-                  </div>
-                  <div class="btn-group btn-group-justified">
-                    <a class="btn btn-success btn-lg" onclick="addtimecontract()">Добавить</a>
-                    <a class="btn btn-danger btn-lg" href="#">Отменить</a>
+                            <div class="form-group">
+                              <label for="numofser">Номер</label>
+                              <input type="text" class="form-control" id="numofser" required="" />
+                            </div>
+                            <div class="btn-group btn-group-justified">
+                              <a class="btn btn-success btn-lg" onclick="addtimecontract()">Добавить</a>
+                              <a class="btn btn-danger btn-lg" href="#">Отменить</a>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
 
                   </div>
-                  </div>
-                </div>
-                </div>
-
-                </div>
-
                 </div>
               </div>
-            </div>
           </section>
 
+          </div>
         </div>
       </div>
-    </div>
 
 
 
@@ -187,138 +193,204 @@
 
   </form>
 
-</div>
+  </div>
 
-{% endblock %} {% block customjs %}
+  {% endblock %} {% block customjs %}
 
-<script>
-  var idses = getQueryVariable('id');
-  webix.ready(function() {
-    webix.ui({
-      container: 'celdr',
-      view: 'datepicker',
-      name: 'date',
-      id: 'date',
-      width: 420,
-      labelWidth: 155,
-      label: 'Дата контракта',
-      stringResult: true
+  <script>
+    var idses = getQueryVariable('id');
+    webix.ready(function() {
+      webix.ui({
+        container: 'celdr',
+        view: 'datepicker',
+        name: 'date',
+        id: 'date',
+        width: 420,
+        labelWidth: 155,
+        label: 'Дата контракта',
+        stringResult: true
+
+      });
+      webix.ui({
+        container: 'dpdatestart',
+        view: 'datepicker',
+        name: 'dpdatestart',
+        id: 'dpdatestart',
+        width: 420,
+        labelWidth: 155,
+        label: 'Начало',
+        stringResult: true
+
+      });
+      webix.ui({
+        container: 'dpdatestop',
+        view: 'datepicker',
+        name: 'dpdatestop',
+        id: 'dpdatestop',
+        width: 420,
+        labelWidth: 155,
+        label: 'Дата контракта',
+        stringResult: true
+
+      });
+      // start periods
+      webix.ui({
+        container: 'periods',
+        view: 'datatable',
+        name: 'datatable',
+        id: 'datatable',
+
+        height: 300,
+        autowidth:true,
+        columns: [{
+          // Начало
+          id: 'startdate',
+          header: ['Начало', {
+            content: 'textFilter'
+          }],
+          width: 100,
+          sort: 'string',
+          format: webix.Date.dateToStr('%Y-%m-%d')
+        }, {
+          // Окончание
+          id: 'enddate',
+          header: ['Окончание', {
+            content: 'textFilter'
+          }],
+          width: 100,
+          sort: 'string',
+          format: webix.Date.dateToStr('%Y-%m-%d')
+        }, {
+          // Кол-во Путевок
+          id: 'summ',
+          fillspace: true,
+          header: 'Кол-во Путевок',
+          width: 300,
+          sort: 'int'
+        }, {
+          // Серия
+          id: 'serial',
+          header: ['Серия', {
+            content: 'textFilter'
+          }],
+          width: 100,
+          sort: 'string'
+        }, {
+          // Номер
+          id: 'number',
+          fillspace: true,
+          header: ['Номер', {
+            content: 'textFilter'
+          }],
+          width: 300,
+          sort: 'string'
+        }],
+        url: "select/select_periods.php?ides=" + idses
+
+      });
+      //end periods
+
 
     });
-    webix.ui({
-      container: 'dpdatestart',
-      view: 'datepicker',
-      name: 'dpdatestart',
-      id: 'dpdatestart',
-      width: 420,
-      labelWidth: 155,
-      label: 'Начало',
-      stringResult: true
+  </script>
+  <script>
+    function gid(eid) {
+      return document.getElementById(eid);
+    }
+    var ids = getQueryVariable('id');
+    webix.ready(function() {
 
-    });
-    webix.ui({
-      container: 'dpdatestop',
-      view: 'datepicker',
-      name: 'dpdatestop',
-      id: 'dpdatestop',
-      width: 420,
-      labelWidth: 155,
-      label: 'Дата контракта',
-      stringResult: true
 
-    });
+      webix.ajax('select/getprofilekontrakt.php?id=' + ids, function(text) {
+        var jsons = jQuery.parseJSON(text);
 
-    webix.ui({
-      container:'periods',
-      view:'datatable',
-      name:'datatable',
-      height:300,
-      columns:[
-        { id: 'startdate', header: ['Начало', {content: 'textFilter'}], width: 100, sort: 'string',
-            format: webix.Date.dateToStr('%Y-%m-%d')},
-        { id: 'enddate', header: ['Окончание', {content: 'textFilter'}], width: 100, sort: 'string',
-            format: webix.Date.dateToStr('%Y-%m-%d')},
-        { id: 'summ',fillspace:true, header: 'Кол-во Путевок', width: 300, sort: 'int'},
-        { id: 'serial', header: ['Серия', {content: 'textFilter'}], width: 100, sort: 'string'},
-        { id: 'number',fillspace:true, header: ['Номер', {content: 'textFilter'}], width: 300, sort: 'string'}
-      ],
-      url:"select/select_periods.php?ides="+idses
 
+        gid('headernames').innerHTML = jsons[0].name;
+        gid('nameinp').value = jsons[0].name;
+        gid('put').value = jsons[0].put;
+        gid('price').value = jsons[0].price;
+        gid('days').value = jsons[0].days;
+        $$('date').setValue(jsons[0].date);
+        gid('daysprice').value = parseInt(jsons[0].price) / parseInt(jsons[0].days);
+
+      });
     });
 
+    function addtimecontract() {
+      webix.ajax("insert/insert_new_periods.php?startdate=" + $$("dpdatestart").getValue() +
+        "&enddate=" + $$("dpdatestop").getValue() +
+        "&summ=" + gid('summinp').value +
+        "&serial=" + gid('serials').value +
+        "&number=" + gid('numofser').value +
+        "&idcontract=" + ids, {
+          success: function(text) {
+            if (text == 0) {
+              webix.alert({
+                text: "Данные добавлены"
+              });
+              $$("datatable").load("select/select_periods.php?ides=" + idses);
+            } else {
+              webix.alert({
+                type: "alert-warning",
+                text: "Повторите позже"
+              });
+            }
+          }
+        },
 
-  });
-</script>
-<script>
-  function gid(eid) {
-    return document.getElementById(eid);
-  }
-  var ids = getQueryVariable('id');
-  webix.ready(function() {
-
-
-    webix.ajax('select/getprofilekontrakt.php?id=' + ids, function(text) {
-      var jsons = jQuery.parseJSON(text);
-
-
-      gid('headernames').innerHTML = jsons[0].name;
-      gid('nameinp').value = jsons[0].name;
-      gid('put').value = jsons[0].put;
-      gid('price').value = jsons[0].price;
-      gid('days').value = jsons[0].days;
-      $$('date').setValue(jsons[0].date);
-      gid('daysprice').value = parseInt(jsons[0].price) / parseInt(jsons[0].days);
-
-    });
-  });
-
-  function addtimecontract() {
-    webix.ajax("insert_new_periods.php?startdate="+
-    "enddate"
-
-
-    );
-
-  }
-
-  function sendsave() {
-    webix.ajax("update/updatedbkontrakt.php?nameinp=" + gid('nameinp').value +
-      "&put=" + gid('put').value +
-      "&price=" + gid('price').value +
-      "&days=" + gid('days').value +
-      "&date=" + $$('date').getValue() +
-      "&ids=" + ids, {
-        success: function(text) {
-          if (text == 0) {
+        {
+          error: function(text, data, XmlHttpRequest) {
             webix.alert({
-              text: "Данные обновлены"
-            });
-          } else {
-            webix.alert({
-              type: "alert-warning",
               text: "Повторите позже"
             });
           }
         }
-      },
 
-      {
-        error: function(text, data, XmlHttpRequest) {
-          webix.alert({
-            text: "Повторите позже"
-          });
+
+
+      );
+
+    }
+
+    function sendsave() {
+      webix.ajax("update/updatedbkontrakt.php?nameinp=" + gid('nameinp').value +
+        "&put=" + gid('put').value +
+        "&price=" + gid('price').value +
+        "&days=" + gid('days').value +
+        "&date=" + $$('date').getValue() +
+        "&ids=" + ids, {
+          success: function(text) {
+            if (text == 0) {
+              webix.alert({
+                text: "Данные обновлены"
+              });
+            } else {
+              webix.alert({
+                type: "alert-warning",
+                text: "Повторите позже"
+              });
+            }
+          }
+        }, {
+          error: function(text, data, XmlHttpRequest) {
+            webix.alert({
+              text: "Повторите позже"
+            });
+          }
         }
-      }
-    );
-  }
-  gid('put').onkeypress = function(e) {
-    return !(/[А-Яа-яA-Za-z ]/.test(String.fromCharCode(e.charCode)));
-  };
-  gid('price').onkeypress = function(e) {
-    return !(/[А-Яа-яA-Za-z ]/.test(String.fromCharCode(e.charCode)));
-  };
-  gid('days').onkeypress = function(e) {
-    return !(/[А-Яа-яA-Za-z ]/.test(String.fromCharCode(e.charCode)));
-  };
-</script>
-{% endblock %}
+      );
+    }
+    gid('put').onkeypress = function(e) {
+      return !(/[А-Яа-яA-Za-z ]/.test(String.fromCharCode(e.charCode)));
+    };
+    gid('price').onkeypress = function(e) {
+      return !(/[А-Яа-яA-Za-z ]/.test(String.fromCharCode(e.charCode)));
+    };
+    gid('days').onkeypress = function(e) {
+      return !(/[А-Яа-яA-Za-z ]/.test(String.fromCharCode(e.charCode)));
+    };
+    gid('summinp').onkeypress = function(e) {
+      return !(/[А-Яа-яA-Za-z ]/.test(String.fromCharCode(e.charCode)));
+    }
+  </script>
+  {% endblock %}
