@@ -67,7 +67,10 @@
                   <a href="#home2" data-toggle="tab">Информация о контракте</a>
                 </li>
                 <li class="">
-                  <a href="#contact2" data-toggle="tab">Время заездов</a>
+                  <a href="#contact2" data-toggle="tab">Периоды заездов</a>
+                </li>
+                <li class="">
+                  <a href="#newperiod" data-toggle="tab">Добавление периодов заезда</a>
                 </li>
               </ul>
             </header>
@@ -118,9 +121,6 @@
                                   </div>
                                 </div>
                               </div>
-
-
-
                             </div>
                           </div>
                         </div>
@@ -134,6 +134,39 @@
 
                 </div>
                 <div class="tab-pane" id="contact2">
+                  <div id="periods"></div>
+                </div>
+                <div class="tab-pane" id="newperiod">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="panel">
+                        <div class="panel-body">
+                          <div class="profile-desk">
+                  <div id="dpdatestart"></div>
+                  <div id="dpdatestop"></div>
+                  <div class="form-group">
+                    <label for="summinp">Количество путевок</label>
+                    <input type="text" class="form-control" id="summinp" required="">
+                  </div>
+                  <div class="form-group">
+                    <label for="serials">Серия</label>
+                    <input type="text" class="form-control" id="serials" required=""/>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="numofser">Номер</label>
+                    <input type="text" class="form-control" id="numofser" required=""/>
+                  </div>
+                  <div class="btn-group btn-group-justified">
+                    <a class="btn btn-success btn-lg" onclick="addtimecontract()">Добавить</a>
+                    <a class="btn btn-danger btn-lg" href="#">Отменить</a>
+
+                  </div>
+                  </div>
+                </div>
+                </div>
+
+                </div>
 
                 </div>
               </div>
@@ -172,6 +205,46 @@
       stringResult: true
 
     });
+    webix.ui({
+      container: 'dpdatestart',
+      view: 'datepicker',
+      name: 'dpdatestart',
+      id: 'dpdatestart',
+      width: 420,
+      labelWidth: 155,
+      label: 'Начало',
+      stringResult: true
+
+    });
+    webix.ui({
+      container: 'dpdatestop',
+      view: 'datepicker',
+      name: 'dpdatestop',
+      id: 'dpdatestop',
+      width: 420,
+      labelWidth: 155,
+      label: 'Дата контракта',
+      stringResult: true
+
+    });
+
+    webix.ui({
+      container:'periods',
+      view:'datatable',
+      name:'datatable',
+      height:300,
+      columns:[
+        { id: 'startdate', header: ['Начало', {content: 'textFilter'}], width: 100, sort: 'string',
+            format: webix.Date.dateToStr('%Y-%m-%d')},
+        { id: 'enddate', header: ['Окончание', {content: 'textFilter'}], width: 100, sort: 'string',
+            format: webix.Date.dateToStr('%Y-%m-%d')},
+        { id: 'summ',fillspace:true, header: 'Кол-во Путевок', width: 300, sort: 'int'},
+        { id: 'serial', header: ['Серия', {content: 'textFilter'}], width: 100, sort: 'string'},
+        { id: 'number',fillspace:true, header: ['Номер', {content: 'textFilter'}], width: 300, sort: 'string'}
+      ],
+      url:"select/select_periods.php?ides="+idses
+
+    });
 
 
   });
@@ -199,7 +272,12 @@
     });
   });
 
-  function addcontract() {
+  function addtimecontract() {
+    webix.ajax("insert_new_periods.php?startdate="+
+    "enddate"
+
+
+    );
 
   }
 
