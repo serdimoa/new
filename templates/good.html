@@ -29,10 +29,37 @@
 
 
 {% block content %}
-<div class="row" ><div id="datatbl" class="col-lg-12"></div> </div>
-<div class="row"><div class="col-lg-12"> <h3>Заявки</h3></div></div>
-<div class="row">
-    <div id="datatblinfo" class="col-lg-12"></div>
+<header class="panel-heading custom-tab dark-tab">
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a href="#home2" data-toggle="tab">Реестр детей</a>
+    </li>
+    <li class="">
+      <a href="#contact2" data-toggle="tab">Заявки для выбраного ребенка</a>
+    </li>
+
+  </ul>
+</header>
+<div class="panel-body col-lg-12">
+  <div class="tab-content">
+    <div class="tab-pane active" id="home2">
+      <div class="row" ><div id="datatbl" class="col-lg-12"></div>
+  </div>
+    </div>
+    <div class="tab-pane" id="contact2">
+      <div class="row" ><div id="datatblinfo" class="col-lg-12"></div>
+
+ </div><br>
+ <a class="btn btn-info btn-lg " onclick="showld()" href="#">Просмотр личного дела</a>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
 {% endblock %}
 {% block customjs %}
 <script charset="utf-8" type="text/javascript">
@@ -60,9 +87,10 @@ webix.ready(function(){
                    this.showOverlay('обновите старницу');
                else
                    this.hideOverlay();
-           },onSelectChange:function(){
+           },onSelectChange:function(id){
                selectedid = $$('datatable').getSelectedId(true).join();
                 $$('datatable1').clearAll();
+                $('.nav-tabs a[href="#' + "contact2" + '"]').tab('show');
                 $$('datatable1').load('select/putevka.php?ides='+selectedid);
 
 
@@ -94,6 +122,7 @@ webix.ready(function(){
         view:'datatable',
         id:'datatable1',
         minHeight:200,
+        autowidth:true,
         columns:[
             {id:'id',header:'№'},
             {id:'status',header:'Статус',template:function(obj){
@@ -117,7 +146,7 @@ webix.ready(function(){
             }},
             {id:'year',header:'Год'},
             {id:'date',header:"Дата&nbsp;подачи",width:200,format: webix.Date.dateToStr('%Y-%m-%d')},
-            {id:'type',header:'Направление',fillspace:true,template:function(obj){
+            {id:'type',header:'Направление', width:200,fillspace:true,template:function(obj){
                 switch (obj.type){
                     case "1":
                         return "Лагеря с дневным пребыванием детей";
@@ -200,10 +229,13 @@ webix.ready(function(){
     });
     $$("cmenu").attachTo($$("datatable"));
 
+
 });
+function showld(){
+  selectedid = $$('datatable').getSelectedId(true).join();
+  document.location.href = "index.php?np=profile&id="+selectedid;
 
-
-
+}
 
 </script>
 {% endblock %}

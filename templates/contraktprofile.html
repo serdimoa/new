@@ -134,10 +134,10 @@
 
                 </div>
                 <div class="tab-pane" id="contact2">
-<div class="row">
-  <div class="col-lg-12" id="periods"></div>
+                    <div class="row">
+                      <div class="col-lg-12" id="periods"></div>
 
-</div>
+                    </div>
 
 
 
@@ -245,18 +245,14 @@
         columns: [{
           // Начало
           id: 'startdate',
-          header: ['Начало', {
-            content: 'textFilter'
-          }],
+          header: 'Начало',
           width: 100,
           sort: 'string',
           format: webix.Date.dateToStr('%Y-%m-%d')
         }, {
           // Окончание
           id: 'enddate',
-          header: ['Окончание', {
-            content: 'textFilter'
-          }],
+          header: 'Окончание',
           width: 100,
           sort: 'string',
           format: webix.Date.dateToStr('%Y-%m-%d')
@@ -270,22 +266,20 @@
         }, {
           // Серия
           id: 'serial',
-          header: ['Серия', {
-            content: 'textFilter'
-          }],
+          header: 'Серия',
           width: 100,
           sort: 'string'
         }, {
           // Номер
           id: 'number',
           fillspace: true,
-          header: ['Номер', {
-            content: 'textFilter'
-          }],
+          header: 'Номер',
           width: 300,
           sort: 'string'
         }],
-        url: "select/select_periods.php?ides=" + idses
+        url: "select/select_periods.php?ides=" + idses,select: 'row',
+        onContext:{}
+
 
       });
       //end periods
@@ -299,8 +293,6 @@
     }
     var ids = getQueryVariable('id');
     webix.ready(function() {
-
-
       webix.ajax('select/getprofilekontrakt.php?id=' + ids, function(text) {
         var jsons = jQuery.parseJSON(text);
 
@@ -314,6 +306,23 @@
         gid('daysprice').value = parseInt(jsons[0].price) / parseInt(jsons[0].days);
 
       });
+      webix.ui({
+           view:"contextmenu",
+           id:"cmenu",
+           data:["Удалить"],
+           on:{
+               onItemClick:function(id){
+                   var context = this.getContext();
+                   //delete
+                   if(this.getItem(id).id=="Удалить"){
+                       webix.ajax("delete/deletefromperiods.php?id="+context.id);
+                       $$("datatable").remove(context.id);
+                   }
+
+               }
+           }
+       });
+       $$("cmenu").attachTo($$("datatable"));
     });
 
     function addtimecontract() {
@@ -392,5 +401,7 @@
     gid('summinp').onkeypress = function(e) {
       return !(/[А-Яа-яA-Za-z ]/.test(String.fromCharCode(e.charCode)));
     }
+
+
   </script>
   {% endblock %}
