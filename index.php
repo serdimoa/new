@@ -9,14 +9,14 @@ $twig = new Twig_Environment($loader, array(
 ));
 $namepage = $_GET['np'];
 if(!$_SESSION["login"]){
-        echo $twig->render("index.html");
+        echo $twig->render("index.html.twig");
     }
     else{
       if($namepage){
-      echo $twig->render("$namepage.html");
+      echo $twig->render("$namepage.html.twig");
       }
       else{
-        echo $twig->render("good.html");
+        echo $twig->render("good.html.twig");
     }
 
 }

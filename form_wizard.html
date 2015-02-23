@@ -237,7 +237,7 @@
             container:'resttype',
             view:'combo',
             id:'resttypecombo',
-            options:'resttypeall.php'
+            options:'select/resttypeall.php'
         });
     webix.ui({
         container:'resttime',
@@ -275,14 +275,14 @@
 
         }
         else{
-            document.getElementById('resttimeform').style.visibility="hiden";
+            document.getElementById('resttimeform').style.visibility="hidden";
         }
     });
     function gid(eid){
         return document.getElementById(eid);
     }
     function senddata(){
-        webix.ajax("req.php?fio="+gid('fio').value+"&name="+gid('name').value+"&othc="+gid('otch').value+"&date="+$$('date').getValue()+"&doc=" + gid('doc').value+"&resttype="+$$('resttypecombo').getValue()+"&resttime="+ $$('resttimecombo').getValue()+"&resttimeobj="+ $$('resttimeobjcombo').getValue()+"&fiorod="+gid('fiorod').value+"&workstation="+gid('workstation').value+"&tel="+gid('tel').value,
+        webix.ajax("insert/req.php?fio="+gid('fio').value+"&name="+gid('name').value+"&othc="+gid('otch').value+"&date="+$$('date').getValue()+"&doc=" + gid('doc').value+"&resttype="+$$('resttypecombo').getValue()+"&resttime="+ $$('resttimecombo').getValue()+"&resttimeobj="+ $$('resttimeobjcombo').getValue()+"&fiorod="+gid('fiorod').value+"&workstation="+gid('workstation').value+"&tel="+gid('tel').value,
                 {success:function(text){
                     if(text==1){
                     webix.alert({text:"Ваша заявкак отправлена"});

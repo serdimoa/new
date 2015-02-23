@@ -4,7 +4,7 @@
 }
 
 .nav > li > a:hover, .nav > li > a:focus {
-    background-color: #353F4F;
+    background-color: rgba(0,0,0,.0);
     text-decoration: none;
 }
 

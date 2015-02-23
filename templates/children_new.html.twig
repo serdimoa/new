@@ -235,7 +235,7 @@
 
 
     function sendsave(){
-        webix.ajax("/insert/children_new_insert.php?nameinp="      +   gid('nameinp').value +
+        webix.ajax("insert/children_new_insert.php?nameinp="      +   gid('nameinp').value +
                                 "&fioinp="      +   gid('fioinp').value +
                                 "&lastinp="     +   gid('lastinp').value +
                                 "&svid="        +   gid('svid').value +
@@ -253,7 +253,7 @@
                                 "&lgotkats="    +   $$('lgotkats').getValue(),
             {success:function(text){
                 if(text==0){
-                    webix.alert({text: "Данные обновлены", callback:function(){
+                    webix.alert({text: "Данные добавлены", callback:function(){
                         document.location.href = "index.php?np=good";
 
                     }});

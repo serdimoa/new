@@ -5,7 +5,7 @@
  * Date: 21.01.15
  * Time: 14:30
  */
-include_once('config.php');
+include_once('../config.php');
 $fio=$_GET['fio'];
 $name=$_GET['name'];
 $othc=$_GET['othc'];

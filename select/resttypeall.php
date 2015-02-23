@@ -6,7 +6,7 @@
  * Time: 17:44
  */
 
-    include_once("config.php");
+    include_once("../config.php");
     $sql = "select * from resttype where 1";
     $show = mysql_query($sql);
     $arr = array();
