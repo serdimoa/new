@@ -62,7 +62,11 @@
             <header class="panel-heading">Информация о контракте </header>
             <div class="panel-body">
               <div class="profile-desk">
+                  <div class="form-group">
+                      <label for="resttype">Вид отдыха</label>
 
+                      <div id="resttype"></div>
+                  </div>
                 <div class="form-group">
                   <label for="nameinp">Оздоровительное учереждение</label>
                   <input type="text" class="form-control" id="nameinp" required="">
@@ -121,6 +125,12 @@
       stringResult: true
 
     });
+      webix.ui({
+          container:'resttype',
+          view:'combo',
+          id:'resttypecombo',
+          options:'select/resttypeall.php'
+      });
 
   });
 </script>
@@ -135,6 +145,7 @@
       "&fioinp=" + gid('fioinp').value +
       "&lastinp=" + gid('lastinp').value +
       "&svid=" + gid('svid').value +
+            "&types="+$$('resttypecombo').getValue()+
       "&date=" + $$('date').getValue(), {
         success: function(text) {
           if (text == 0) {

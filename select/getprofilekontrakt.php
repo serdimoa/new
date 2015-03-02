@@ -19,7 +19,7 @@ else
     $arr = array();
     $row = mysql_fetch_array($show);
     $arr[] = Array("id"=>$row['id'],"name"=>$row['name'],"put"=>$row['put'],"price"=>$row['price'],
-    "days"=>$row['days'],"date"=>$row['date']);
+    "days"=>$row['days'],"date"=>$row['date'],"types"=>$row['types']);
 
     echo json_encode($arr);
 

@@ -38,7 +38,7 @@
       </li>
     </ul>
   </li>
-  <li><a id="Myunidf" href="index.html"><i class="fa fa-sign-out"></i> <span>Выход</span></a>
+  <li><a id="Myunidf" href="#"><i class="fa fa-sign-out"></i> <span>Выход</span></a>
   </li>
 
 </ul>
@@ -83,7 +83,11 @@
                       <div class="panel">
                         <div class="panel-body">
                           <div class="profile-desk">
+                            <div class="form-group">
+                                <label for="resttype">Вид отдыха</label>
 
+                                <div id="resttype"></div>
+                            </div>
                             <div class="form-group">
                               <label for="nameinp">Наименование организации</label>
                               <input type="text" class="form-control" id="nameinp" required="">
@@ -176,19 +180,13 @@
 
                   </div>
                 </div>
+                 </div>
               </div>
           </section>
 
           </div>
         </div>
       </div>
-
-
-
-
-
-
-
 
 
   </form>
@@ -283,7 +281,12 @@
 
       });
       //end periods
-
+        webix.ui({
+            container:'resttype',
+            view:'combo',
+            id:'resttypecombo',
+            options:'select/resttypeall.php'
+        });
 
     });
   </script>
@@ -291,6 +294,7 @@
     function gid(eid) {
       return document.getElementById(eid);
     }
+
     var ids = getQueryVariable('id');
     webix.ready(function() {
       webix.ajax('select/getprofilekontrakt.php?id=' + ids, function(text) {
@@ -302,6 +306,7 @@
         gid('put').value = jsons[0].put;
         gid('price').value = jsons[0].price;
         gid('days').value = jsons[0].days;
+        $$('resttypecombo').setValue(jsons[0].types);
         $$('date').setValue(jsons[0].date);
         gid('daysprice').value = parseInt(jsons[0].price) / parseInt(jsons[0].days);
 
@@ -367,6 +372,7 @@
         "&price=" + gid('price').value +
         "&days=" + gid('days').value +
         "&date=" + $$('date').getValue() +
+        "&types="+$$('resttypecombo').getValue()+
         "&ids=" + ids, {
           success: function(text) {
             if (text == 0) {

@@ -3,461 +3,486 @@
 {% block title %}Профиль{% endblock %}
 {% block customheadjs %}
     <script>
-        function getQueryVariable(variable)
-        {
+        function getQueryVariable(variable) {
             var query = window.location.search.substring(1);
             var vars = query.split("&");
-            for (var i=0;i<vars.length;i++) {
+            for (var i = 0; i < vars.length; i++) {
                 var pair = vars[i].split("=");
-                if(pair[0] == variable){return pair[1];}
+                if (pair[0] == variable) {
+                    return pair[1];
+                }
             }
             return(false);
         }
     </script>
-    {% endblock %}
+{% endblock %}
 
     {% block nav %}
 
 
-    <ul class="nav nav-pills nav-stacked custom-nav">
-        <li class="menu-list nav-active"><a href=""><i class="fa fa-home"></i> <span>Реестр детей</span></a>
-            <ul class="sub-menu-list">
-                <li ><a href="index.php?np=good"><i class="fa fa-search"></i> <span>Обзор</span></a></li>
-                <li class="active"><a href="index.php?np=profile"> <span>Просмотр</span></a></li>
-                <li><a href="index.php?np=children_new"><i class="fa fa-plus"></i> <span>Добавить ребенка</span></a></li>
+        <ul class="nav nav-pills nav-stacked custom-nav">
+            <li class="menu-list nav-active"><a href=""><i class="fa fa-home"></i> <span>Реестр детей</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="index.php?np=good"><i class="fa fa-search"></i> <span>Обзор</span></a></li>
+                    <li class="active"><a href="index.php?np=profile"> <span>Просмотр</span></a></li>
+                    <li><a href="index.php?np=children_new"><i class="fa fa-plus"></i> <span>Добавить ребенка</span></a>
+                    </li>
 
-            </ul>
-        </li>
-        <li><a href="index.php?np=request"><i class="fa fa-envelope"></i> <span>Реестр заявок</span></a></li>
-        <li class="menu-list "><a href=""><i class="fa fa-home"></i> <span>Контракты</span></a>
-            <ul class="sub-menu-list">
-                <li > <a href="index.php?np=kontrakt"><i class="fa fa-book"></i> <span>Обзор</span></a></li>
-                <li><a href="index.php?np=new_kontrakt"><i class="fa fa-plus"></i> <span>Добавить Контракт</span></a></li>
-            </ul>
-        </li>
-        <li><a id="Myunidf" href="index.html"><i class="fa fa-sign-out"></i> <span>Выход</span></a></li>
+                </ul>
+            </li>
+            <li><a href="index.php?np=request"><i class="fa fa-envelope"></i> <span>Реестр заявок</span></a></li>
+            <li class="menu-list "><a href=""><i class="fa fa-home"></i> <span>Контракты</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="index.php?np=kontrakt"><i class="fa fa-book"></i> <span>Обзор</span></a></li>
+                    <li><a href="index.php?np=new_kontrakt"><i class="fa fa-plus"></i>
+                            <span>Добавить Контракт</span></a></li>
+                </ul>
+            </li>
+            <li><a id="Myunidf" href="index.html"><i class="fa fa-sign-out"></i> <span>Выход</span></a></li>
 
-    </ul>
-            {% endblock %}
+        </ul>
+    {% endblock %}
 
         {% block heading %}
 
-        <div class="page-heading">
-            <h3 id="headernames">Фамилия Имя Отчество</h3>
-            <ul class="breadcrumb">
-                <li><a href="good.html"> Реестр детей</a></li>
-                <li class="active">Информация о ребенке</li>
-            </ul>
+            <div class="page-heading">
+                <h3 id="headernames">Фамилия Имя Отчество</h3>
+                <ul class="breadcrumb">
+                    <li><a href="good.html"> Реестр детей</a></li>
+                    <li class="active">Информация о ребенке</li>
+                </ul>
 
-        </div>
+            </div>
         {% endblock %}
 
         {% block content %}
 
             <div class="row">
                 <form>
-
-                <div class="col-md-4">
-                    <div class="row">
-                        <div class="col-md-12">
-
-                            <div class="panel">
-                                <header class="panel-heading">Информация о ребенке </header>
+                    <div class="panel">
+                        <div class="panel-body">
+                            <section class="panel">
+                                <header class="panel-heading custom-tab dark-tab">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active">
+                                            <a href="#home2" data-toggle="tab">Информация</a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#contact2" data-toggle="tab">Заявки</a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#contact3" data-toggle="tab">Контракты</a>
+                                        </li>
+                                    </ul>
+                                </header>
                                 <div class="panel-body">
-                                    <div class="profile-desk">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="home2">
 
-                                            <div class="form-group">
-                                                <label for="nameinp">Имя</label>
-                                                <input type="text" class="form-control" id="nameinp" required="">
+
+                                            <div class="col-md-4">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+
+                                                        <div class="panel">
+                                                            <header class="panel-heading">Информация о ребенке</header>
+                                                            <div class="panel-body">
+                                                                <div class="profile-desk">
+
+                                                                    <div class="form-group">
+                                                                        <label for="nameinp">Имя</label>
+                                                                        <input type="text" class="form-control"
+                                                                               id="nameinp" required="">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="fioinp">Фамилия</label>
+                                                                        <input type="text" class="form-control"
+                                                                               id="fioinp" required="">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="lastinp">Отчество</label>
+                                                                        <input type="text" class="form-control"
+                                                                               id="lastinp" required="">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="svid">Свидетельство о рождении /
+                                                                            паспорт</label>
+                                                                        <input type="text" class="form-control"
+                                                                               id="svid" required="">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div id="celdr"></div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="adrregs">Адрес регистрации</label>
+                                                                        <input type="text" class="form-control"
+                                                                               id="adrregs" required="">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="adrfact">Адрес фактический</label>
+                                                                        <input type="text" class="form-control"
+                                                                               id="adrfact" required="">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="scholl">Учебное заведение</label>
+
+                                                                        <div id="scholl"></div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="classname">Класс</label>
+                                                                        <input type="text" class="form-control"
+                                                                               id="classname" required="">
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
                                             </div>
-                                            <div class="form-group">
-                                                <label for="fioinp">Фамилия</label>
-                                                <input type="text" class="form-control" id="fioinp" required="">
+                                            <div class="col-md-8">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="panel">
+                                                            <header class="panel-heading">Льготная категория</header>
+                                                            <div class="panel-body">
+                                                                <div class="profile-desk">
+
+                                                                    <div id="lgotkat"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="panel">
+                                                            <header class="panel-heading">Информация о законном
+                                                                представителе
+                                                            </header>
+                                                            <div class="panel-body">
+                                                                <div class="profile-desk">
+                                                                    <label for="fioroditelya">Отношение и ФИО </label>
+                                                                    <input type="text" class="form-control"
+                                                                           id="fioroditelya">
+                                                                </div>
+                                                                <div class="profile-desk">
+                                                                    <label for="workstation">Место работы </label>
+                                                                    <input type="text" class="form-control"
+                                                                           id="workstation">
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel">
+                                                            <header class="panel-heading">Контактные телефоны</header>
+                                                            <div class="panel-body">
+                                                                <div class="profile-desk">
+                                                                    <div class="form-group">
+                                                                        <label for="rabotainp">Рабочий</label>
+                                                                        <input type="text" class="form-control"
+                                                                               id="rabotainp">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="homeinp">Домашний</label>
+                                                                        <input type="text" class="form-control"
+                                                                               id="homeinp">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="mobilinp">Сотовый</label>
+                                                                        <input type="text" class="form-control"
+                                                                               id="mobilinp">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="emailinp">Адрес электронной
+                                                                            почти</label>
+                                                                        <input type="text" class="form-control"
+                                                                               id="emailinp">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="lastinp">Отчество</label>
-                                                <input type="text" class="form-control" id="lastinp" required="">
+                                            <div class="col-md-12">
+                                                <div class="panel">
+                                                    <div class="panel-body">
+                                                        <div class="profile-desk">
+                                                            <div class="btn-group btn-group-justified">
+                                                                <a class="btn btn-success btn-lg" onclick="sendsave()">Сохранить</a>
+                                                                <a class="btn btn-danger btn-lg" href="#">Отменить</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        <div class="form-group">
-                                            <label for="svid">Свидетельство о рождении / паспорт</label>
-                                            <input type="text" class="form-control" id="svid" required="">
                                         </div>
-                                            <div class="form-group">
-                                                <div id="celdr"></div>
+
+                                        <div class="tab-pane col-lg-12" id="contact2">
+                                            <div class="col-lg-12">
+                                            <div id="mer"></div>
                                             </div>
-                                        <div class="form-group">
-                                            <label for="adrregs">Адрес регистрации</label>
-                                            <input type="text" class="form-control" id="adrregs" required="">
                                         </div>
-                                        <div class="form-group">
-                                            <label for="adrfact">Адрес фактический</label>
-                                            <input type="text" class="form-control" id="adrfact" required="">
+                                        <div class="tab-pane" id="contact3">
+                                            Контракты
                                         </div>
-                                        <div class="form-group">
-                                            <label for="scholl">Учебное заведение</label>
-                                            <div id="scholl"></div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="classname">Класс</label>
-                                            <input type="text" class="form-control" id="classname" required="">
-                                        </div>
-
-
-
-                                    </div>
-                                </div>
-                            </div>
-
-                    </div>
-                </div>
-
-                </div>
-                <div class="col-md-8">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel">
-                                <header class="panel-heading">Льготная категория </header>
-                                <div class="panel-body">
-                                    <div class="profile-desk">
-
-                                        <div id="lgotkat"></div>
-                                    </div>
-                                    </div>
-                                </div>
-
-                            <div class="panel">
-                                <header class="panel-heading">Информация о законном представителе </header>
-                                <div class="panel-body">
-                                    <div class="profile-desk">
-                                        <label for="fioroditelya">Отношение и ФИО </label>
-                                        <input type="text" class="form-control" id="fioroditelya">
-                                    </div>
-                                    <div class="profile-desk">
-                                        <label for="workstation">Место работы </label>
-                                        <input type="text" class="form-control" id="workstation">
                                     </div>
 
                                 </div>
-                            </div>
-                            <div class="panel">
-                                <header class="panel-heading">Контактные телефоны</header>
-                                <div class="panel-body">
-                                    <div class="profile-desk">
-                                        <div class="form-group">
-                                            <label for="rabotainp">Рабочий</label>
-                                            <input type="text" class="form-control" id="rabotainp" >
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="homeinp">Домашний</label>
-                                            <input type="text" class="form-control" id="homeinp" >
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="mobilinp">Сотовый</label>
-                                            <input type="text" class="form-control" id="mobilinp" >
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="emailinp">Адрес электронной почти</label>
-                                            <input type="text" class="form-control" id="emailinp">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-
-
+                            </section>
                         </div>
                     </div>
-                </div>
-                    <div class="col-md-12">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="profile-desk">
-                                    <div class="btn-group btn-group-justified">
-                                        <a class="btn btn-success btn-lg" onclick="sendsave()" >Сохранить</a>
-                                        <a class="btn btn-danger btn-lg"  href="#">Отменить</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <section class="panel">
-                                    <header class="panel-heading custom-tab dark-tab">
-                                        <ul class="nav nav-tabs">
-                                            <li class="active">
-                                                <a href="#home2" data-toggle="tab">Заявки</a>
-                                            </li>
-                                            <li class="">
-                                                <a href="#contact2" data-toggle="tab">Контракты</a>
-                                            </li>
-                                        </ul>
-                                    </header>
-                                    <div class="panel-body">
-                                        <div class="tab-content">
-                                            <div class="tab-pane active" id="home2">
-                                                <div id="mer"></div>
-                                            </div>
-                                           <div class="tab-pane" id="contact2">
-                                               Контракты
-                                           </div>
-                                        </div>
-                                    </div>
-                                </section>
 
-                                </div>
-                            </div>
-                        </div>
 
                 </form>
 
             </div>
 
-            {% endblock %}
+        {% endblock %}
 
 
 
             {% block customjs %}
 
-<script>
-    var idses = getQueryVariable('id');
-    webix.ready(function(){
-        webix.ui({
-            container:'celdr',
-        view:'datepicker',name:'date',id:'date',labelWidth:115,label:'Дата рождения',stringResult:true
+                <script>
+                    var idses = getQueryVariable('id');
+                    webix.ready(function () {
+                        webix.ui({
+                            container: 'celdr',
+                            view: 'datepicker', name: 'date', id: 'date', labelWidth: 115, label: 'Дата рождения', stringResult: true
 
-        });
+                        });
 
-        webix.ui({
-            container:'scholl',
-            view:'combo',
-            id:'school',
-            options:'select/scholl.php'
-        });
-        webix.ui({
-            container:'lgotkat',
-            view:'combo',
-            id:'lgotkats',
-            options:'select/lgotkat.php'
-        });
-        webix.ui({
-            container:'mer',
-            view:'datatable',
-            minHeight:200,
-            onContext:{},
+                        webix.ui({
+                            container: 'scholl',
+                            view: 'combo',
+                            id: 'school',
+                            options: 'select/scholl.php'
+                        });
+                        webix.ui({
+                            container: 'lgotkat',
+                            view: 'combo',
+                            id: 'lgotkats',
+                            options: 'select/lgotkat.php'
+                        });
+                        webix.ui({
+                            container: 'mer',
+                            view: 'datatable',
+                            minHeight: 200,
+                            autowidth:true,
+                            onContext: {},
 
-            id:'datatable',
-            editable:true,
-            columns:[
-                {id:'id',header:'№'},
-                {id:'status', width:110,header:'Статус',template:function(obj){
-                    switch (obj.status){
-                        case "1":
-                            return "В Очереди";
-                            break;
-                        case "2":
-                            return "Принято";
-                            break;
-                        case "3":
-                            return "Отказано";
-                            break;
-                        case "4":
-                            return "Исполнено";
-                            break;
-                        default :
-                            return "В очереди";
-                            break;
+                            id: 'datatable',
+                            editable: true,
+                            columns: [
+                                {id: 'id', header: '№'},
+                                {id: 'status', width: 110, header: 'Статус', template: function (obj) {
+                                    switch (obj.status) {
+                                        case "1":
+                                            return "В Очереди";
+                                            break;
+                                        case "2":
+                                            return "Принято";
+                                            break;
+                                        case "3":
+                                            return "Отказано";
+                                            break;
+                                        case "4":
+                                            return "Исполнено";
+                                            break;
+                                        default :
+                                            return "В очереди";
+                                            break;
+                                    }
+                                }},
+                                {id: 'year', header: 'Год'},
+                                {id: 'date', header: "Дата&nbsp;подачи", width: 200, format: webix.Date.dateToStr('%Y-%m-%d')},
+                                {id: 'type',width:300, header: "Направление отдыха", fillspace: true, template: function (obj) {
+                                    switch (obj.type) {
+                                        case "1":
+                                            return "Лагеря с дневным пребыванием детей";
+                                            break;
+                                        case "2":
+                                            return "Лагеря труда и отдыха";
+                                            break;
+                                        case "4":
+                                            return "Лагеря палаточного типа";
+                                            break;
+                                        case "5":
+                                            return "Ханты-Мансийский автономный округ-Югра";
+                                            break;
+                                        case "6":
+                                            return "Тюменская область";
+                                            break;
+                                        case "7":
+                                            return "Свердловская область";
+                                            break;
+                                        case "8":
+                                            return "Краснодарский край г.Анапа";
+                                            break;
+                                        case "9":
+                                            return "Республика Адыгея";
+                                            break;
+                                        case "10":
+                                            return "Республика Болгария";
+                                            break;
+                                        default :
+                                            return "Заполнено не правильно";
+                                            break;
+
+                                    }
+                                }},
+                                {id: 'time', header: 'Время&nbsp;отдыха', width: 200, template: function (obj) {
+                                    switch (obj.time) {
+                                        case "1":
+                                            return "Весенние каникулы";
+                                            break;
+                                        case "2":
+                                            return "Летние каникулы";
+                                            break;
+                                        case "3":
+                                            return "Осенние каникулы";
+                                            break;
+                                        case "4":
+                                            return "Зимние каникулы";
+                                            break;
+                                        default :
+                                            return "Заполнено не правильно";
+                                            break;
+
+                                    }
+                                }
+                                },
+                                {id: 'timeobj', header: 'Смена', template: function (obj) {
+                                    switch (obj.timeobj) {
+                                        case "1":
+                                            return "1 Смена";
+                                            break;
+                                        case "2":
+                                            return "2 Смена";
+                                            break;
+                                        case "3":
+                                            return "3 Смена";
+                                            break;
+                                        case "4":
+                                            return "4 Смена";
+                                            break;
+                                        default :
+                                            return " ";
+                                            break;
+
+                                    }
+                                }
+                                }
+
+                            ],
+                            url: 'select/putevka.php?ides=' + idses, select: "row",
+                            on: {
+                                onSelectChange: function () {
+                                    var selectedid;
+                                    selectedid = $$('datatable').getSelectedId(true).join();
+
+                                }
+
+                            }
+
+                        });
+                        webix.ui({
+                            view: "contextmenu",
+                            id: "cmenu",
+                            data: ["В очереди", "Принято", "Отказано", "Исполнено"],
+                            on: {
+                                onItemClick: function (id) {
+                                    var context = this.getContext();
+                                    if (this.getItem(id).id == "В очереди")
+                                        webix.ajax("update/reqedit.php?id=" + context.id + "&ogid=1");
+                                    else if (this.getItem(id).id == "Принято")
+                                        webix.ajax("update/reqedit.php?id=" + context.id + "&ogid=2");
+                                    else if (this.getItem(id).id == "Отказано")
+                                        webix.ajax("update/reqedit.php?id=" + context.id + "&ogid=3");
+                                    else if (this.getItem(id).id == "Исполнено")
+                                        webix.ajax("update/reqedit.php?id=" + context.id + "&ogid=4");
+                                    $$("datatable").load('select/putevka.php?ides=' + idses);
+
+
+                                }
+                            }
+
+
+                        });
+                        $$("cmenu").attachTo($$("datatable"));
+                    });
+
+
+                </script>
+                <script>
+                    function gid(eid) {
+                        return document.getElementById(eid);
                     }
-                }},
-                {id:'year',header:'Год'},
-                {id:'date',header:"Дата&nbsp;подачи",width:200,format: webix.Date.dateToStr('%Y-%m-%d')},
-                {id:'type',header:'Направление',fillspace:true,template:function(obj){
-                    switch (obj.type){
-                        case "1":
-                            return "Лагеря с дневным пребыванием детей";
-                            break;
-                        case "2":
-                            return "Лагеря труда и отдыха";
-                            break;
-                        case "4":
-                            return "Лагеря палаточного типа";
-                            break;
-                        case "5":
-                            return "Ханты-Мансийский автономный округ-Югра";
-                            break;
-                        case "6":
-                            return "Тюменская область";
-                            break;
-                        case "7":
-                            return "Свердловская область";
-                            break;
-                        case "8":
-                            return "Краснодарский край г.Анапа";
-                            break;
-                        case "9":
-                            return "Республика Адыгея";
-                            break;
-                        case "10":
-                            return "Республика Болгария";
-                            break;
-                        default :
-                            return "Заполнено не правильно";
-                            break;
+                    var ids = getQueryVariable('id');
+                    webix.ready(function () {
 
+
+                        webix.ajax('select/getprofile.php?id=' + ids, function (text) {
+                            var jsons = jQuery.parseJSON(text);
+
+
+                            gid('headernames').innerHTML = jsons[0].firstname + ' ' + jsons[0].name + ' ' + jsons[0].surname;
+                            gid('nameinp').value = jsons[0].name;
+                            gid('fioinp').value = jsons[0].firstname;
+                            gid('lastinp').value = jsons[0].surname;
+                            gid('svid').value = jsons[0].doc;
+                            gid('adrregs').value = jsons[0].adr;
+                            gid('adrfact').value = jsons[0].adrfact;
+                            gid('classname').value = jsons[0].class;
+                            gid('fioroditelya').value = jsons[0].fioroditelya;
+                            gid('workstation').value = jsons[0].workstation;
+                            gid('rabotainp').value = jsons[0].rabota;
+                            gid('homeinp').value = jsons[0].home;
+                            gid('mobilinp').value = jsons[0].mobile;
+                            gid('emailinp').value = jsons[0].email;
+                            $$('date').setValue(jsons[0].date);
+                            $$('school').setValue(jsons[0].scholl);
+                            $$('lgotkats').setValue(jsons[0].katlgot);
+
+
+                        });
+                    });
+                    function sendsave() {
+                        webix.ajax("update/updatedb.php?nameinp=" + gid('nameinp').value +
+                                "&fioinp=" + gid('fioinp').value +
+                                "&lastinp=" + gid('lastinp').value +
+                                "&svid=" + gid('svid').value +
+                                "&adrregs=" + gid('adrregs').value +
+                                "&adrfact=" + gid('adrfact').value +
+                                "&classname=" + gid('classname').value +
+                                "&fioroditelya=" + gid('fioroditelya').value +
+                                "&workstation=" + gid('workstation').value +
+                                "&rabotainp=" + gid('rabotainp').value +
+                                "&homeinp=" + gid('homeinp').value +
+                                "&mobilinp=" + gid('mobilinp').value +
+                                "&emailinp=" + gid('emailinp').value +
+                                "&date=" + $$('date').getValue() +
+                                "&school=" + $$('school').getValue() +
+                                "&lgotkats=" + $$('lgotkats').getValue() +
+                                "&ids=" + ids,
+                                {success: function (text) {
+                                    if (text == 0) {
+                                        webix.alert({text: "Данные обновлены"});
+                                    } else {
+                                        webix.alert({type: "alert-warning", text: "Повторите позже"});
+                                    }
+                                }},
+
+                                {error: function (text, data, XmlHttpRequest) {
+                                    webix.alert({text: "Повторите позже"});
+                                }}
+                        );
                     }
-                }},
-                {id:'time',header:'Время&nbsp;отдыха',width:200,template:function(obj){
-                    switch (obj.time){
-                        case "1":
-                            return "Весенние каникулы";
-                            break;
-                        case "2":
-                            return "Летние каникулы";
-                            break;
-                        case "3":
-                            return "Осенние каникулы";
-                            break;
-                        case "4":
-                            return "Зимние каникулы";
-                            break;
-                        default :
-                            return "Заполнено не правильно";
-                            break;
 
-                    }
-                }
-                },
-                {id:'timeobj',header:'Смена',template:function(obj){
-                    switch (obj.timeobj){
-                        case "1":
-                            return "1 Смена";
-                            break;
-                        case "2":
-                            return "2 Смена";
-                            break;
-                        case "3":
-                            return "3 Смена";
-                            break;
-                        case "4":
-                            return "4 Смена";
-                            break;
-                        default :
-                            return " ";
-                            break;
-
-                    }
-                }
-                }
-
-            ],
-            url:'select/putevka.php?ides='+idses,select:"row",
-            on:{
-                onSelectChange:function(){
-                    var selectedid;
-                    selectedid = $$('datatable').getSelectedId(true).join();
-
-                }
-
-            }
-
-        });
-        webix.ui({
-            view:"contextmenu",
-            id:"cmenu",
-            data:["В очереди","Принято","Отказано","Исполнено"],
-            on:{
-                onItemClick:function(id){
-                    var context = this.getContext();
-                    if(this.getItem(id).id=="В очереди")
-                        webix.ajax("update/reqedit.php?id="+context.id+"&ogid=1");
-                    else if(this.getItem(id).id=="Принято")
-                        webix.ajax("update/reqedit.php?id="+context.id+"&ogid=2");
-                    else if(this.getItem(id).id=="Отказано")
-                        webix.ajax("update/reqedit.php?id="+context.id+"&ogid=3");
-                    else if(this.getItem(id).id=="Исполнено")
-                        webix.ajax("update/reqedit.php?id="+context.id+"&ogid=4");
-                    $$("datatable").load('select/putevka.php?ides='+idses);
-
-
-
-                }
-            }
-
-
-        });
-        $$("cmenu").attachTo($$("datatable"));
-        });
-
-
-
-
-</script>
-<script>
-    function gid(eid){
-        return document.getElementById(eid);
-    }
-    var ids = getQueryVariable('id');
-    webix.ready(function(){
-
-
-        webix.ajax('select/getprofile.php?id='+ids,function(text){
-            var jsons = jQuery.parseJSON(text);
-
-
-            gid('headernames').innerHTML = jsons[0].firstname+' '+jsons[0].name+' '+jsons[0].surname;
-            gid('nameinp').value = jsons[0].name;
-            gid('fioinp').value = jsons[0].firstname;
-            gid('lastinp').value = jsons[0].surname;
-            gid('svid').value = jsons[0].doc;
-            gid('adrregs').value = jsons[0].adr;
-            gid('adrfact').value = jsons[0].adrfact;
-            gid('classname').value = jsons[0].class;
-            gid('fioroditelya').value = jsons[0].fioroditelya;
-            gid('workstation').value = jsons[0].workstation;
-            gid('rabotainp').value = jsons[0].rabota;
-            gid('homeinp').value = jsons[0].home;
-            gid('mobilinp').value = jsons[0].mobile;
-            gid('emailinp').value = jsons[0].email;
-            $$('date').setValue(jsons[0].date);
-            $$('school').setValue(jsons[0].scholl);
-            $$('lgotkats').setValue(jsons[0].katlgot);
-
-
-
-
-        } );
-    });
-    function sendsave(){
-        webix.ajax("update/updatedb.php?nameinp="      +   gid('nameinp').value +
-                                "&fioinp="      +   gid('fioinp').value +
-                                "&lastinp="     +   gid('lastinp').value +
-                                "&svid="        +   gid('svid').value +
-                                "&adrregs="     +   gid('adrregs').value +
-                                "&adrfact="     +   gid('adrfact').value +
-                                "&classname="   +   gid('classname').value +
-                                "&fioroditelya="+   gid('fioroditelya').value +
-                                "&workstation=" +   gid('workstation').value +
-                                "&rabotainp="   +   gid('rabotainp').value +
-                                "&homeinp="     +   gid('homeinp').value +
-                                "&mobilinp="    +   gid('mobilinp').value +
-                                "&emailinp="    +   gid('emailinp').value +
-                                "&date="        +   $$('date').getValue() +
-                                "&school="      +   $$('school').getValue() +
-                                "&lgotkats="    +   $$('lgotkats').getValue()+
-                                "&ids="         +   ids,
-            {success:function(text){
-                if(text==0){
-                    webix.alert({text:"Данные обновлены"});
-                }else{
-                    webix.alert({type:"alert-warning",text:"Повторите позже"});
-                }}},
-
-            {error:function(text, data, XmlHttpRequest){
-                webix.alert({text:"Повторите позже"});
-            }}
-        );
-    }
-
-</script>
-{% endblock %}
+                </script>
+            {% endblock %}

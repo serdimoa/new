@@ -18,7 +18,8 @@ else
     $lastinp=$_GET["lastinp"];
     $svid=$_GET["svid"];
     $date=$_GET["date"];
-    $sql1 = "insert into contract(name,put,price,days,date) value ('$nameinp','$fioinp','$lastinp','$svid','$date')";
+    $types = $_GET['types'];
+    $sql1 = "insert into contract(name,put,price,types,days,date) value ('$nameinp','$fioinp','$lastinp','$types','$svid','$date')";
      if(mysql_query($sql1)){
         return "0";
     }
