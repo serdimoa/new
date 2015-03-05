@@ -10,5 +10,5 @@
 require_once("../config.php");
 $data = new JSONDataConnector($conn, $dbtype);
 $ids = $_GET['ides'];
-$data->render_sql("select * from periods where idcontract='".$ids."'","id",'id,startdate,enddate,summ,serial,number');
+$data->render_sql("select * from periods where idcontract='".$ids."'","id",'id,startdate,enddate,summ,nerasp,number');
 ?>

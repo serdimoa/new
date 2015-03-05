@@ -20,7 +20,7 @@ else
     $number=$_GET["number"];
     $idcontract=$_GET["idcontract"];
 
-    $sql1 = "insert into periods(startdate,enddate,summ,serial,number,idcontract) values ('$startdate','$enddate','$summ','$serial','$number','$idcontract')";
+    $sql1 = "insert into periods(startdate,enddate,summ,nerasp,number,idcontract) values ('$startdate','$enddate','$summ','$serial','$number','$idcontract')";
      if(mysql_query($sql1)){
         return "0";
     }

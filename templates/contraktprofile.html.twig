@@ -111,7 +111,7 @@
                             </div>
                             <div class="form-group">
                               <label for="daysprice">Стоимость одного дня</label>
-                              <input type="text" class="form-control" id="daysprice" disabled >
+                              <input type="text" class="form-control" id="daysprice" >
                             </div>
                             <div class="col-md-12">
                               <div class="panel">
@@ -159,12 +159,12 @@
                               <input type="text" class="form-control" id="summinp" required="">
                             </div>
                             <div class="form-group">
-                              <label for="serials">Серия</label>
+                              <label for="serials">Нераспределено</label>
                               <input type="text" class="form-control" id="serials" required="" />
                             </div>
 
                             <div class="form-group">
-                              <label for="numofser">Номер</label>
+                              <label for="numofser">Имя смены</label>
                               <input type="text" class="form-control" id="numofser" required="" />
                             </div>
                             <div class="btn-group btn-group-justified">
@@ -259,19 +259,19 @@
           id: 'summ',
           fillspace: true,
           header: 'Кол-во Путевок',
-          width: 300,
+          width: 150,
           sort: 'int'
         }, {
           // Серия
-          id: 'serial',
-          header: 'Серия',
-          width: 100,
+          id: 'nerasp',
+          header: "Не распределено",
+          width: 150,
           sort: 'string'
         }, {
           // Номер
           id: 'number',
           fillspace: true,
-          header: 'Номер',
+          header: 'Смена',
           width: 300,
           sort: 'string'
         }],
@@ -308,8 +308,8 @@
         gid('days').value = jsons[0].days;
         $$('resttypecombo').setValue(jsons[0].types);
         $$('date').setValue(jsons[0].date);
-        gid('daysprice').value = parseInt(jsons[0].price) / parseInt(jsons[0].days);
-
+        gid('daysprice').value = jsons[0].daysprice ;
+// parseInt(jsons[0].price) / parseInt(jsons[0].days)
       });
       webix.ui({
            view:"contextmenu",
@@ -371,6 +371,7 @@
         "&put=" + gid('put').value +
         "&price=" + gid('price').value +
         "&days=" + gid('days').value +
+        "&daysprice=" + gid('daysprice').value +
         "&date=" + $$('date').getValue() +
         "&types="+$$('resttypecombo').getValue()+
         "&ids=" + ids, {

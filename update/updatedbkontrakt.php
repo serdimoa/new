@@ -20,8 +20,9 @@ else
     $date=$_GET["date"];
     $ids=$_GET["ids"];
     $types = $_GET["types"];
+    $daysprice = $_GET["daysprice"];
     $sql1 = "update contract set name='$nameinp',types='$types',put='$put',price='$price',
-    days='$days',date='$date' where id='$ids'";
+    days='$days',date='$date',daysprice='$daysprice' where id='$ids'";
         if(mysql_query($sql1)){
             echo "0";
         }

@@ -83,6 +83,10 @@
                   <label for="svid">Дней прибытия</label>
                   <input type="number" class="form-control num" id="svid" required="">
                 </div>
+                  <div class="form-group">
+                      <label for="daysprice">Стоимость одного дня</label>
+                      <input type="number" class="form-control" id="daysprice" required="">
+                  </div>
                 <div class="form-group">
                   <div id="celdr"></div>
                 </div>
@@ -145,6 +149,7 @@
       "&fioinp=" + gid('fioinp').value +
       "&lastinp=" + gid('lastinp').value +
       "&svid=" + gid('svid').value +
+      "&daysprice=" + gid('daysprice').value +
             "&types="+$$('resttypecombo').getValue()+
       "&date=" + $$('date').getValue(), {
         success: function(text) {
