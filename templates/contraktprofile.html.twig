@@ -159,7 +159,7 @@
                               <input type="text" class="form-control" id="summinp" required="">
                             </div>
                             <div class="form-group">
-                              <label for="serials">Нераспределено</label>
+                              <label for="serials">Не распределено</label>
                               <input type="text" class="form-control" id="serials" required="" />
                             </div>
 
@@ -240,7 +240,15 @@
 
         height: 300,
         autowidth:true,
-        columns: [{
+        columns: [
+          {
+            // Номер
+            id: 'number',
+            fillspace: true,
+            header: 'Смена',
+            width: 300,
+            sort: 'string'
+          }, {
           // Начало
           id: 'startdate',
           header: 'Начало',
@@ -265,14 +273,7 @@
           // Серия
           id: 'nerasp',
           header: "Не распределено",
-          width: 150,
-          sort: 'string'
-        }, {
-          // Номер
-          id: 'number',
-          fillspace: true,
-          header: 'Смена',
-          width: 300,
+            width: 200,
           sort: 'string'
         }],
         url: "select/select_periods.php?ides=" + idses,select: 'row',
