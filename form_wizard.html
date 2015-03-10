@@ -1,42 +1,96 @@
 <!DOCTYPE html>
-<html lang="ru">
+<!--[if IE 7]>
+<html class="no-js ie7 oldie" lang="en-US"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js ie8 oldie" lang="en-US"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en-US">  <!--<![endif]-->
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="ThemeBucket">
-  <link rel="shortcut icon" href="#" type="image/png">
 
-  <title>Form Wizard</title>
+    <title>Форма подачи заявки</title>
 
-  <link href="css/style.css" rel="stylesheet">
+    <!-- META DATA -->
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <link href="css/style.css" rel="stylesheet">
   <link href="css/jquery.stepy.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet">
+
     <link rel="stylesheet" href="js/webix/webix.css" type="text/css">
-    <script src="js/webix/webix.js" type="text/javascript"></script>
 
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-  <script src="js/html5shiv.js"></script>
-  <script src="js/respond.min.js"></script>
-  <![endif]-->
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="req/css/bootstrap.min.css">
+    <link rel="stylesheet" href="req/style.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="req/css/jquery.fullPage.css">
+    <link rel="stylesheet" href="req/css/font-awesome.min.css">
+    <link rel="stylesheet" href="req/css/ionicons.min.css">
+    <link rel="stylesheet" href="req/css/animate.min.css">
+    <link rel="stylesheet" href="req/css/flexslider.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="req/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 11]>
+    <link rel="stylesheet" type="text/css" href="req/css/ie.css">
+    <![endif]-->
+
+    <!-- FONTS -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,400,300,700&amp;subset=latin,latin-ext'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:100,200,300,400,700,900' rel='stylesheet'
+          type='text/css'>
+
+    <!-- JS -->
+    <script type="text/javascript" src="req/js/modernizr.js"></script>
+
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" href="req/images/favicon.ico">
+    <link rel="apple-touch-icon" href="req/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="req/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="req/images/apple-touch-icon-114x114.png">
+
 </head>
+<body>
 
-<body class="lock-screen">
+<!-- START PRELOADER -->
+<div id="preloader">
+    <div id="loading-animation">&nbsp;</div>
+</div>
+<!-- END PRELOADER -->
 
-<section>
+<!-- START SITE HEADER -->
+<header class="site-header">
+    <div class="site-logo onstart animated" data-animation="fadeInDown" data-animation-delay="1200">
+        <h1>&nbsp;&nbsp;&nbsp;Форма подачи заявки на отдых</h1></div>
 
-    <!-- main content start-->
-    
+</header>
+<!-- END SITE HEADER -->
 
-        
-        <!--body wrapper start-->
+<div id="fullpage">
+
+    <!-- HOME SECTION -->
+    <div class="section home active" id="section0">
+        <!-- START CONTAINER -->
         <div class="container">
-            
             <div class="row">
-                <div class="col-md-12">
-                    <h1 class="fw-title">Форма подачи заявки</h1>
-                    <div class="box-widget">
+                <div class="col-md-10 col-md-offset-1">
+                    <!-- START SLIDE CONTENT-->
+                    <div class="slide-content">
+                        <div class="flexslider textslider onstart animated" data-animation="fadeInUp"
+                             data-animation-delay="800">
+                            <ul class="slides">
+                                <li>
+                                    <div class="box-widget">
                         <div class="widget-head clearfix">
                             <div id="top_tabby" class="block-tabby pull-left">
                             </div>
@@ -111,7 +165,7 @@
                                         <fieldset title="Шаг 3">
                                             <legend>Информация о законном представителе</legend>
                                             <div class="form-group">
-                                                <label class="col-md-2 col-sm-2 control-label">отношение и ФИО</label>
+                                                <label class="col-md-2 col-sm-2 control-label">Отношение и ФИО</label>
                                                 <div class="col-md-6 col-sm-6">
                                                     <input type="text" name="fiorod" id="fiorod" required="true" placeholder="" class="form-control">
                                                 </div>
@@ -136,40 +190,70 @@
                             </div>
                         </div>
                     </div>
+
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+                    <!-- END SLIDE CONTENT-->
                 </div>
             </div>
+            <!-- END ROW -->
         </div>
-        <!--body wrapper end-->
-
-        <!--footer section start-->
-        <footer class="sticky-footer">
-            2015 &copy; AdminEx by Айтиша.РФ
-        </footer>
-        <!--footer section end-->
+        <!-- END CONTAINER -->
+    </div>
 
 
-    
-    <!-- main content end-->
-</section>
+</div>
 
-<!-- Placed js at the end of the document so the pages load faster -->
-<script src="js/jquery-1.10.2.min.js"></script>
+
+<!-- START VIEWPORT BORDER -->
+<div class="viewport-border">
+    <div class="vb-l"></div>
+    <div class="vb-r"></div>
+    <div class="vb-t"></div>
+    <div class="vb-b"></div>
+</div>
+<!-- END VIEWPORT BORDER -->
+
+<!-- OVERLAY -->
+<div class="overlay">
+    <div class="gradient-overlay gradient-1 opacity-100"></div>
+</div>
+
+<!-- JS -->
+<script type="text/javascript" src="req/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="req/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="req/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="req/js/jquery.appear.js"></script>
+<script type="text/javascript" src="req/js/jquery.easing.js"></script>
+<script type="text/javascript" src="req/js/jquery.fullPage.min.js"></script>
+<script type="text/javascript" src="req/js/jquery.backstretch.min.js"></script>
+<script type="text/javascript" src="req/js/jquery.waitforimages.js"></script>
+<script type="text/javascript" src="req/js/retina-1.1.0.min.js"></script>
+<script type="text/javascript" src="req/js/jquery.countdown.js"></script>
+<script type="text/javascript" src="req/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="req/js/jquery.mb.YTPlayer.js"></script>
+<script type="text/javascript" src="req/js/jquery.ajaxchimp.js"></script>
+<script type="text/javascript" src="req/js/jquery.placeholder.js"></script>
+<script type="text/javascript" src="req/js/jquery.flexslider-min.js"></script>
+<script type="text/javascript" src="req/js/waypoints.min.js"></script>
 <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
-<script src="js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="req/js/main.js"></script>
 <script src="js/jquery.validate.min.js"></script>
 <script src="js/jquery.stepy.js"></script>
-<script src="js/bootstrap.min.js"></script>
 <script src="js/modernizr.min.js"></script>
 <script src="js/jquery.nicescroll.js"></script>
 <script src="js/jquery-tags-input/jquery.tagsinput.js"></script>
 <script src="js/tagsinput-init.js"></script>
 <!--bootstrap input mask-->
 <script type="text/javascript" src="js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
-
+<script src="js/webix/webix.js" type="text/javascript"></script>
 
 <!--common scripts for all pages-->
 <script src="js/scripts.js"></script>
-
 <script>
 
     /*=====STEPY WIZARD WITH VALIDATION====*/
@@ -236,12 +320,14 @@
         webix.ui({
             container:'resttype',
             view:'combo',
+            width: 250,
             id:'resttypecombo',
             options:'select/resttypeall.php'
         });
     webix.ui({
         container:'resttime',
         view:'combo',
+        width: 250,
         id:'resttimecombo',
         options:[
             {id:1,value:'Весенние каникулы'},
@@ -253,6 +339,7 @@
     webix.ui({
         container:'resttimeobj',
         view:'combo',
+        width: 250,
         id:'resttimeobjcombo',
         options:[
             {id:1,value:'1 Смена'},
@@ -263,6 +350,7 @@
     });
     webix.ui({
         container:'celdr',
+        width: 250,
         view:'datepicker',name:'date',id:'date',labelWidth:115,stringResult:true
 
     });
@@ -297,6 +385,5 @@
     }
 
 </script>
-
 </body>
 </html>

@@ -32,11 +32,11 @@
 
         <!--logo and iconic logo start-->
         <div class="logo">
-            <a href="good.html"><img src="images/logo.png" alt=""></a>
+            <a href="index.php?np=good"><img src="images/logo.png" alt=""></a>
         </div>
 
         <div class="logo-icon text-center">
-            <a href="good.html"><img src="images/logo_icon.png" alt=""></a>
+            <a href="index.php?np=good"><img src="images/logo_icon.png" alt=""></a>
         </div>
         <!--logo and iconic logo end-->
 
@@ -84,44 +84,44 @@
         <div class="menu-right">
             <ul class="notification-menu">
                 <li>
-                    <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                    <a href="index.php?np=request" class="btn btn-default info-number">
                         <i class="fa fa-bell-o"></i>
-                        <span class="badge">4</span>
+                        <span id="idse2" class="badge"></span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-head pull-right">
-                        <h5 class="title">Новые заявки</h5>
-                        <ul class="dropdown-list normal-list">
-                            <li class="new">
-                                <a href="">
-                                    <span class="label label-danger"><i class="fa fa-bolt"></i></span>
-                                    <span class="name">Server #1 overloaded.  </span>
-                                    <em class="small">34 mins</em>
-                                </a>
-                            </li>
-                            <li class="new">
-                                <a href="">
-                                    <span class="label label-danger"><i class="fa fa-bolt"></i></span>
-                                    <span class="name">Server #3 overloaded.  </span>
-                                    <em class="small">1 hrs</em>
-                                </a>
-                            </li>
-                            <li class="new">
-                                <a href="">
-                                    <span class="label label-danger"><i class="fa fa-bolt"></i></span>
-                                    <span class="name">Server #5 overloaded.  </span>
-                                    <em class="small">4 hrs</em>
-                                </a>
-                            </li>
-                            <li class="new">
-                                <a href="">
-                                    <span class="label label-danger"><i class="fa fa-bolt"></i></span>
-                                    <span class="name">Server #31 overloaded.  </span>
-                                    <em class="small">4 hrs</em>
-                                </a>
-                            </li>
+                    <!--<div class="dropdown-menu dropdown-menu-head pull-right">-->
+                    <!--<h5 class="title">Новые заявки</h5>-->
+                    <!--<ul class="dropdown-list normal-list">-->
+                    <!--<li class="new">-->
+                    <!--<a href="">-->
+                    <!--<span class="label label-danger"><i class="fa fa-bolt"></i></span>-->
+                    <!--<span class="name">Server #1 overloaded.  </span>-->
+                    <!--<em class="small">34 mins</em>-->
+                    <!--</a>-->
+                    <!--</li>-->
+                    <!--<li class="new">-->
+                    <!--<a href="">-->
+                    <!--<span class="label label-danger"><i class="fa fa-bolt"></i></span>-->
+                    <!--<span class="name">Server #3 overloaded.  </span>-->
+                    <!--<em class="small">1 hrs</em>-->
+                    <!--</a>-->
+                    <!--</li>-->
+                    <!--<li class="new">-->
+                    <!--<a href="">-->
+                    <!--<span class="label label-danger"><i class="fa fa-bolt"></i></span>-->
+                    <!--<span class="name">Server #5 overloaded.  </span>-->
+                    <!--<em class="small">4 hrs</em>-->
+                    <!--</a>-->
+                    <!--</li>-->
+                    <!--<li class="new">-->
+                    <!--<a href="">-->
+                    <!--<span class="label label-danger"><i class="fa fa-bolt"></i></span>-->
+                    <!--<span class="name">Server #31 overloaded.  </span>-->
+                    <!--<em class="small">4 hrs</em>-->
+                    <!--</a>-->
+                    <!--</li>-->
 
-                        </ul>
-                    </div>
+                    <!--</ul>-->
+                    <!--</div>-->
                 </li>
                 <li>
                     <a href="#" id="help1" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -187,6 +187,16 @@ $("#Myunidf").click(function(){
 $.removeCookie('logins');
 
 });
+
+var idse2 = document.getElementById("idse2");
+setInterval(function () {
+    webix.ajax("select/countreq.php",
+            {
+                success: function (text) {
+                    idse2.innerHTML = text;
+                }
+            });
+}, 3000);
 
 </script>
 <!--common scripts for all pages-->

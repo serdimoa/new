@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>Form Wizard</title>
+
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/jquery.stepy.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="js/webix/webix.css" type="text/css">
+    <script src="js/webix/webix.js" type="text/javascript"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="lock-screen">
+
+<section>
+
+    <!-- main content start-->
+
+
+    <!--body wrapper start-->
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="fw-title">Форма подачи заявки</h1>
+
+                <div class="box-widget">
+                    <div class="widget-head clearfix">
+                        <div id="top_tabby" class="block-tabby pull-left">
+                        </div>
+                    </div>
+                    <div class="widget-container">
+                        <div class="widget-block">
+                            <div class="widget-content box-padding">
+                                <form id="stepy_form" role="form" class=" form-horizontal left-align form-well ">
+                                    <fieldset title="Шаг 1">
+                                        <legend>Информация о ребенке</legend>
+                                        <div class="form-group">
+                                            <label class="col-md-2 col-sm-2 control-label">Фамилия</label>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                <input required="true" class="form-control" id="fio" name="fio"
+                                                       type="text"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 col-sm-2 control-label">Имя</label>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                <input required="true" class="form-control" id="name" name="name"
+                                                       type="text"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 col-sm-2 control-label">Отчество</label>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                <input required="true" class="form-control" id="otch" name="otch"
+                                                       type="text"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 col-sm-2 control-label">Дата рождения</label>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                <div id="celdr"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 col-sm-2 control-label">Документ</label>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                <input required="true" class="form-control" id="doc" name="doc"
+                                                       type="text"/>
+                                                <span style="color: #444;" class="help-inline">Свидетельство о рождении/Паспорт</span>
+
+
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                    <fieldset title="Шаг 2">
+                                        <legend>Информация об виде отдыха</legend>
+                                        <div class="form-group">
+                                            <label class="col-md-2 col-sm-2 control-label">Место отдыха</label>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                <div id="resttype"></div>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 col-sm-2 control-label">Период отдыха</label>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                <div id="resttime"></div>
+
+                                            </div>
+                                        </div>
+                                        <div id="resttimeform" style="visibility:hidden;" class="form-group">
+                                            <label class="col-md-2 col-sm-2 control-label">Выбор смены</label>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                <div id="resttimeobj"></div>
+
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                    <fieldset title="Шаг 3">
+                                        <legend>Информация о законном представителе</legend>
+                                        <div class="form-group">
+                                            <label class="col-md-2 col-sm-2 control-label">отношение и ФИО</label>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="text" name="fiorod" id="fiorod" required="true"
+                                                       placeholder="" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 col-sm-2 control-label">Место работы</label>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="text" id="workstation" name="workstation" required="true"
+                                                       placeholder="" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 col-sm-2 control-label">Телефон</label>
+
+                                            <div class="col-md-6 col-sm-6">
+                                                <input type="text" id="tel" placeholder="" name="tel" required="true"
+                                                       class="form-control">
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                    <button type="submit" onclick="senddata()" class="finish btn btn-info btn-extend">
+                                        Отправить!
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--body wrapper end-->
+
+    <!--footer section start-->
+    <footer class="sticky-footer">
+        2015 &copy; AdminEx by Айтиша.РФ
+    </footer>
+    <!--footer section end-->
+
+
+    <!-- main content end-->
+</section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="js/jquery-migrate-1.2.1.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/jquery.stepy.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/modernizr.min.js"></script>
+<script src="js/jquery.nicescroll.js"></script>
+<script src="js/jquery-tags-input/jquery.tagsinput.js"></script>
+<script src="js/tagsinput-init.js"></script>
+<!--bootstrap input mask-->
+<script type="text/javascript" src="js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
+
+
+<!--common scripts for all pages-->
+<script src="js/scripts.js"></script>
+
+<script>
+
+    /*=====STEPY WIZARD WITH VALIDATION====*/
+    $(function () {
+        $('#stepy_form').stepy({
+            backLabel: 'Назад',
+            nextLabel: 'Вперед',
+            errorImage: true,
+            block: true,
+            description: true,
+            legend: false,
+            titleClick: true,
+            titleTarget: '#top_tabby',
+            validate: true,
+            finish: function () {
+                return false;
+
+            }
+
+        }).validate({
+            errorPlacement: function (error, element) {
+                $('#stepy_form div.stepy-error').append(error);
+            },
+            rules: {
+                'fio': 'required',
+                'name': 'required',
+                'otch': 'required',
+                'dr': 'required',
+                'doc': 'required',
+                'fiorod': 'required',
+                'workstation': 'required',
+                'tel': 'required'
+            },
+            messages: {
+                'name': {
+                    required: 'Поле Имени обязательно'
+                },
+                'fio': {
+                    required: 'Поле Фамилии обязательно'
+                },
+                'otch': {
+                    required: 'Поле Отчества обязательно'
+                },
+                'dr': {
+                    required: 'Поле Дня рождения обязательно'
+                },
+                'doc': {
+                    required: 'Поле Документ обязательно'
+                },
+                'fiorod': {
+                    required: 'Поле ФИО и отношение обязательно'
+                },
+                'workstation': {
+                    required: 'Поле Место работы обязательно'
+                },
+                'tel': {
+                    required: 'Поле Телефон обязательно'
+                }
+
+            }
+        });
+    });
+
+    webix.ui({
+        container: 'resttype',
+        view: 'combo',
+        id: 'resttypecombo',
+        options: 'select/resttypeall.php'
+    });
+    webix.ui({
+        container: 'resttime',
+        view: 'combo',
+        id: 'resttimecombo',
+        options: [
+            {id: 1, value: 'Весенние каникулы'},
+            {id: 2, value: 'Летние каникулы'},
+            {id: 3, value: 'Осенние каникулы'},
+            {id: 4, value: 'Зимние каникулы'}
+        ]
+    });
+    webix.ui({
+        container: 'resttimeobj',
+        view: 'combo',
+        id: 'resttimeobjcombo',
+        options: [
+            {id: 1, value: '1 Смена'},
+            {id: 2, value: '2 Смена'},
+            {id: 3, value: '3 Смена'},
+            {id: 4, value: '4 Смена'}
+        ]
+    });
+    webix.ui({
+        container: 'celdr',
+        view: 'datepicker', name: 'date', id: 'date', labelWidth: 115, stringResult: true
+
+    });
+
+    $$("resttimecombo").attachEvent("onChange", function () {
+        var values = $$("resttimecombo").getValue();
+        if (values == '2') {
+            document.getElementById('resttimeform').style.visibility = "visible";
+
+
+        }
+        else {
+            document.getElementById('resttimeform').style.visibility = "hidden";
+        }
+    });
+    function gid(eid) {
+        return document.getElementById(eid);
+    }
+    function senddata() {
+        webix.ajax("insert/req.php?fio=" + gid('fio').value + "&name=" + gid('name').value + "&othc=" + gid('otch').value + "&date=" + $$('date').getValue() + "&doc=" + gid('doc').value + "&resttype=" + $$('resttypecombo').getValue() + "&resttime=" + $$('resttimecombo').getValue() + "&resttimeobj=" + $$('resttimeobjcombo').getValue() + "&fiorod=" + gid('fiorod').value + "&workstation=" + gid('workstation').value + "&tel=" + gid('tel').value,
+                {
+                    success: function (text) {
+                        if (text == 1) {
+                            webix.alert({text: "Ваша заявкак отправлена"});
+                        } else {
+                            webix.alert({type: "alert-warning", text: "Повторите позже"});
+                        }
+                    }
+                },
+
+                {
+                    error: function (text, data, XmlHttpRequest) {
+                        webix.alert({text: "Повторите позже"});
+                    }
+                }
+        );
+    }
+
+</script>
+
+</body>
+</html>
