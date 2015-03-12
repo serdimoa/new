@@ -12,7 +12,7 @@ if (!$_SESSION["login"]) {
 } else {
     $arr = array();
     require_once("../config.php");
-    $sql = 'SELECT COUNT(*) FROM aisyodbd.requests';
+    $sql = 'SELECT COUNT(*) FROM requests';
     $num = mysql_query($sql);
     $row = mysql_fetch_array($num);
 
