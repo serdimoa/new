@@ -46,6 +46,17 @@
 
 {% block customjs %}
 <script>
+    var jsonss;
+    $.ajax({
+        url: "select/selecttype.php", dataType: "json", success: function (data) {
+            jsonss = data;
+        }
+    });
+    function datajson(id) {
+        var valse = jsonss[id - 1];
+        valse = valse.valuers;
+        return (valse);
+    }
     webix.ready(function(){
         webix.ui({
             container:'datatbl',
@@ -76,39 +87,9 @@
                 {id:'year',header:['Год'],sort:'string'},
                 {id:'date',header:['Дата'],sort:'string'},
                 {id:'type',fillspace:true,header:['Направление'],sort:'string',template:function(obj){
-                    switch (obj.type){
-                        case "1":
-                            return "Лагеря с дневным пребыванием детей";
-                            break;
-                        case "2":
-                            return "Лагеря труда и отдыха";
-                            break;
-                        case "4":
-                            return "Лагеря палаточного типа";
-                            break;
-                        case "5":
-                            return "Ханты-Мансийский автономный округ-Югра";
-                            break;
-                        case "6":
-                            return "Тюменская область";
-                            break;
-                        case "7":
-                            return "Свердловская область";
-                            break;
-                        case "8":
-                            return "Краснодарский край г.Анапа";
-                            break;
-                        case "9":
-                            return "Республика Адыгея";
-                            break;
-                        case "10":
-                            return "Республика Болгария";
-                            break;
-                        default :
-                            return "Заполнено не правильно";
-                            break;
+                    var idrype = parseInt(obj.type);
 
-                    }
+                    return datajson(idrype);
                 }},
                 {id:'time',header:['Сроки'],sort:'string', width:150,template:function(obj){
                     switch (obj.time){

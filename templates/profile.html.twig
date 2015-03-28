@@ -14,6 +14,7 @@
             }
             return(false);
         }
+
     </script>
 {% endblock %}
 
@@ -48,7 +49,7 @@
             <div class="page-heading">
                 <h3 id="headernames">Фамилия Имя Отчество</h3>
                 <ul class="breadcrumb">
-                    <li><a href="good.html"> Реестр детей</a></li>
+                    <li><a href="admin.php?np=good"> Реестр детей</a></li>
                     <li class="active">Информация о ребенке</li>
                 </ul>
 
@@ -255,13 +256,39 @@
 
                 <script>
                     var idses = getQueryVariable('id');
+                    var jsonss;
+                    var selectcontract;
+
+                    $.ajax({
+                        url: "select/selecttype.php", dataType: "json", success: function (data) {
+                            jsonss = data;
+                        }
+                    });
+                    $.ajax({
+                        url: "select/selectcontract.php", dataType: "json", success: function (data) {
+                            selectcontract = data;
+                        }
+                    });
+
+                    function datajson(id) {
+                        var valse = jsonss[id - 1];
+                        valse = valse.valuers;
+                        return (valse);
+                    }
+                    function datajsoncontract(id) {
+                        var valse = selectcontract[id - 1];
+                        valse = valse.valuers;
+                        return (valse);
+                    }
+
+
+
                     webix.ready(function () {
                         webix.ui({
                             container: 'celdr',
                             view: 'datepicker', name: 'date', id: 'date', labelWidth: 115, label: 'Дата рождения', stringResult: true
 
                         });
-
                         webix.ui({
                             container: 'scholl',
                             view: 'combo',
@@ -307,39 +334,12 @@
                                 {id: 'year', header: 'Год'},
                                 {id: 'date', header: "Дата&nbsp;подачи", width: 200, format: webix.Date.dateToStr('%Y-%m-%d')},
                                 {id: 'type',width:300, header: "Направление отдыха", fillspace: true, template: function (obj) {
-                                    switch (obj.type) {
-                                        case "1":
-                                            return "Лагеря с дневным пребыванием детей";
-                                            break;
-                                        case "2":
-                                            return "Лагеря труда и отдыха";
-                                            break;
-                                        case "4":
-                                            return "Лагеря палаточного типа";
-                                            break;
-                                        case "5":
-                                            return "Ханты-Мансийский автономный округ-Югра";
-                                            break;
-                                        case "6":
-                                            return "Тюменская область";
-                                            break;
-                                        case "7":
-                                            return "Свердловская область";
-                                            break;
-                                        case "8":
-                                            return "Краснодарский край г.Анапа";
-                                            break;
-                                        case "9":
-                                            return "Республика Адыгея";
-                                            break;
-                                        case "10":
-                                            return "Республика Болгария";
-                                            break;
-                                        default :
-                                            return "Заполнено не правильно";
-                                            break;
+                                    var idrype = parseInt(obj.type);
 
-                                    }
+                                    return datajson(idrype);
+
+
+
                                 }},
                                 {id: 'time', header: 'Время&nbsp;отдыха', width: 200, template: function (obj) {
                                     switch (obj.time) {
@@ -420,6 +420,7 @@
 
                         });
                         $$("cmenu").attachTo($$("datatable"));
+
                     });
 
 
@@ -454,6 +455,65 @@
                             $$('school').setValue(jsons[0].scholl);
                             $$('lgotkats').setValue(jsons[0].katlgot);
 
+
+                        });
+
+                        webix.ui({
+                            view: "datatable",
+                            id: "allchildcontract",
+                            container: "allcontract",
+                            minHeight: 200,
+                            autowidth: true,
+                            columns: [
+                                {id: 'id', header: '№'},
+
+                                {
+                                    id: 'idkont',
+                                    width: 300,
+                                    header: "Наименование учереждения",
+                                    fillspace: true,
+                                    template: function (obj) {
+                                        var idrype = parseInt(obj.idkont);
+
+                                        return datajsoncontract(idrype);
+
+
+                                    }
+                                },
+                                {
+                                    id: 'idsmena', header: 'Смена', template: function (obj) {
+                                    switch (obj.idsmena) {
+                                        case "1":
+                                            return "1 Смена";
+                                            break;
+                                        case "2":
+                                            return "2 Смена";
+                                            break;
+                                        case "3":
+                                            return "3 Смена";
+                                            break;
+                                        case "4":
+                                            return "4 Смена";
+                                            break;
+                                        default :
+                                            return " ";
+                                            break;
+
+                                    }
+                                }
+                                }
+
+
+                            ],
+                            url: 'select/contractchild.php?ides=' + idses, select: "row",
+                            on: {
+                                onSelectChange: function () {
+                                    var selectedid;
+                                    selectedid = $$('datatable').getSelectedId(true).join();
+
+                                }
+
+                            }
 
                         });
                     });
