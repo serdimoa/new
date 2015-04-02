@@ -41,7 +41,7 @@
                 </li>
             </ul>
         </li>
-        <li><a id="Myunidf" href="index.html"><i class="fa fa-sign-out"></i> <span>Выход</span></a></li>
+        <li><a id="Myunidf" href="/"><i class="fa fa-sign-out"></i> <span>Выход</span></a></li>
 
     </ul>
             {% endblock %}
@@ -143,7 +143,7 @@
                             <div class="profile-desk">
                                 <div class="btn-group btn-group-justified">
                                     <a class="btn btn-success btn-lg" onclick="sendsave()" >Сохранить</a>
-                                    <a class="btn btn-danger btn-lg"  href="#">Отменить</a>
+                                    <a class="btn btn-danger btn-lg" onclick="window.history.back();"  href="#">Отменить</a>
                                 </div>
                             </div>
                         </div>
@@ -212,6 +212,7 @@
             {success:function(text){
                 if(text==0){
                     webix.alert({text:"Данные обновлены"});
+document.location.href = "admin.php?np=good";
                 }else{
                     webix.alert({type:"alert-warning",text:"Повторите позже"});
                 }}},

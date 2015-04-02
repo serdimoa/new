@@ -185,10 +185,17 @@ idse.innerHTML = "<a href='#'>"+profile+"</a>";
 idse1.innerHTML = profile;
 $("#Myunidf").click(function(){
 $.removeCookie('logins');
-
+webix.ajax("logout.php");
+    document.location.reload();
 });
 
 var idse2 = document.getElementById("idse2");
+webix.ajax("select/countreq.php",
+        {
+            success: function (text) {
+                idse2.innerHTML = text;
+            }
+        });
 setInterval(function () {
     webix.ajax("select/countreq.php",
             {

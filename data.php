@@ -16,18 +16,17 @@ ConnectorSecurity::$xss = DHX_SECURITY_SAFEHTML;
 ConnectorSecurity::$xss = DHX_SECURITY_TRUSTED;
 $login = $_GET["login_post"];
 $passwords = $_GET["password_post"];
-$SQL = "select * from admins where adminName='".$login."'";
-if($show = mysql_query($SQL)){
-    $a=mysql_fetch_array($show);
-    if($a['password'] != $passwords){
-        echo "1";
-    }
-    else{
+$SQL = "select * from admins where adminName='$login' AND password='$passwords'";
+
+$show = mysql_query($SQL);
+$count=mysql_num_rows($show);
+if($count==1){
+
         $_SESSION['login']=$login;
         $_SESSION['password']=$passwords;
         echo "0";
     }
-}
+
 else
     echo "3";
 ?>

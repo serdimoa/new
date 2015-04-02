@@ -11,7 +11,7 @@ require_once("../config.php");
 $data = new JSONDataConnector($conn, $dbtype);
 
 $ids = $_GET['ides'];
-$data->render_sql("SELECT `id`,`idkont`,`idsmena` FROM `childtocon` WHERE idchild=$ids", "id", 'id,idkont,idsmena');
+$data->render_sql("SELECT `id`,`idkont`,`idsmena`,`status` FROM `childtocon` WHERE idchild=$ids", "id", 'id,idkont,idsmena,status');
 
 
 

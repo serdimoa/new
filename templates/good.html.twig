@@ -24,7 +24,7 @@
             <li><a href="admin.php?np=new_kontrakt"><i class="fa fa-plus"></i> <span>Добавить Контракт</span></a></li>
         </ul>
     </li>
-    <li><a id="Myunidf" href="index.html"><i class="fa fa-sign-out"></i> <span>Выход</span></a></li>
+    <li><a id="Myunidf" href="admin.php"><i class="fa fa-sign-out"></i> <span>Выход</span></a></li>
 
 </ul>
 {% endblock %}
@@ -188,7 +188,7 @@ webix.ready(function(){
                    this.showOverlay('обновите старницу');
                else
                    this.hideOverlay();
-           },onSelectChange:function(id){
+           },onItemClick:function(id){
                selectedid = $$('datatable').getSelectedId(true).join();
                 var selectedname = $$('datatable').getSelectedItem();
                 console.log(selectedname['firstname']);

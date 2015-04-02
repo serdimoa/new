@@ -33,7 +33,7 @@
             <li><a href="admin.php?np=new_kontrakt"><i class="fa fa-plus"></i> <span>Добавить Контракт</span></a></li>
         </ul>
     </li>
-    <li><a id="Myunidf" href="index.html"><i class="fa fa-sign-out"></i> <span>Выход</span></a></li>
+    <li><a id="Myunidf" href="/"><i class="fa fa-sign-out"></i> <span>Выход</span></a></li>
   </ul>
           {% endblock %}
 
@@ -170,7 +170,7 @@
                             <div class="profile-desk">
                                 <div class="btn-group btn-group-justified">
                                     <a class="btn btn-success btn-lg" onclick="sendsave()" >Добавить</a>
-                                    <a class="btn btn-danger btn-lg"  href="#">Отменить</a>
+                                    <a class="btn btn-danger btn-lg" onclick="window.history.back();" href="#">Отменить</a>
                                 </div>
                             </div>
                         </div>

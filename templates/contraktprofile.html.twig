@@ -38,7 +38,7 @@
       </li>
     </ul>
   </li>
-  <li><a id="Myunidf" href="#"><i class="fa fa-sign-out"></i> <span>Выход</span></a>
+  <li><a id="Myunidf" href="admin.php"><i class="fa fa-sign-out"></i> <span>Выход</span></a>
   </li>
 
 </ul>
@@ -119,7 +119,7 @@
                                   <div class="profile-desk">
                                     <div class="btn-group btn-group-justified">
                                       <a class="btn btn-success btn-lg" onclick="sendsave()">Сохранить</a>
-                                      <a class="btn btn-danger btn-lg" href="#">Отменить</a>
+                                      <a class="btn btn-danger btn-lg" onclick="window.history.back();" href="#">Отменить</a>
                                     </div>
                                   </div>
                                 </div>
@@ -139,12 +139,10 @@
                 </div>
                 <div class="tab-pane" id="contact2">
                     <div class="row">
-                      <div class="col-lg-12" id="periods"></div>
+                      <div class="col-lg-9" id="periods"></div>
+                      <div class="col-lg-2" style="display: none;" id="btnsss"></div>
 
                     </div>
-
-
-
                 </div>
                 <div class="tab-pane" id="newperiod">
                   <div class="col-md-6">
@@ -169,7 +167,6 @@
                             </div>
                             <div class="btn-group btn-group-justified">
                               <a class="btn btn-success btn-lg" onclick="addtimecontract()">Добавить</a>
-                              <a class="btn btn-danger btn-lg" href="#">Отменить</a>
 
                             </div>
                           </div>
@@ -198,6 +195,21 @@
   <script>
     var idses = getQueryVariable('id');
     webix.ready(function() {
+
+
+      webix.ui({
+        container:"btnsss",
+        id:"btnsss",
+        view:"form",
+        scroll:false,
+        autowidth:true,
+        elements:[
+          { margin:5, rows:[
+            { view:"button", width:150, value:"Вернутся" , click:"$$('views').back();$('#btnsss').toggle();" },
+            { view:"button", width:150,value:"Экспорт в Excel", type:"form", click:"$$('userbyperiod').exportToExcel();" }
+          ]}]
+      });
+
       webix.ui({
         container: 'celdr',
         view: 'datepicker',
@@ -232,34 +244,38 @@
 
       });
       // start periods
+
       webix.ui({
-        container: 'periods',
+        container: "periods",
+        id:"views",
+        cells:
+      [
+        {
         view: 'datatable',
         name: 'datatable',
         id: 'datatable',
-
+minWidth:900,
         height: 300,
-        autowidth:true,
         columns: [
           {
             // Номер
-            id: 'number',
-            fillspace: true,
+            id: 'number',            fillspace: true,
+
             header: 'Смена',
-            width: 300,
+//            width: 300,
             sort: 'string'
           }, {
           // Начало
           id: 'startdate',
           header: 'Начало',
-          width: 100,
+//          width: 100,
           sort: 'string',
           format: webix.Date.dateToStr('%Y-%m-%d')
         }, {
           // Окончание
           id: 'enddate',
           header: 'Окончание',
-          width: 100,
+//          width: 100,
           sort: 'string',
           format: webix.Date.dateToStr('%Y-%m-%d')
         }, {
@@ -267,17 +283,68 @@
           id: 'summ',
           fillspace: true,
           header: 'Кол-во Путевок',
-          width: 150,
+
+//          width: 150,
           sort: 'int'
         }, {
           // Серия
           id: 'nerasp',
           header: "Не распределено",
-            width: 200,
+            fillspace: true,
+
+//            width: 200,
           sort: 'string'
         }],
         url: "select/select_periods.php?ides=" + idses,select: 'row',
-        onContext:{}
+        onContext:{},on:
+        {
+          onItemClick:function() {
+          var text = $$("datatable").getSelectedId(true).join();
+            $$('userbyperiod').clearAll();
+            $$('userbyperiod').load("select/userbypeiod.php?id="+ids+"&smena="+text);
+            $$('userbyperiod').show();
+            $("#btnsss").toggle();
+            }
+        }
+      },
+        {
+          view:'datatable',
+          name:'userbyperiod',
+          id:'userbyperiod',
+          height:400,
+
+          select:'row',
+          columns:[
+            {
+              id:'idchild',
+              header:"Номер",
+//              width:100,
+              sort:'string'
+            },
+            {
+              id:'fio',
+              header:"Фамилия",
+//              width:200,
+              fillspace:true,
+              sort:'string'
+            },
+            {
+              id:'name',
+//              width:200,
+              header:"Имя",
+              fillspace:true,
+              sort:'string'
+            },
+            {
+              id:'last',
+//              width:200,
+              header:"Отчество",
+              sort:'string',
+              fillspace:true
+            }
+          ]
+        }
+      ]
 
 
       });
@@ -289,6 +356,7 @@
             options:'select/resttypeall.php'
         });
 
+
     });
   </script>
   <script>
@@ -297,7 +365,40 @@
     }
 
     var ids = getQueryVariable('id');
+
+    ub = {
+      view:'datatable',
+      id:'userbyperiod',
+      height:400,
+      width:400,
+      select:'row',
+      column:[
+        {
+          id:'id',
+          header:"Номер",
+          width:100,
+          sort:'string'
+        },
+        {
+          id:'fio',
+          header:"Фамилия",
+          sort:'string'
+        },
+        {
+          id:'name',
+          header:"Имя",
+          sort:'string'
+        },
+        {
+          id:'last',
+          header:"Отчество",
+          sort:'string'
+        }
+      ],
+      data:[{id:1}]
+    };
     webix.ready(function() {
+
       webix.ajax('select/getprofilekontrakt.php?id=' + ids, function(text) {
         var jsons = jQuery.parseJSON(text);
 
@@ -330,40 +431,43 @@
        });
        $$("cmenu").attachTo($$("datatable"));
     });
-
     function addtimecontract() {
+//      if(gid('summinp').value >= gid('serials').value) {
+      if($$("dpdatestart").getValue() < $$("dpdatestop").getValue() && gid('summinp').value >= gid('serials').value){
       webix.ajax("insert/insert_new_periods.php?startdate=" + $$("dpdatestart").getValue() +
-        "&enddate=" + $$("dpdatestop").getValue() +
-        "&summ=" + gid('summinp').value +
-        "&serial=" + gid('serials').value +
-        "&number=" + gid('numofser').value +
-        "&idcontract=" + ids, {
-          success: function(text) {
-            if (text == 0) {
-              webix.alert({
-                text: "Данные добавлены"
-              });
-              $$("datatable").load("select/select_periods.php?ides=" + idses);
-            } else {
-              webix.alert({
-                type: "alert-warning",
-                text: "Повторите позже"
-              });
-            }
-          }
-        },
+                "&enddate=" + $$("dpdatestop").getValue() +
+                "&summ=" + gid('summinp').value +
+                "&serial=" + gid('serials').value +
+                "&number=" + gid('numofser').value +
+                "&idcontract=" + ids, {
+                  success: function (text) {
+                    if (text == 0) {
+                      webix.alert({
+                        text: "Данные добавлены"
+                      });
+                      $$("datatable").load("select/select_periods.php?ides=" + idses);
+                    } else {
+                      webix.alert({
+                        type: "alert-warning",
+                        text: "Повторите позже"
+                      });
+                    }
+                  }
+                },
 
-        {
-          error: function(text, data, XmlHttpRequest) {
-            webix.alert({
-              text: "Повторите позже"
-            });
-          }
-        }
-
-
-
-      );
+                {
+                  error: function (text, data, XmlHttpRequest) {
+                    webix.alert({
+                      text: "Повторите позже"
+                    });
+                  }
+                }
+        );
+      }
+      else
+        webix.alert({
+          text: "Количество путевок должно быть больше нераспределенных"
+        });
 
     }
 
