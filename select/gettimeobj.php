@@ -1,11 +1,6 @@
 <?php
-session_start();
-if (!$_SESSION["login"]) {
-    header('Location: index.php');
-    exit();
-}else
-{
-    require_once("../config.php");
+
+require_once("../config.php");
     $idcontract = $_GET['idcontract'];
     $sql = "select * from periods WHERE idcontract=$idcontract AND nerasp!=0";
     $show = mysql_query($sql);
@@ -17,5 +12,4 @@ if (!$_SESSION["login"]) {
 
 
 
-}
 ?>

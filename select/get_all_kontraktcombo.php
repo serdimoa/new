@@ -5,14 +5,10 @@
  * Date: 13.01.15
  * Time: 13:12
  */
-session_start();
-if (!$_SESSION["login"]) {
-    header('Location: index.php');
-    exit();
-}else
-{
+
     require_once("../config.php");
-    $sql = "select * from contract";
+$gets = $_GET["vals"];
+$sql = "select contract.id,contract.name from contract where contract.id in (SELECT periods.idcontract FROM periods ) AND contract.whens='$gets'";
     $show = mysql_query($sql);
     $arr = array();
     while($row = mysql_fetch_array($show)){
@@ -22,5 +18,5 @@ if (!$_SESSION["login"]) {
 
 
 
-}
+
 ?>

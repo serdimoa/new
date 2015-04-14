@@ -86,53 +86,14 @@
                 }},
                 {id:'year',header:['Год'],sort:'string'},
                 {id:'date',header:['Дата'],sort:'string'},
-                {id:'type',fillspace:true,header:['Направление'],sort:'string',template:function(obj){
+                {id: 'whens', header: ['Время отдыха'], sort: 'string'},
+                {
+                    id: 'type', header: ["Вид отдыха"], sort: 'string', template: function (obj) {
                     var idrype = parseInt(obj.type);
-
                     return datajson(idrype);
                 }},
-                {id:'time',header:['Сроки'],sort:'string', width:150,template:function(obj){
-                    switch (obj.time){
-                        case "1":
-                            return "Весенние каникулы";
-                            break;
-                        case "2":
-                            return "Летние каникулы";
-                            break;
-                        case "3":
-                            return "Осенние каникулы";
-                            break;
-                        case "4":
-                            return "Зимние каникулы";
-                            break;
-                        default :
-                            return "Заполнено не правильно";
-                            break;
-
-                    }
-                }
-                },
-                {id:'timeobj',header:['Смена'],sort:'string',template:function(obj){
-                    switch (obj.timeobj){
-                        case "1":
-                            return "1 Смена";
-                            break;
-                        case "2":
-                            return "2 Смена";
-                            break;
-                        case "3":
-                            return "3 Смена";
-                            break;
-                        case "4":
-                            return "4 Смена";
-                            break;
-                        default :
-                            return " ";
-                            break;
-
-                    }
-                }
-                }
+                {id: 'time', header: ['Лагерь'], sort: 'string', fillspace: true},
+                {id: 'timeobj', header: ['Смена'], sort: 'string'}
 
             ],
             url:'select/get_req.php',autoheight:true,scrollX:false,select: 'row',on:{

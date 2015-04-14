@@ -2303,3 +2303,8 @@ body.mobile .animated {
 .image-5 {
     background-image: url(http://placehold.it/1920x1080.jpg);
 }
+
+.webix_view.webix_form {
+    background: none;
+    border: none;
+}
