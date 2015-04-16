@@ -175,9 +175,9 @@ webix.ready(function(){
         columns: [
             { id: 'firstname',fillspace:true, header: ['Фамилия', {content: 'textFilter'}], width: 300, sort: 'string'},
             { id: 'name',fillspace:true, header: ['Имя', {content: 'textFilter'}], width: 300, sort: 'string'},
-            { id: 'surname',fillspace:true, header: ['Отчество', {content: 'textFilter'}], width: 300, sort: 'string'},
-            { id: 'event', header: "Вид отдыха", width: 80, sort: 'int'},
-            { id: 'date', header: ['Дата рождения', {content: 'textFilter'}], width: 100, sort: 'string',
+            {id: 'surname', fillspace: true, header: ['Отчество', {content: 'textFilter'}], width: 200, sort: 'string'},
+            {
+                id: 'date', header: ["Дата &nbsp; рождения", {content: 'textFilter'}], width: 200, sort: 'string',
                 format: webix.Date.dateToStr('%Y-%m-%d')}],
            url: 'select/get_all.php',height:550, select: 'row',scrollX:false, on:{
            onBeforeLoad:function(){
@@ -228,8 +228,9 @@ webix.ready(function(){
         minHeight:200,
         autowidth:true,
         columns:[
-            {id:'id',header:'№'},
-            {id:'status',header:'Статус',template:function(obj){
+            {id: 'id', header: ['№']},
+            {
+                id: 'status', header: ['Статус'], sort: 'string', template: function (obj) {
                 switch (obj.status){
                     case "1":
                         return "В очереди";
@@ -248,58 +249,12 @@ webix.ready(function(){
                         break;
                 }
             }},
-            {id:'year',header:'Год'},
-            {id:'date',header:"Дата&nbsp;подачи",width:200,format: webix.Date.dateToStr('%Y-%m-%d')},
-            {id:'type',header:'Направление', width:200,fillspace:true,template:function(obj){
-                var idrype = parseInt(obj.type);
-
-                return datajson(idrype);
-
-
-            }
-            },
-            {id:'time',header:'Время&nbsp;отдыха',width:200,template:function(obj){
-                switch (obj.time){
-                    case "1":
-                        return "Весенние каникулы";
-                        break;
-                    case "2":
-                        return "Летние каникулы";
-                        break;
-                    case "3":
-                        return "Осенние каникулы";
-                        break;
-                    case "4":
-                        return "Зимние каникулы";
-                        break;
-                    default :
-                        return "Заполнено не правильно";
-                        break;
-
-                }
-            }
-            },
-            {id:'timeobj',header:'Смена',template:function(obj){
-                switch (obj.timeobj){
-                    case "1":
-                        return "1 Смена";
-                        break;
-                    case "2":
-                        return "2 Смена";
-                        break;
-                    case "3":
-                        return "3 Смена";
-                        break;
-                    case "4":
-                        return "4 Смена";
-                        break;
-                    default :
-                        return " ";
-                        break;
-
-                }
-            }
-            }
+            {id: 'year', header: ['Год'], sort: 'string'},
+            {id: 'date', header: ['Дата'], sort: 'string'},
+            {id: 'type', header: ['Вид отдыха'], sort: 'string', fillspace: true},
+            {id: 'whens', header: ["Время &nbsp; отдыха"], width: 150, fillspace: true, sort: 'string'},
+            {id: 'time', header: ["Лагерь"], sort: 'string', fillspace: true},
+            {id: 'timeobj', header: ['Смена'], sort: 'string'}
 
         ]
 
@@ -370,7 +325,7 @@ function insertnewzayava(){
             {success:function(text){
                 if(text==1){
                     webix.alert({text:"Заявка добавлена"});
-                    $$('datatable1').load('select/putevka.php?ides='+$$('datatable').getSelectedId(true).join())
+                    $$('datatable1').load('select/putevka.php?ides=' + $$('datatable').getSelectedId(true).join());
 
                     $('.nav-tabs a[href="#' + "contact2" + '"]').tab('show');
 
@@ -392,6 +347,9 @@ $(".nav-tabs a[data-toggle=tab]").on("click", function(e) {
     }
 });
 
-
+    function btnclick() {
+        $$('datatable').exportToExcel();
+    }
+    $("<a class='prints' href='#' onclick='btnclick()'>Распечатать</a>").insertAfter('.toggle-btn');
 </script>
 {% endblock %}

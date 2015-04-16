@@ -317,9 +317,11 @@
                 "&othc=" + gid('otch').value +
                 "&date=" + $$('date').getValue() +
                 "&doc=" + gid('doc').value +
+                "&resttype=" + $$('get_all_type').getText() +
                 "&resttime=" + $$('get_all_kontraktcombo').getText() +
                 "&resttimeobj=" + gettimeobjcombo +
                 "&fiorod=" + gid('fiorod').value +
+                "&whens=" + $$('get_all_whens').getText() +
                 "&workstation=" + gid('workstation').value +
                 "&tel=" + gid('tel').value,
                 {success:function(text){
@@ -347,6 +349,14 @@
                     labelWidth: 200,
                     view: "combo",
                     options: 'select/get_all_whens.php'
+                },
+                {
+                    id: "get_all_type",
+                    label: "Выберите вид",
+                    labelWidth: 200,
+                    hidden: true,
+                    view: "combo",
+                    options: "select/resttypeall.php"
                 },
                 {
                     id: "get_all_kontraktcombo",
@@ -382,23 +392,38 @@
             $$("gettimeobjcombo").load("select/gettimeobj.php?idcontract=" + values);
             $$("gettimeobjcombo").show();
         });
-        $$("get_all_whens").attachEvent("onChange", function () {
-            var values = $$("get_all_whens").getValue();
 
-            webix.ajax("select/get_all_kontraktcombo.php?vals=" + values, function (text, data) {
+        $$("get_all_whens").attachEvent("onChange", function () {
+            $$("gettimeobjcombo").hide();
+            $$("get_all_type").show();
+            $$("get_all_kontraktcombo").setValue(" ");
+            $$("get_all_kontraktcombo").hide();
+
+        });
+
+
+        $$("get_all_type").attachEvent("onChange", function () {
+            var values = $$("get_all_whens").getValue();
+            var values2 = $$("get_all_type").getValue();
+
+            webix.ajax("select/get_all_kontraktcombo.php?vals=" + values + "&vals2=" + values2, function (text, data) {
+
                 new_options = data.json();
+
                 var list = $$("get_all_kontraktcombo").getPopup().getList();
                 list.clearAll();
                 $$("get_all_kontraktcombo").setValue(" ");
                 list.parse(new_options);
                 $$("gettimeobjcombo").hide();
 
+                if (new_options.length != 0)
+                    $$("get_all_kontraktcombo").show();
+                else
+                    $$("get_all_kontraktcombo").hide();
             });
             gettimeobjcombo = null;
 
-            $$("get_all_kontraktcombo").show();
         });
-
     });
 
 </script>

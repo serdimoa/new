@@ -31,7 +31,7 @@ else
     mysql_query($sql2);
         $ids2 = mysql_insert_id();
         $sql3="update requests set iduser='$ids' where id='$ide'";
-        $sql4="insert into requests_user(status,year,date,kategory,type,iduser,time,timeobj) select status,year,date,kategory,type,iduser,time,timeobj from requests where id='$ide' ";
+    $sql4 = "insert into requests_user(status,year,date,kategory,type,iduser,time,timeobj,whens) select status,year,date,kategory,type,iduser,time,timeobj,whens from requests where id='$ide' ";
         $sql5="delete from request_children where idrequests='$ide'";
         $sql6="delete from requests where id='$ide'";
         mysql_query($sql3);

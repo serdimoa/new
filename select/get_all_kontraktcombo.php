@@ -8,7 +8,8 @@
 
     require_once("../config.php");
 $gets = $_GET["vals"];
-$sql = "select contract.id,contract.name from contract where contract.id in (SELECT periods.idcontract FROM periods ) AND contract.whens='$gets'";
+$gets2 = $_GET["vals2"];
+$sql = "select contract.id,contract.name from contract where contract.id in (SELECT periods.idcontract FROM periods ) AND contract.whens='$gets' AND contract.types ='$gets2'";
     $show = mysql_query($sql);
     $arr = array();
     while($row = mysql_fetch_array($show)){

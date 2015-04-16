@@ -346,12 +346,13 @@
                             id: 'datatable',
                             editable: true,
                             columns: [
-                                {id: 'id', header: '№'},
+
+                                {id: 'id', header: ['№']},
                                 {
-                                    id: 'status', width: 110, header: 'Статус', template: function (obj) {
+                                    id: 'status', header: ['Статус'], sort: 'string', template: function (obj) {
                                     switch (obj.status) {
                                         case "1":
-                                            return "В Очереди";
+                                            return "В очереди";
                                             break;
                                         case "2":
                                             return "Принято";
@@ -368,71 +369,12 @@
                                     }
                                 }
                                 },
-                                {id: 'year', header: 'Год'},
-                                {
-                                    id: 'date',
-                                    header: "Дата&nbsp;подачи",
-                                    width: 200,
-                                    format: webix.Date.dateToStr('%Y-%m-%d')
-                                },
-                                {
-                                    id: 'type',
-                                    width: 200,
-                                    header: "Направление отдыха",
-                                    fillspace: true,
-                                    template: function (obj) {
-                                        var idrype = parseInt(obj.type);
-
-                                        return datajson(idrype);
-
-
-                                    }
-                                },
-                                {
-                                    id: 'time', header: 'Время&nbsp;отдыха', width: 200, template: function (obj) {
-                                    switch (obj.time) {
-                                        case "1":
-                                            return "Весенние каникулы";
-                                            break;
-                                        case "2":
-                                            return "Летние каникулы";
-                                            break;
-                                        case "3":
-                                            return "Осенние каникулы";
-                                            break;
-                                        case "4":
-                                            return "Зимние каникулы";
-                                            break;
-                                        default :
-                                            return "Заполнено не правильно";
-                                            break;
-
-                                    }
-                                }
-                                },
-                                {
-                                    id: 'timeobj', header: 'Смена', template: function (obj) {
-                                    switch (obj.timeobj) {
-                                        case "1":
-                                            return "1 Смена";
-                                            break;
-                                        case "2":
-                                            return "2 Смена";
-                                            break;
-                                        case "3":
-                                            return "3 Смена";
-                                            break;
-                                        case "4":
-                                            return "4 Смена";
-                                            break;
-                                        default :
-                                            return " ";
-                                            break;
-
-                                    }
-                                }
-                                }
-
+                                {id: 'year', header: ['Год'], sort: 'string'},
+                                {id: 'date', header: ['Дата'], sort: 'string'},
+                                {id: 'type', header: ['Вид отдыха'], sort: 'string', fillspace: true},
+                                {id: 'whens', header: ["Время отдыха"], width: 150, fillspace: true, sort: 'string'},
+                                {id: 'time', header: ["Лагерь"], sort: 'string', fillspace: true},
+                                {id: 'timeobj', header: ['Смена'], sort: 'string'}
                             ],
                             url: 'select/putevka.php?ides=' + idses, select: "row",
                             on: {
@@ -521,7 +463,7 @@
                                     label: "Выберите лагер и смену",
                                     labelWidth:200,
                                     view:"combo",
-                                    options: 'select/get_all_kontraktcombo.php'
+                                    options: 'select/get_all_kontraktcomboprofile.php'
                                 },
                                 {
                                     id: "gettimeobjcombo",
@@ -689,6 +631,7 @@
                                 }
                         );
                     }
+
 
                 </script>
             {% endblock %}

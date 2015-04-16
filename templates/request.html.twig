@@ -52,12 +52,14 @@
             jsonss = data;
         }
     });
-    function datajson(id) {
-        var valse = jsonss[id - 1];
-        valse = valse.valuers;
-        return (valse);
-    }
+
     webix.ready(function(){
+        function datajson(id) {
+            id = id - 1;
+            var valse = jsonss[id];
+            valse = valse.valuers;
+            return (valse);
+        }
         webix.ui({
             container:'datatbl',
             view:"datatable",
@@ -86,13 +88,9 @@
                 }},
                 {id:'year',header:['Год'],sort:'string'},
                 {id:'date',header:['Дата'],sort:'string'},
-                {id: 'whens', header: ['Время отдыха'], sort: 'string'},
-                {
-                    id: 'type', header: ["Вид отдыха"], sort: 'string', template: function (obj) {
-                    var idrype = parseInt(obj.type);
-                    return datajson(idrype);
-                }},
-                {id: 'time', header: ['Лагерь'], sort: 'string', fillspace: true},
+                {id: 'type', header: ['Вид отдыха'], sort: 'string', fillspace: true},
+                {id: 'whens', header: ["Время отдыха"], fillspace: true, sort: 'string'},
+                {id: 'time', header: ["Лагерь"], sort: 'string', fillspace: true},
                 {id: 'timeobj', header: ['Смена'], sort: 'string'}
 
             ],

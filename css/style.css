@@ -9,6 +9,10 @@ Author: ThemeBucket
 @import url('jquery-ui-1.10.3.css');
 @import url('../fonts/css/font-awesome.min.css');
 
+.prints {
+    padding: 15px;
+    float: left;
+}
 body {
     background: #424f63;
     font-family: 'Open Sans', sans-serif;
