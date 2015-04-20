@@ -631,7 +631,40 @@
                                 }
                         );
                     }
+                    function btnclick() {
+                        var expdata = {
+                            "expnameinp": gid('nameinp').value,
+                            "expfioinp": gid('fioinp').value,
+                            "explastinp": gid('lastinp').value,
+                            "expsvid": gid('svid').value,
+                            "expadrregs": gid('adrregs').value,
+                            "expadrfact": gid('adrfact').value,
+                            "expclassname": gid('classname').value,
+                            "expfioroditelya": gid('fioroditelya').value,
+                            "expworkstation": gid('workstation').value,
+                            "exprabotainp": gid('rabotainp').value,
+                            "exphomeinp": gid('homeinp').value,
+                            "expmobilinp": gid('mobilinp').value,
+                            "expemailinp": gid('emailinp').value,
+                            "expdate": $$('date').getValue(),
+                            "expschool": $$('school').getValue(),
+                            "explgotkats": $$('lgotkats').getValue(),
+                            "expallreqandkontrid": ids
+                        };
+                        $.ajax({
+                            type: 'GET',
+                            url: 'exports/allaboutprofileexport.php',
+                            data: {json: JSON.stringify(expdata)},
+                            dataType: 'json',
+                            success: function (data) {
+                                document = "exports/allaboutprofileexport.php"
+                            }
+                        });
 
+
+                    }
+
+                    $("<a class='prints' href='#' onclick='btnclick()'>Распечатать Личное дело</a>").insertAfter('.toggle-btn');
 
                 </script>
             {% endblock %}
