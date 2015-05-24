@@ -11,7 +11,7 @@
                 if(pair[0] == variable){return pair[1];}
             }
             return(false);
-            
+
         }
     </script>
     {% endblock %}
@@ -123,8 +123,25 @@
                                     <div class="profile-desk">
 
                                         <div class="form-group">
-                                            <label for="mobilinp">Сотовый</label>
+                                            <label for="mobilinp">Контакты</label>
                                             <input type="text" class="form-control" id="mobilinp" >
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel">
+                                <header class="panel-heading">Учебное заведение</header>
+                                <div class="panel-body">
+                                    <div class="profile-desk">
+
+                                        <div class="form-group">
+                                            <label for="mobilinp">Школа</label>
+                                            <div id="scholl"></div>
+                                        </div>
+                                         <div class="form-group">
+                                            <label for="mobilinp">Класс</label>
+                                            <input type="text" class="form-control" id="class" >
                                         </div>
 
                                     </div>
@@ -164,8 +181,14 @@
     webix.ready(function(){
         webix.ui({
             container:'celdr',inputWidth:150,view:'datepicker',name:'date',id:'date',stringResult:true
-
         });
+        });
+        webix.ui({
+            container:'scholl',
+            view:"combo",
+            id:"scholl",
+            options: 'select/scholl.php'
+
         });
 
 
@@ -192,6 +215,8 @@
             gid('fioroditelya').value = jsons[0].fiorod;
             gid('workstation').value = jsons[0].workstation;
             gid('mobilinp').value = jsons[0].tel;
+            $$('scholl').setValue(jsons[0].scholl);
+            gid('class').value = jsons[0].class;
             $$("date").setValue(jsons[0].date);
 
 
@@ -209,6 +234,8 @@
                                 "&workstation=" +   gid('workstation').value +
                                 "&mobilinp="    +   gid('mobilinp').value +
                                 "&date="        +   $$('date').getValue() +
+                                "&class="       +   gid('class').value+
+                                "&scholl="      +   $$('scholl').getValue()+
                                 "&ids="         +   ids,
             {success:function(text){
                 if(text==0){

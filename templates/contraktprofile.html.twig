@@ -96,6 +96,9 @@
                             <div class="form-group">
                               <div id="celdr"></div>
                             </div>
+                              <div class="form-group">
+                              <div id="whensid"></div>
+                            </div>
                             <div class="form-group">
                               <label for="put">Количество путевок</label>
                               <input type="text" class="form-control" id="put" required="">
@@ -411,6 +414,7 @@ minWidth:900,
         $$('resttypecombo').setValue(jsons[0].types);
         $$('date').setValue(jsons[0].date);
         gid('daysprice').value = jsons[0].daysprice ;
+        $$("whensid").setValue(jsons[0].whens);
 // parseInt(jsons[0].price) / parseInt(jsons[0].days)
       });
       webix.ui({
@@ -429,6 +433,15 @@ minWidth:900,
                }
            }
        });
+        webix.ui({
+           view:"combo",
+            id:"whensid",
+            container:"whensid",
+            label:"Период",
+            options: 'select/get_all_whens.php'
+
+        });
+
        $$("cmenu").attachTo($$("datatable"));
     });
     function addtimecontract() {
@@ -479,6 +492,7 @@ minWidth:900,
         "&daysprice=" + gid('daysprice').value +
         "&date=" + $$('date').getValue() +
         "&types="+$$('resttypecombo').getValue()+
+        "&whens="+$$('whensid').getValue()+
         "&ids=" + ids, {
           success: function(text) {
             if (text == 0) {

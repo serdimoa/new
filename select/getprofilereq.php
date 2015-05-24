@@ -27,6 +27,8 @@ else
         "doc"=>$row['doc'],
         "fiorod"=>$row['fiorod'],
         "workstation"=>$row['workstation'],
+        "scholl"=>$row['scholl'],
+        "class"=>$row['class'],
         "tel"=>$row['tel']);
 
     echo json_encode($arr);

@@ -73,6 +73,9 @@
                   <input type="text" class="form-control" id="nameinp" required="">
                 </div>
                 <div class="form-group">
+                  <div id="whensid"></div>
+                </div>
+                <div class="form-group">
                   <label for="fioinp">Количество путевок</label>
                   <input type="number" class="form-control num" id="fioinp" required="">
                 </div>
@@ -130,6 +133,13 @@
       stringResult: true
 
     });
+    webix.ui({
+      container:'whensid',
+      id:'whensid',
+      view:'combo',
+      label:"Период",
+      options: 'select/get_all_whens.php'
+    });
       webix.ui({
           container:'resttype',
           view:'combo',
@@ -151,14 +161,15 @@
       "&lastinp=" + gid('lastinp').value +
       "&svid=" + gid('svid').value +
       "&daysprice=" + gid('daysprice').value +
+      "&whens="+$$("whensid").getValue()+
             "&types="+$$('resttypecombo').getValue()+
       "&date=" + $$('date').getValue(), {
         success: function(text) {
           if (text == 0) {
             webix.alert({
-              text: "Данные обновлены",
+              text: "Данные добавлены",
               callback: function() {
-                document.location.href = "../admin.php";
+                document.location.href = "admin.php";
 
               }
             });
@@ -167,7 +178,7 @@
               type: "alert-warning",
               text: "Повторите позже",
               callback: function() {
-                document.location.href = "../admin.php";
+                document.location.href = "admin.php";
 
               }
             });

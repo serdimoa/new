@@ -129,12 +129,24 @@
                                                 <label class="col-md-2 col-sm-2 control-label">Документ</label>
                                                 <div class="col-md-6 col-sm-6">
                                                     <input required="true" class="form-control" id="doc" name="doc" type="text"/>
-                                                    <span style="color: #444;" class="help-inline">Свидетельство о рождении/Паспорт</span>
-
-
-
+                                                    <span style="color: #444;" class="help-inline">Свидетельство о рождении/Паспорт
+                                                    </span>
+                                                    </div>
+                                            </div>
+                                            <div class="form-group">
+                                            <label class="col-md-2 col-sm-2 control-label"> Школа</label>
+                                            <div class="col-md-6 col-sm-6">
+                                                    <div id="school"></div>
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                            <label class="col-md-2 col-sm-2 control-label">Класс</label>
+                                                <div class="col-md-6 col-sm-6">
+                                                    <input required="true" class="form-control" id="classs" name="classs" type="text"/>
+                                                </div>
+
+                                            </div>
+
 
                                         </fieldset>
                                         <fieldset title="Шаг 2">
@@ -157,7 +169,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-md-2 col-sm-2 control-label">Телефон</label>
+                                                <label class="col-md-2 col-sm-2 control-label">Контакты</label>
                                                 <div class="col-md-6 col-sm-6">
                                                     <input type="text" id="tel" placeholder="" name="tel" required="true" class="form-control">
                                                 </div>
@@ -323,6 +335,8 @@
                 "&fiorod=" + gid('fiorod').value +
                 "&whens=" + $$('get_all_whens').getText() +
                 "&workstation=" + gid('workstation').value +
+                "&school=" + $$('school').getValue() +
+                "&classs=" + gid('classs').value+
                 "&tel=" + gid('tel').value,
                 {success:function(text){
                     if(text==1){
@@ -399,6 +413,12 @@
             $$("get_all_kontraktcombo").setValue(" ");
             $$("get_all_kontraktcombo").hide();
 
+        });
+        webix.ui({
+            container: 'school',
+            view: 'combo',
+            id: 'school',
+            options: 'select/scholl.php'
         });
 
 

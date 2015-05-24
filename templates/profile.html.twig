@@ -92,17 +92,17 @@
                                                             <header class="panel-heading">Информация о ребенке</header>
                                                             <div class="panel-body">
                                                                 <div class="profile-desk">
-
-                                                                    <div class="form-group">
-                                                                        <label for="nameinp">Имя</label>
-                                                                        <input type="text" class="form-control"
-                                                                               id="nameinp" required="">
-                                                                    </div>
                                                                     <div class="form-group">
                                                                         <label for="fioinp">Фамилия</label>
                                                                         <input type="text" class="form-control"
                                                                                id="fioinp" required="">
                                                                     </div>
+                                                                    <div class="form-group">
+                                                                        <label for="nameinp">Имя</label>
+                                                                        <input type="text" class="form-control"
+                                                                               id="nameinp" required="">
+                                                                    </div>
+
                                                                     <div class="form-group">
                                                                         <label for="lastinp">Отчество</label>
                                                                         <input type="text" class="form-control"
@@ -127,16 +127,25 @@
                                                                         <input type="text" class="form-control"
                                                                                id="adrfact" required="">
                                                                     </div>
-                                                                    <div class="form-group">
-                                                                        <label for="scholl">Учебное заведение</label>
+                                                                    <div class="panel">
+                                                                        <header class="panel-heading">Информация о законном
+                                                                            представителе
+                                                                        </header>
+                                                                        <div class="panel-body">
+                                                                            <div class="profile-desk">
+                                                                                <label for="fioroditelya">Отношение и ФИО </label>
+                                                                                <input type="text" class="form-control"
+                                                                                       id="fioroditelya">
+                                                                            </div>
+                                                                            <div class="profile-desk">
+                                                                                <label for="workstation">Место работы </label>
+                                                                                <input type="text" class="form-control"
+                                                                                       id="workstation">
+                                                                            </div>
 
-                                                                        <div id="scholl"></div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="form-group">
-                                                                        <label for="classname">Класс</label>
-                                                                        <input type="text" class="form-control"
-                                                                               id="classname" required="">
-                                                                    </div>
+
 
 
                                                                 </div>
@@ -161,23 +170,22 @@
                                                         </div>
 
                                                         <div class="panel">
-                                                            <header class="panel-heading">Информация о законном
-                                                                представителе
-                                                            </header>
+                                                            <header class="panel-heading">Учебное заведение</header>
                                                             <div class="panel-body">
-                                                                <div class="profile-desk">
-                                                                    <label for="fioroditelya">Отношение и ФИО </label>
-                                                                    <input type="text" class="form-control"
-                                                                           id="fioroditelya">
-                                                                </div>
-                                                                <div class="profile-desk">
-                                                                    <label for="workstation">Место работы </label>
-                                                                    <input type="text" class="form-control"
-                                                                           id="workstation">
-                                                                </div>
+                                                            <div class="form-group">
+                                                            <label for="scholl"></label>
 
-                                                            </div>
+                                                            <div id="scholl"></div>
+
                                                         </div>
+                                                        <div class="form-group">
+                                                            <label for="classname">Класс</label>
+                                                            <input type="text" class="form-control"
+                                                                   id="classname" required="">
+                                                        </div></div>
+                                                            </div>
+
+
                                                         <div class="panel">
                                                             <header class="panel-heading">Контактные телефоны</header>
                                                             <div class="panel-body">
@@ -345,6 +353,8 @@
 
                             id: 'datatable',
                             editable: true,
+                            resizeColumn:true,
+
                             columns: [
 
                                 {id: 'id', header: ['№']},
@@ -633,38 +643,44 @@
                     }
                     function btnclick() {
                         var expdata = {
-                            "expnameinp": gid('nameinp').value,
-                            "expfioinp": gid('fioinp').value,
-                            "explastinp": gid('lastinp').value,
-                            "expsvid": gid('svid').value,
-                            "expadrregs": gid('adrregs').value,
-                            "expadrfact": gid('adrfact').value,
-                            "expclassname": gid('classname').value,
-                            "expfioroditelya": gid('fioroditelya').value,
-                            "expworkstation": gid('workstation').value,
-                            "exprabotainp": gid('rabotainp').value,
-                            "exphomeinp": gid('homeinp').value,
-                            "expmobilinp": gid('mobilinp').value,
-                            "expemailinp": gid('emailinp').value,
-                            "expdate": $$('date').getValue(),
-                            "expschool": $$('school').getValue(),
-                            "explgotkats": $$('lgotkats').getValue(),
+                            "expnameinp":""+ gid("nameinp").value+"",
+                            "expfioinp":""+ gid("fioinp").value+"",
+                            "explastinp": ""+gid("lastinp").value+"",
+                            "expsvid": ""+gid("svid").value+"",
+                            "expadrregs":""+ gid("adrregs").value+"",
+                            "expadrfact":""+ gid("adrfact").value+"",
+                            "expclassname": ""+gid("classname").value+"",
+                            "expfioroditelya":""+ gid("fioroditelya").value+"",
+                            "expworkstation":""+ gid("workstation").value+"",
+                            "exprabotainp":""+ gid("rabotainp").value+"",
+                            "exphomeinp": ""+gid("homeinp").value+"",
+                            "expmobilinp": ""+gid("mobilinp").value+"",
+                            "expemailinp":""+ gid("emailinp").value+"",
+                            "expdate": ""+$$("date").getValue()+"",
+                            "expschool":""+ $$("school").getValue()+"",
+                            "explgotkats":""+ $$("lgotkats").getValue()+"",
                             "expallreqandkontrid": ids
                         };
-                        $.ajax({
-                            type: 'GET',
-                            url: 'exports/allaboutprofileexport.php',
-                            data: {json: JSON.stringify(expdata)},
-                            dataType: 'json',
-                            success: function (data) {
-                                document = "exports/allaboutprofileexport.php"
-                            }
-                        });
+//                        $.ajax({
+//                            type: 'POST',
+//                            url: 'exports/export.php',
+//                            data: {json: JSON.stringify(expdata)},
+//                            dataType: 'json'
+//
+//                        });
+                        if($.cookie("datatoprint")){
+                            $.removeCookie("datatoprint");
+                        }
+                        $.cookie("datatoprint",''+JSON.stringify(expdata)+'',{expires: 1});
+                        //console.log(JSON.parse(JSON.stringify(expdata)));
+                        console.log($.cookie("datatoprint"));
+                        location.href = "exports/export.php";
+                        return false;
 
 
                     }
 
-                    $("<a class='prints' href='#' onclick='btnclick()'>Распечатать Личное дело</a>").insertAfter('.toggle-btn');
+                    $("<a class='prints' href='#' onClick='btnclick();'>Распечатать Личное дело</a>").insertAfter('.toggle-btn');
 
                 </script>
             {% endblock %}

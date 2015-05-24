@@ -18,6 +18,8 @@ $fiorod=$_GET['fiorod'];
 $workstation=$_GET['workstation'];
 $whens = $_GET['whens'];
 $tel=$_GET['tel'];
+$school = $_GET['school'];
+$classs = $_GET['classs'];
 $year=date("Y");
 $dater = date("Y-m-d");
 
@@ -25,7 +27,7 @@ $dater = date("Y-m-d");
 $sql = "insert into requests(status,year,date,time,timeobj,whens,type) values (1,'$year','$dater','$resttime','$resttimeobj','$whens','$resttype')";
 mysql_query($sql);
 $ids = mysql_insert_id();
-$sql2="insert into request_children(name,fio,otch,date,doc,fiorod,workstation,tel,idrequests) values ('$name','$fio','$othc','$dates','$doc','$fiorod','$workstation','$tel','$ids')";
+$sql2="insert into request_children(name,fio,otch,date,doc,fiorod,workstation,tel,idrequests,scholl,class) values ('$name','$fio','$othc','$dates','$doc','$fiorod','$workstation','$tel','$ids','$school','$classs')";
 if(mysql_query($sql2 )){
     echo "1";
 }

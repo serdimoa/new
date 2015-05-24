@@ -22,12 +22,14 @@ else
     $workstation=$_GET["workstation"];
     $mobilinp=$_GET["mobilinp"];
     $date=$_GET["date"];
+    $scholl = $_GET["scholl"];
+    $class = $_GET["class"];
 
     $sql1 = "insert into children(name,firstname,surname,date) value ('$nameinp','$fioinp','$lastinp','$date')";
     mysql_query($sql1) ;
     $ids = mysql_insert_id();
-    $sql2 = "insert into aboutchildren(iduser,doc,fioroditelya,workstation,mobile)
-              values ('$ids','$svid','$fioroditelya','$workstation','$mobilinp')";
+    $sql2 = "insert into aboutchildren(iduser,doc,fioroditelya,workstation,mobile,scholl,class)
+              values ('$ids','$svid','$fioroditelya','$workstation','$mobilinp','$scholl','$class')";
     mysql_query($sql2);
         $ids2 = mysql_insert_id();
         $sql3="update requests set iduser='$ids' where id='$ide'";
