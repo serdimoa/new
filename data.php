@@ -8,8 +8,8 @@
 session_start();
 require_once("connector/data_connector.php");
 $dbtype = "MySQL";
-// $conn = mysql_connect("localhost", "root", "27051993");//dev
-$conn = mysql_connect("localhost", "root", "FTuRhnYc13q4");//serv
+//$conn = mysql_connect("localhost", "root", "27051993");//dev
+ $conn = mysql_connect("localhost", "root", "FTuRhnYc13q4");//serv
 mysql_select_db("aisyodbd");
 $data = new JSONDataConnector($conn, $dbtype);
 ConnectorSecurity::$xss = DHX_SECURITY_SAFEHTML;

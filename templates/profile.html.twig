@@ -661,19 +661,10 @@
                             "explgotkats":""+ $$("lgotkats").getValue()+"",
                             "expallreqandkontrid": ids
                         };
-//                        $.ajax({
-//                            type: 'POST',
-//                            url: 'exports/export.php',
-//                            data: {json: JSON.stringify(expdata)},
-//                            dataType: 'json'
-//
-//                        });
                         if($.cookie("datatoprint")){
                             $.removeCookie("datatoprint");
                         }
                         $.cookie("datatoprint",''+JSON.stringify(expdata)+'',{expires: 1});
-                        //console.log(JSON.parse(JSON.stringify(expdata)));
-                        console.log($.cookie("datatoprint"));
                         location.href = "exports/export.php";
                         return false;
 
