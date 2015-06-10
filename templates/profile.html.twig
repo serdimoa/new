@@ -14,6 +14,12 @@
             }
             return (false);
         }
+        var jsonss;
+        var gettimeobjcombo;
+
+        var selectcontract;
+        var jsonss1;
+        var valse1;
 
     </script>
 {% endblock %}
@@ -271,22 +277,18 @@
 
                 <script>
                     var idses = getQueryVariable('id');
-                    var jsonss;
-                    var gettimeobjcombo;
 
-                    var selectcontract;
 
-                    var jsonss1;
-
-                    $.ajax({
-                        url: "select/selectperiods.php", dataType: "json", success: function (data) {
-                            jsonss1 = data;
-                        }
-                    });
                     function datajson1(id) {
-                        var valse1 = jsonss1[id - 1];
-                        valse1 = valse1.valuers;
-                        return (valse1);
+                        $.get({
+                            url: "select/select_periods_contract.php?ides="+id, dataType: "json", success: function (data) {
+                                jsonss1 = data;
+                                valse1 = jsonss1.data[0].number;
+                                return valse1;
+
+                            }
+                        });
+
                     }
 
 
@@ -539,15 +541,8 @@
                             onContext: {},
                             columns: [
                                     {id: 'id', header: '№'},
-                                    {id: 'idkont', width: 300, header: "Наименование учереждения", fillspace: true, template: function (obj) {var idrype = parseInt(obj.idkont);return datajsoncontract(idrype);}},
-                                    {id: 'idsmena', header: 'Смена', template: function (obj) {
-                                        var idrype = parseInt(obj.idsmena);
-
-                                        return datajson1(idrype);
-
-
-
-                                    }},
+                                    {id: 'idkont', width: 300, header: "Наименование учереждения", fillspace: true},
+                                    {id: 'idsmena', header: 'Смена'},
                                 {id: 'idstatus', header: 'Статус', template: function (obj) {
                                     switch (obj.status) {
                                         case "0":
@@ -577,6 +572,48 @@
                             }
 
                         });
+
+//                        webix.ui({
+//                            container: "allcontract",
+//                            view: "datatable",
+//                            id: "allchildcontract",
+//                            minHeight: 200,
+//                            autowidth: true,
+//                            onContext: {},
+//                            columns: [
+//                                {id: 'id', header: '№'},
+//                                {id: 'idkont', width: 300, header: "Наименование учереждения", fillspace: true},
+//                                {id: 'idsmena', header: 'Смена'},
+//                                {id: 'idstatus', header: 'Статус', template: function (obj) {
+//                                    switch (obj.status) {
+//                                        case "0":
+//                                            return "Добавлено";
+//                                            break;
+//                                        case "1":
+//                                            return "Отменено";
+//                                            break;
+//                                        case "2":
+//                                            return "Исполнено";
+//                                            break;
+//                                        default :
+//                                            return " ";
+//                                            break;
+//
+//                                    }
+//                                }}
+//
+//                            ],
+//                            url: 'select/select_periods_contract.php?ides=' + idses, select: "row",
+//                            on: {
+//                                onItemClick: function () {
+//                                    var selectedid;
+//                                    selectedid = $$('allchildcontract').getSelectedId(true).join();
+//
+//                                }
+//                            }
+//
+//                        });
+
                         webix.ui({
                             view: "contextmenu",
                             id: "cmenu1",
