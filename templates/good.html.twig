@@ -44,9 +44,7 @@
     <li class="">
       <a href="#contact2" data-toggle="tab">Заявки для выбраного ребенка</a>
     </li>
-    <li class="disabled">
-          <a href="#contact3" class="disabled" data-toggle="tab">Добавление заявки выбраному личному делу</a>
-    </li>
+
 
   </ul>
 </header>
@@ -63,43 +61,11 @@
 
  </div><br>
  <a class="btn btn-info btn-lg " onclick="showld()" href="#">Просмотр личного дела</a>
- <a class="btn btn-success btn-lg " onclick="addzayva()" href="#">Добавление заявки выбраному личному делу</a>
  <a class="btn btn-danger btn-lg " onclick="delld()" href="#">Удаление личного дела</a>
 
 
     </div>
-      <div class="tab-pane" id="contact3">
-          <div class="row" >
-          <div class="form-group col-lg-12">
-              <label class="col-md-2 col-sm-2 control-label">Место отдыха</label>
-              <div class="col-md-6 col-sm-6">
-                  <div id="resttypes"></div>
 
-              </div>
-          </div>
-              </div>
-          <div class="row" >
-          <div class="form-group col-lg-12">
-              <label class="col-md-2 col-sm-2 control-label">Период отдыха</label>
-              <div class="col-md-6 col-sm-6">
-                  <div id="resttimes"></div>
-
-              </div>
-          </div>
-              </div>
-          <div class="row" >
-          <div id="resttimeforms" style="visibility:hidden;" class="form-group col-lg-12">
-              <label class="col-md-2 col-sm-2 control-label">Выбор смены</label>
-              <div class="col-md-6 col-sm-6">
-                  <div id="resttimeobjs"></div>
-              </div>
-          </div>
-              </div>
-          <a class="btn btn-success btn-lg" onclick="insertnewzayava()" href="#">Добавить</a>
-
-
-
-      </div>
 
 
   </div>
@@ -111,51 +77,8 @@
 {% endblock %}
 {% block customjs %}
 <script charset="utf-8" type="text/javascript">
-    var jsonss;
 
-    $.ajax({
-        url: "select/selecttype.php", dataType: "json", success: function (data) {
-            jsonss = data;
-        }
-    });
-    function datajson(id) {
-        var valse = jsonss[id - 1];
-        valse = valse.valuers;
-        return (valse);
-    }
-webix.ui({
-    container:'resttypes',
-    view:'combo',
-    id:'resttypecombo',
-    width:400,height:45,
-    options:'select/resttypeall.php'
-});
-webix.ui({
-    container:'resttimes',
-    view:'combo',
-    id:'resttimecombo',
-    width:400,
 
-    options:[
-        {id:1,value:'Весенние каникулы'},
-        {id:2,value:'Летние каникулы'},
-        {id:3,value:'Осенние каникулы'},
-        {id:4,value:'Зимние каникулы'}
-    ]
-});
-webix.ui({
-    container:'resttimeobjs',
-    view:'combo',
-    id:'resttimeobjcombo',
-    width:400,
-
-    options:[
-        {id:1,value:'1 Смена'},
-        {id:2,value:'2 Смена'},
-        {id:3,value:'3 Смена'},
-        {id:4,value:'4 Смена'}
-    ]
-});
 webix.ready(function(){
     var selectedid;
     webix.ui({
@@ -228,6 +151,7 @@ webix.ready(function(){
         id:'datatable1',
         minHeight:200,
         autowidth:true,
+        responsive:true,
         resizeColumn: true,
         columns:[
             {id: 'id', header: ['№']},
@@ -319,28 +243,7 @@ function showld(){
 function gid(eid){
     return document.getElementById(eid);
 }
-function insertnewzayava(){
-    webix.ajax("insert/reqidnew.php?iduser="+$$('datatable').getSelectedId(true).join()+
-            "&resttype="+$$("resttypecombo").getValue()+
-            "&resttime="+$$("resttimecombo").getValue()+
-            "&resttimeobj="+$$("resttimeobjcombo").getValue(),
-            {success:function(text){
-                if(text==1){
-                    webix.alert({text:"Заявка добавлена"});
-                    $$('datatable1').load('select/putevka.php?ides=' + $$('datatable').getSelectedId(true).join());
 
-                    $('.nav-tabs a[href="#' + "contact2" + '"]').tab('show');
-
-                }else{
-                    webix.alert({type:"alert-warning",text:"Повторите позже"});
-                }}},
-
-            {error:function(text, data, XmlHttpRequest){
-                webix.alert({text:"Повторите позже"});
-            }}
-    );
-
-}
 
 $(".nav-tabs a[data-toggle=tab]").on("click", function(e) {
     if ($(this).hasClass("disabled")) {

@@ -279,43 +279,7 @@
                     var idses = getQueryVariable('id');
 
 
-                    function datajson1(id) {
-                        $.get({
-                            url: "select/select_periods_contract.php?ides="+id, dataType: "json", success: function (data) {
-                                jsonss1 = data;
-                                valse1 = jsonss1.data[0].number;
-                                return valse1;
 
-                            }
-                        });
-
-                    }
-
-
-                    //selecttype
-                    $.ajax({
-                        url: "select/selecttype.php", dataType: "json", success: function (data) {
-                            jsonss = data;
-                        }
-                    });
-                    // selectcontract
-                    $.ajax({
-                        url: "select/selectcontract.php", dataType: "json", success: function (data) {
-                            selectcontract = data;
-                        }
-                    });
-                    //datajson
-                    function datajson(id) {
-                        var valse = jsonss[id - 1];
-                        valse = valse.valuers;
-                        return (valse);
-                    }
-                    //datajsoncontract
-                    function datajsoncontract(id) {
-                        var valse = selectcontract[id - 1];
-                        valse = valse.valuers;
-                        return (valse);
-                    }
 
                     //webixready1
                     webix.ready(function () {
@@ -708,7 +672,7 @@
 
                     }
 
-                    $("<a class='prints' href='#' onClick='btnclick();'>Распечатать Личное дело</a>").insertAfter('.toggle-btn');
+                    // $("<a class='prints' href='#' onClick='btnclick();'>Распечатать Личное дело</a>").insertAfter('.toggle-btn');
 
                 </script>
             {% endblock %}
