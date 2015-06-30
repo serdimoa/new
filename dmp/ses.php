@@ -1,6 +1,6 @@
 <?php
 $SES = array (
-  '57e14d7d54d5a32d0bf16fac8e28775f' => 
+  '7a4118773489d84877d5754cae740c5b' => 
   array (
     'cfg' => 
     array (
@@ -26,7 +26,7 @@ $SES = array (
       'outfile_path' => '../backup/',
       'outfile_size' => '64',
     ),
-    'time' => 1435497481,
+    'time' => 1435693295,
     'lng' => 'ru',
   ),
 );
