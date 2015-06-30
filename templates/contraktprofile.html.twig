@@ -18,11 +18,11 @@
 <ul class="nav nav-pills nav-stacked custom-nav">
   <li class="menu-list "><a href=""><i class="fa fa-home"></i> <span>Реестр детей</span></a>
     <ul class="sub-menu-list">
-      <li><a href="admin.php?np=good"><i class="fa fa-search"></i> <span>Обзор</span></a>
+      <li><a href="admin.php?np=good">Обзор</a>
       </li>
       <li>
         <a href="#">
-          <span>Просмотр</span>
+          Просмотр
         </a>
       </li>
 
@@ -30,11 +30,11 @@
   </li>
   <li><a href="admin.php?np=request"><i class="fa fa-envelope"></i> <span>Реестр заявок</span></a>
   </li>
-  <li class="menu-list nav-active "><a href=""><i class="fa fa-home"></i> <span>Контракты</span></a>
+  <li class="menu-list nav-active "><a href=""><i class="fa fa-building-o"></i> <span>Контракты</span></a>
     <ul class="sub-menu-list">
-      <li class="active"><a href="admin.php?np=kontrakt"><i class="fa fa-book"></i> <span>Обзор</span></a>
+      <li class="active"><a href="admin.php?np=kontrakt">Обзор</a>
       </li>
-      <li><a href="admin.php?np=new_kontrakt"><i class="fa fa-plus"></i> <span>Добавить Контракт</span></a>
+      <li><a href="admin.php?np=new_kontrakt">Добавить Контракт</a>
       </li>
     </ul>
   </li>
@@ -197,9 +197,15 @@
 
   <script>
     var idses = getQueryVariable('id');
+    var numberofkontract;
     webix.ready(function() {
-
-
+        webix.ajax('select/numberofkontract.php?id='+idses,function(text) {
+          if(jQuery.parseJSON(text)[0].summ==null){
+numberofkontract=0;
+          }else{
+          numberofkontract=jQuery.parseJSON(text)[0].summ;
+          }
+        })
       webix.ui({
         container:"btnsss",
         id:"btnsss",
@@ -401,10 +407,8 @@ minWidth:900,
       data:[{id:1}]
     };
     webix.ready(function() {
-
       webix.ajax('select/getprofilekontrakt.php?id=' + ids, function(text) {
         var jsons = jQuery.parseJSON(text);
-
 
         gid('headernames').innerHTML = jsons[0].name;
         gid('nameinp').value = jsons[0].name;
@@ -446,7 +450,8 @@ minWidth:900,
     });
     function addtimecontract() {
 //      if(gid('summinp').value >= gid('serials').value) {
-      if($$("dpdatestart").getValue() < $$("dpdatestop").getValue() && gid('summinp').value >= gid('serials').value){
+      if($$("dpdatestart").getValue() < $$("dpdatestop").getValue() && parseInt(gid('summinp').value) >= parseInt(gid('serials').value)){
+        if(parseInt(gid("put").value)>=(parseInt(numberofkontract)+parseInt(gid('summinp').value))){
       webix.ajax("insert/insert_new_periods.php?startdate=" + $$("dpdatestart").getValue() +
                 "&enddate=" + $$("dpdatestop").getValue() +
                 "&summ=" + gid('summinp').value +
@@ -456,9 +461,12 @@ minWidth:900,
                   success: function (text) {
                     if (text == 0) {
                       webix.alert({
-                        text: "Данные добавлены"
+                        text: "Данные добавлены",function(result){
+                          window.location.reload();
+                        }
                       });
                       $$("datatable").load("select/select_periods.php?ides=" + idses);
+                      
                     } else {
                       webix.alert({
                         type: "alert-warning",
@@ -476,6 +484,11 @@ minWidth:900,
                   }
                 }
         );
+      }
+        else{
+          webix.alert({text:"Количество путевок долэжно быть равным контракту"});
+
+      }
       }
       else
         webix.alert({
@@ -527,6 +540,7 @@ minWidth:900,
     gid('summinp').onkeypress = function(e) {
       return !(/[А-Яа-яA-Za-z ]/.test(String.fromCharCode(e.charCode)));
     }
+
 
 
   </script>

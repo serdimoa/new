@@ -26,7 +26,7 @@ else
         "date"=>$row['date'],"doc"=>$row1['doc'],"adr"=>$row1['adr'],"adrfact"=>$row1['adrfact'],"scholl"=>$row1['scholl'],
         "class"=>$row1['class'],"fioroditelya"=>$row1['fioroditelya'],"workstation"=>$row1['workstation'],
         "katlgot"=>$row1['katlgot'],"rabota"=>$row1['rabota'],"home"=>$row1['home'],"mobile"=>$row1['mobile'],
-        "email"=>$row1['email']);
+        "email"=>$row1['email'],"howroad"=>$row1['howroad']);
 
     echo json_encode($arr);
 

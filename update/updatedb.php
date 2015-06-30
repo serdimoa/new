@@ -27,6 +27,7 @@ else
     $mobilinp=$_GET["mobilinp"];
     $emailinp=$_GET["emailinp"];
     $date=$_GET["date"];
+    $howroad=$_GET["howroad"];
     $school=$_GET["school"];
     $lgotkats=$_GET["lgotkats"];
     $ids=$_GET["ids"];
@@ -50,7 +51,7 @@ else
     else{
         $sql1 = "update aboutchildren set doc='$svid',adr='$adrregs',adrfact='$adrfact',scholl='$school',
                  class='$classname',fioroditelya='$fioroditelya',workstation='$workstation',katlgot='$lgotkats',
-                 rabota='$rabotainp',home='$homeinp',mobile='$mobilinp',email='$emailinp' where iduser='$ids'";
+                 rabota='$rabotainp',home='$homeinp',howroad='$howroad',mobile='$mobilinp',email='$emailinp' where iduser='$ids'";
         if(mysql_query($sql2) && mysql_query($sql1)){
             echo "0";
         }

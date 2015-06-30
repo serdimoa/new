@@ -30,19 +30,18 @@
         <ul class="nav nav-pills nav-stacked custom-nav">
             <li class="menu-list nav-active"><a href=""><i class="fa fa-home"></i> <span>Реестр детей</span></a>
                 <ul class="sub-menu-list">
-                    <li><a href="admin.php?np=good"><i class="fa fa-search"></i> <span>Обзор</span></a></li>
-                    <li class="active"><a href="admin.php?np=profile"> <span>Просмотр</span></a></li>
-                    <li><a href="admin.php?np=children_new"><i class="fa fa-plus"></i> <span>Добавить ребенка</span></a>
+                    <li><a href="admin.php?np=good">Обзор</a></li>
+                    <li class="active"><a href="admin.php?np=profile"> Просмотр</a></li>
+                    <li><a href="admin.php?np=children_new">Добавить ребенка</a>
                     </li>
 
                 </ul>
             </li>
             <li><a href="admin.php?np=request"><i class="fa fa-envelope"></i> <span>Реестр заявок</span></a></li>
-            <li class="menu-list "><a href=""><i class="fa fa-home"></i> <span>Контракты</span></a>
+            <li class="menu-list "><a href=""><i class="fa fa-building-o"></i> <span>Контракты</span></a>
                 <ul class="sub-menu-list">
-                    <li><a href="admin.php?np=kontrakt"><i class="fa fa-book"></i> <span>Обзор</span></a></li>
-                    <li><a href="admin.php?np=new_kontrakt"><i class="fa fa-plus"></i>
-                            <span>Добавить Контракт</span></a></li>
+                    <li><a href="admin.php?np=kontrakt">Обзор</a></li>
+                    <li><a href="admin.php?np=new_kontrakt">Добавить Контракт</a></li>
                 </ul>
             </li>
             <li><a id="Myunidf" href="/"><i class="fa fa-sign-out"></i> <span>Выход</span></a></li>
@@ -123,6 +122,12 @@
                                                                     <div class="form-group">
                                                                         <div id="celdr"></div>
                                                                     </div>
+                                                                    <div class="panel">
+                                                                    <div class="form-group">
+                                                                    <div id="howroad"></div>
+                                                                  
+                                                                    </div>
+                                                                    </div>
                                                                     <div class="form-group">
                                                                         <label for="adrregs">Адрес регистрации</label>
                                                                         <input type="text" class="form-control"
@@ -191,6 +196,7 @@
                                                         </div></div>
                                                             </div>
 
+                                                        
 
                                                         <div class="panel">
                                                             <header class="panel-heading">Контактные телефоны</header>
@@ -289,7 +295,7 @@
                             view: 'datepicker',
                             name: 'date',
                             id: 'date',
-                            labelWidth: 115,
+                            labelWidth: 135,
                             label: 'Дата рождения',
                             stringResult: true
 
@@ -308,6 +314,15 @@
                             id: 'lgotkats',
                             options: 'select/lgotkat.php'
                         });
+                        webix.ui({
+                            view:"combo",
+                            container: 'howroad',
+                            label:"Оплата проезда",
+                            id: 'howroad',                        
+                            labelWidth: 135,
+                            options: 'select/howroad.php'
+                        });
+
 
                         //mer
                         webix.ui({
@@ -422,11 +437,13 @@
                             gid('mobilinp').value = jsons[0].mobile;
                             gid('emailinp').value = jsons[0].email;
                             $$('date').setValue(jsons[0].date);
+                            $$('howroad').setValue(jsons[0].howroad);
                             $$('school').setValue(jsons[0].scholl);
                             $$('lgotkats').setValue(jsons[0].katlgot);
 
 
                         });
+
 //addcontract
                         webix.ui({
                             view:"form",
@@ -607,7 +624,9 @@
                         $$("cmenu1").attachTo($$("allchildcontract"));
 
                     });
+
                     function sendsave() {
+
                         webix.ajax("update/updatedb.php?nameinp=" + gid('nameinp').value +
                                 "&fioinp=" + gid('fioinp').value +
                                 "&lastinp=" + gid('lastinp').value +
@@ -622,6 +641,7 @@
                                 "&mobilinp=" + gid('mobilinp').value +
                                 "&emailinp=" + gid('emailinp').value +
                                 "&date=" + $$('date').getValue() +
+                                "&howroad="+$$('howroad').getValue()+
                                 "&school=" + $$('school').getValue() +
                                 "&lgotkats=" + $$('lgotkats').getValue() +
                                 "&ids=" + ids,
@@ -642,6 +662,7 @@
                                 }
                         );
                     }
+
                     function btnclick() {
                         var expdata = {
                             "expnameinp":""+ gid("nameinp").value+"",

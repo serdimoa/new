@@ -5,7 +5,10 @@
     <style type="text/css">
         .nesquick{
             font-size: 45px !important;
-            width: 100%;
+            width: 100%;  line-height: 26px;  height: 45px;
+        }#nesquick div{
+            font-size: 45px !important;
+            width: 100%;  line-height: 26px;  height: 45px !important;
         }
     </style>
 {% endblock %}
@@ -13,15 +16,15 @@
 <ul class="nav nav-pills nav-stacked custom-nav">
     <li class="menu-list nav-active"><a href=""><i class="fa fa-home"></i> <span>Реестр детей</span></a>
         <ul class="sub-menu-list">
-            <li class="active"><a href="admin.php?np=good"><i class="fa fa-search"></i> <span>Обзор</span></a></li>
-            <li><a href="admin.php?np=children_new"><i class="fa fa-plus"></i> <span>Добавить ребенка</span></a></li>
+            <li class="active"><a href="admin.php?np=good"> Обзор</a></li>
+            <li><a href="admin.php?np=children_new">Добавить ребенка</a></li>
         </ul>
     </li>
     <li><a href="admin.php?np=request"><i class="fa fa-envelope"></i> <span>Реестр заявок</span></a></li>
-    <li class="menu-list "><a href=""><i class="fa fa-home"></i> <span>Контракты</span></a>
+    <li class="menu-list "><a href=""><i class="fa fa-building-o"></i> <span>Контракты</span></a>
         <ul class="sub-menu-list">
-            <li><a href="admin.php?np=kontrakt"><i class="fa fa-book"></i> <span>Обзор</span></a></li>
-            <li><a href="admin.php?np=new_kontrakt"><i class="fa fa-plus"></i> <span>Добавить Контракт</span></a></li>
+            <li><a href="admin.php?np=kontrakt">Обзор</a></li>
+            <li><a href="admin.php?np=new_kontrakt">Добавить Контракт</a></li>
         </ul>
     </li>
     <li><a id="Myunidf" href="admin.php"><i class="fa fa-sign-out"></i> <span>Выход</span></a></li>
@@ -102,7 +105,8 @@ webix.ready(function(){
             {id: 'surname', fillspace: true, header: ['Отчество', {content: 'textFilter'}], width: 200, sort: 'string'},
             {
                 id: 'date', header: ["Дата &nbsp; рождения", {content: 'textFilter'}], width: 200, sort: 'string',
-                format: webix.Date.dateToStr('%Y-%m-%d')}],
+                format: webix.Date.dateToStr('%Y-%m-%d')},
+                {id:'doc',header:"Паспорт/Св.",fillspace: true,}],
            url: 'select/get_all.php',height:550, select: 'row',scrollX:false, on:{
            onBeforeLoad:function(){
                this.showOverlay('Загрузка...');
@@ -186,17 +190,7 @@ webix.ready(function(){
 
     });
     $$("cmenu").attachTo($$("datatable"));
-    $$("resttimecombo").attachEvent("onChange", function(){
-        var values=$$("resttimecombo").getValue();
-        if(values=='2'){
-            document.getElementById('resttimeforms').style.visibility="visible";
-
-
-        }
-        else{
-            document.getElementById('resttimeforms').style.visibility="hidden";
-        }
-    });
+    
     webix.ui({
         view:"contextmenu",
         id:"cmenu1",

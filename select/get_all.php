@@ -13,8 +13,8 @@ if (!$_SESSION["login"]) {
 {
 require_once("../config.php");
     $data = new JSONDataConnector($conn, $dbtype);
-
-    $data->render_table("children","id","name, firstname, surname, event, date");
+$sql = "SELECT children.id,children.name, children.firstname, children.surname, children.date, aboutchildren.doc FROM aboutchildren INNER JOIN children on aboutchildren.iduser = children.id";
+$data->render_sql("$sql","id","name, firstname, surname, date,doc");
 
 
 }
