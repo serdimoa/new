@@ -31,6 +31,7 @@ else
     $school=$_GET["school"];
     $lgotkats=$_GET["lgotkats"];
     $ids=$_GET["ids"];
+    $howcash=$_GET["howcash"];
     $statusinps = $_GET["statusinps"];
     $find = "select id from aboutchildren where iduser='$ids'";
     $show = mysql_query($find);
@@ -38,8 +39,8 @@ else
     $sql2 = "update children set name='$nameinp',firstname='$fioinp',surname='$lastinp',date='$date' where id='$ids'";
     if(mysql_fetch_array($show)==Null){
         $sql1 = "insert into aboutchildren(iduser,doc,adr,adrfact,scholl,class,fioroditelya,workstation,katlgot,rabota,
-        home,mobile,email) values ('$ids','$svid','$adrregs','$adrfact','$school','$classname','$fioroditelya',
-        '$workstation','$lgotkats','$rabotainp','$homeinp','$mobilinp','$emailinp')";
+        home,mobile,email,howcash,howroad) values ('$ids','$svid','$adrregs','$adrfact','$school','$classname','$fioroditelya',
+        '$workstation','$lgotkats','$rabotainp','$homeinp','$mobilinp','$emailinp','$howcash','$howroad')";
         if(mysql_query($sql2) && mysql_query($sql1)){
             echo "0";
         }
@@ -51,7 +52,7 @@ else
     else{
         $sql1 = "update aboutchildren set doc='$svid',adr='$adrregs',adrfact='$adrfact',scholl='$school',
                  class='$classname',fioroditelya='$fioroditelya',workstation='$workstation',katlgot='$lgotkats',
-                 rabota='$rabotainp',home='$homeinp',howroad='$howroad',mobile='$mobilinp',email='$emailinp' where iduser='$ids'";
+                 rabota='$rabotainp',home='$homeinp',howroad='$howroad',mobile='$mobilinp',email='$emailinp',howcash='$howcash' where iduser='$ids'";
         if(mysql_query($sql2) && mysql_query($sql1)){
             echo "0";
         }

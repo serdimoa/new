@@ -125,6 +125,9 @@
                                                                     <div class="panel">
                                                                     <div class="form-group">
                                                                     <div id="howroad"></div>
+                                                                    <label for="howcash">Стоимость</label>
+                                                                        <input type="text" class="form-control"
+                                                                               id="howcash" required="">
                                                                   
                                                                     </div>
                                                                     </div>
@@ -436,6 +439,7 @@
                             gid('homeinp').value = jsons[0].home;
                             gid('mobilinp').value = jsons[0].mobile;
                             gid('emailinp').value = jsons[0].email;
+                            gid('howcash').value = jsons[0].howcash;
                             $$('date').setValue(jsons[0].date);
                             $$('howroad').setValue(jsons[0].howroad);
                             $$('school').setValue(jsons[0].scholl);
@@ -640,6 +644,7 @@
                                 "&homeinp=" + gid('homeinp').value +
                                 "&mobilinp=" + gid('mobilinp').value +
                                 "&emailinp=" + gid('emailinp').value +
+                                "&howcash=" + gid('howcash').value+
                                 "&date=" + $$('date').getValue() +
                                 "&howroad="+$$('howroad').getValue()+
                                 "&school=" + $$('school').getValue() +
