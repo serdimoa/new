@@ -18,8 +18,7 @@ else
     $show = mysql_query($sql1);
     $arr = array();
     $row = mysql_fetch_array($show);
-    $arr[] = Array("id"=>$row['id'],"name"=>$row['name'],"put"=>$row['put'],"price"=>$row['price'],
-    "days"=>$row['days'],"date"=>$row['date'],"types"=>$row['types'],"daysprice"=>$row['daysprice'],"whens"=>$row["whens"]);
+    $arr[] = Array("id"=>$row['id'],"name"=>$row['name'],"types"=>$row['types'],"whens"=>$row["whens"]);
 
     echo json_encode($arr);
 

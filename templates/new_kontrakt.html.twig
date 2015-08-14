@@ -43,7 +43,7 @@
 <div class="page-heading">
   <h3>Добавление нового контракта</h3>
   <ul class="breadcrumb">
-    <li><a href="good.html"> Реестр детей</a>
+    <li><a href="admin.php?np=kontrakt"> Реестр контрактов</a>
     </li>
     <li class="active">Добавление нового контракта</li>
   </ul>
@@ -75,25 +75,7 @@
                 <div class="form-group">
                   <div id="whensid"></div>
                 </div>
-                <div class="form-group">
-                  <label for="fioinp">Количество путевок</label>
-                  <input type="number" class="form-control num" id="fioinp" required="">
-                </div>
-                <div class="form-group">
-                  <label for="lastinp">Цена контракта</label>
-                  <input type="number" class="form-control num" id="lastinp" required="">
-                </div>
-                <div class="form-group">
-                  <label for="svid">Дней прибытия</label>
-                  <input type="number" class="form-control num" id="svid" required="">
-                </div>
-                  <div class="form-group">
-                      <label for="daysprice">Стоимость одного дня</label>
-                      <input type="number" class="form-control" id="daysprice" required="">
-                  </div>
-                <div class="form-group">
-                  <div id="celdr"></div>
-                </div>
+
               </div>
             </div>
           </div>
@@ -124,16 +106,6 @@
 <script>
   webix.ready(function() {
     webix.ui({
-      container: 'celdr',
-      view: 'datepicker',
-      name: 'date',
-      id: 'date',
-      labelWidth: 115,
-      label: "Дата контракта",
-      stringResult: true
-
-    });
-    webix.ui({
       container:'whensid',
       id:'whensid',
       view:'combo',
@@ -157,13 +129,10 @@
 
   function sendsave() {
     webix.ajax("insert/new_kontrakt_insert.php?nameinp=" + gid('nameinp').value +
-      "&fioinp=" + gid('fioinp').value +
-      "&lastinp=" + gid('lastinp').value +
-      "&svid=" + gid('svid').value +
-      "&daysprice=" + gid('daysprice').value +
+
       "&whens="+$$("whensid").getValue()+
-            "&types="+$$('resttypecombo').getValue()+
-      "&date=" + $$('date').getValue(), {
+            "&types="+$$('resttypecombo').getValue()
+      , {
         success: function(text) {
           if (text == 0) {
             webix.alert({
@@ -195,14 +164,6 @@
       }
     );
   }
-  gid('fioinp').onkeypress = function(e) {
-    return !(/[А-Яа-яA-Za-z ]/.test(String.fromCharCode(e.charCode)));
-  };
-  gid('lastinp').onkeypress = function(e) {
-    return !(/[А-Яа-яA-Za-z ]/.test(String.fromCharCode(e.charCode)));
-  };
-  gid('svid').onkeypress = function(e) {
-    return !(/[А-Яа-яA-Za-z ]/.test(String.fromCharCode(e.charCode)));
-  };
+
 </script>
 {% endblock %}

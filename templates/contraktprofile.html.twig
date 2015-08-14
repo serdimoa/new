@@ -93,29 +93,11 @@
                               <input type="text" class="form-control" id="nameinp" required="">
                             </div>
 
-                            <div class="form-group">
-                              <div id="celdr"></div>
-                            </div>
+
                               <div class="form-group">
                               <div id="whensid"></div>
                             </div>
-                            <div class="form-group">
-                              <label for="put">Количество путевок</label>
-                              <input type="text" class="form-control" id="put" required="">
-                            </div>
-                            <div class="form-group">
-                              <label for="price">Цена контракта</label>
-                              <input type="text" class="form-control" id="price" required="">
-                            </div>
 
-                            <div class="form-group">
-                              <label for="days">Дней &nbsp;прибывания</label>
-                              <input type="text" class="form-control" id="days" required="">
-                            </div>
-                            <div class="form-group">
-                              <label for="daysprice">Стоимость одного дня</label>
-                              <input type="text" class="form-control" id="daysprice" >
-                            </div>
                             <div class="col-md-12">
                               <div class="panel">
                                 <div class="panel-body">
@@ -190,7 +172,29 @@
 
 
   </form>
-
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                  <div id="modaltable"></div>
+                    <div style="padding: 20px;">
+                        <input type="text" id="value" style="width:300px" value="new value">
+                        <input type="button" value="update selected" onclick="update()"><br>
+                        <input type="button" style="width:180px" value="add new row" onclick="add()">
+                        <input type="button" style="width:180px" value="remove selected row" onclick="remove_row()">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
   </div>
 
   {% endblock %} {% block customjs %}
@@ -205,7 +209,7 @@ numberofkontract=0;
           }else{
           numberofkontract=jQuery.parseJSON(text)[0].summ;
           }
-        })
+        });
       webix.ui({
         container:"btnsss",
         id:"btnsss",
@@ -219,17 +223,7 @@ numberofkontract=0;
           ]}]
       });
 
-      webix.ui({
-        container: 'celdr',
-        view: 'datepicker',
-        name: 'date',
-        id: 'date',
-        width: 400,
-        labelWidth: 155,
-        label: 'Дата контракта',
-        stringResult: true
 
-      });
       webix.ui({
         container: 'dpdatestart',
         view: 'datepicker',
@@ -242,15 +236,14 @@ numberofkontract=0;
 
       });
       webix.ui({
-        container: 'dpdatestop',
-        view: 'datepicker',
-        name: 'dpdatestop',
-        id: 'dpdatestop',
-        width: 420,
-        labelWidth: 155,
-        label: 'Дата контракта',
-        stringResult: true
-
+          container: 'dpdatestop',
+          view: 'datepicker',
+          name: 'dpdatestop',
+          id: 'dpdatestop',
+          width: 420,
+          labelWidth: 155,
+          label: 'Конец',
+          stringResult: true
       });
       // start periods
 
@@ -353,6 +346,7 @@ minWidth:900,
             }
           ]
         }
+
       ]
 
 
@@ -375,56 +369,22 @@ minWidth:900,
 
     var ids = getQueryVariable('id');
 
-    ub = {
-      view:'datatable',
-      id:'userbyperiod',
-      height:400,
-      width:400,
-      select:'row',
-      column:[
-        {
-          id:'id',
-          header:"Номер",
-          width:100,
-          sort:'string'
-        },
-        {
-          id:'fio',
-          header:"Фамилия",
-          sort:'string'
-        },
-        {
-          id:'name',
-          header:"Имя",
-          sort:'string'
-        },
-        {
-          id:'last',
-          header:"Отчество",
-          sort:'string'
-        }
-      ],
-      data:[{id:1}]
-    };
     webix.ready(function() {
       webix.ajax('select/getprofilekontrakt.php?id=' + ids, function(text) {
         var jsons = jQuery.parseJSON(text);
 
         gid('headernames').innerHTML = jsons[0].name;
         gid('nameinp').value = jsons[0].name;
-        gid('put').value = jsons[0].put;
-        gid('price').value = jsons[0].price;
-        gid('days').value = jsons[0].days;
+
         $$('resttypecombo').setValue(jsons[0].types);
-        $$('date').setValue(jsons[0].date);
-        gid('daysprice').value = jsons[0].daysprice ;
+
         $$("whensid").setValue(jsons[0].whens);
 // parseInt(jsons[0].price) / parseInt(jsons[0].days)
       });
       webix.ui({
            view:"contextmenu",
            id:"cmenu",
-           data:["Удалить"],
+           data:["Детальнее","Удалить"],
            on:{
                onItemClick:function(id){
                    var context = this.getContext();
@@ -432,6 +392,9 @@ minWidth:900,
                    if(this.getItem(id).id=="Удалить"){
                        webix.ajax("delete/deletefromperiods.php?id="+context.id);
                        $$("datatable").remove(context.id);
+                   }
+                   if(this.getItem(id).id=="Детальнее"){
+                       $('#myModal').modal('toggle')
                    }
 
                }
@@ -449,9 +412,7 @@ minWidth:900,
        $$("cmenu").attachTo($$("datatable"));
     });
     function addtimecontract() {
-//      if(gid('summinp').value >= gid('serials').value) {
-      if($$("dpdatestart").getValue() < $$("dpdatestop").getValue() && parseInt(gid('summinp').value) >= parseInt(gid('serials').value)){
-        if(parseInt(gid("put").value)>=(parseInt(numberofkontract)+parseInt(gid('summinp').value))){
+      if($$("dpdatestart").getValue() < $$("dpdatestop").getValue()){
       webix.ajax("insert/insert_new_periods.php?startdate=" + $$("dpdatestart").getValue() +
                 "&enddate=" + $$("dpdatestop").getValue() +
                 "&summ=" + gid('summinp').value +
@@ -461,13 +422,14 @@ minWidth:900,
                   success: function (text) {
                     if (text == 0) {
                       webix.alert({
-                        text: "Данные добавлены",function(result){
+                        text: "Данные добавлены", callback:function(result){
                           window.location.reload();
                         }
                       });
                       $$("datatable").load("select/select_periods.php?ides=" + idses);
                       
-                    } else {
+                    }
+                    else {
                       webix.alert({
                         type: "alert-warning",
                         text: "Повторите позже"
@@ -483,27 +445,17 @@ minWidth:900,
                     });
                   }
                 }
-        );
+        )
       }
-        else{
-          webix.alert({text:"Количество путевок долэжно быть равным контракту"});
-
-      }
-      }
-      else
+        else
         webix.alert({
-          text: "Количество путевок должно быть больше нераспределенных"
+          text: "Дата окончания должна быть позже даты начала"
         });
 
     }
 
     function sendsave() {
       webix.ajax("update/updatedbkontrakt.php?nameinp=" + gid('nameinp').value +
-        "&put=" + gid('put').value +
-        "&price=" + gid('price').value +
-        "&days=" + gid('days').value +
-        "&daysprice=" + gid('daysprice').value +
-        "&date=" + $$('date').getValue() +
         "&types="+$$('resttypecombo').getValue()+
         "&whens="+$$('whensid').getValue()+
         "&ids=" + ids, {
@@ -528,18 +480,80 @@ minWidth:900,
         }
       );
     }
-    gid('put').onkeypress = function(e) {
-      return !(/[А-Яа-яA-Za-z ]/.test(String.fromCharCode(e.charCode)));
-    };
-    gid('price').onkeypress = function(e) {
-      return !(/[А-Яа-яA-Za-z ]/.test(String.fromCharCode(e.charCode)));
-    };
-    gid('days').onkeypress = function(e) {
-      return !(/[А-Яа-яA-Za-z ]/.test(String.fromCharCode(e.charCode)));
-    };
-    gid('summinp').onkeypress = function(e) {
-      return !(/[А-Яа-яA-Za-z ]/.test(String.fromCharCode(e.charCode)));
+
+
+    var grid, dp;
+    function positiveNumber(value){ return value > 0; }
+    webix.ready(function(){
+        grid = webix.ui({
+            container:"modaltable",
+            view:"datatable",
+            columns:[
+                { id:"id",	header:"#", width:150,	css:"rank"},
+                { id:"namber", editor:"text", header:"Номер контракта",width:200},
+                { id:"date", editor:"date", format: webix.Date.dateToStr('%Y-%m-%d'),    header:"Дата контракта" , width:150},
+                { id:"summ", editor:"text", header:"Путевок", 	width:100},
+                { id:"price", editor:"text", header:"Цена контракта", 	width:100},
+                { id:"pricebyday", editor:"text", header:"Стоимость одного дня", 	width:100}
+            ],
+            select:"cell",
+            autowidth:true,
+            editable:true,
+            autoheight:true,
+            rules:{
+                "price":positiveNumber,
+                "pricebyday":positiveNumber,
+                "summ":positiveNumber
+
+            },
+
+            on:{
+                "onAfterSelect":function(id){
+                    document.getElementById("value").value = this.getItem(id.row)[id.column];
+                },
+                "ready":function(){
+                    this.validate();
+                }
+            }
+        });
+        grid.load("./connector/data_connector.php", "xml");
+        dp = new webix.DataProcessor({
+            url: "connector->./config.php",
+            master: grid
+        });
+
+    });
+
+    function update() {
+        var sel = grid.getSelectedId();
+        if (!sel) return;
+
+        var value = document.getElementById("value").value;
+        var row = grid.getItem(sel.row);
+        row[sel.column] = value;
+        grid.updateItem(sel.row, row);
     }
+
+    function add() {
+        var data = {
+            title: "",
+            year: "1998",
+            votes: 194865,
+            rating: "7.5",
+            rank: 12
+        };
+        grid.add(data);
+    }
+
+
+    function remove_row() {
+        var sel = grid.getSelectedId(true);
+        if (!sel) return;
+        for (var i = 0; i < sel.length; i++)
+            grid.remove(sel[i].row);
+    }
+
+
 
 
 

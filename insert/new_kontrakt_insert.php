@@ -14,14 +14,11 @@ else
 {
     require_once("../config.php");
     $nameinp=$_GET["nameinp"];
-    $fioinp=$_GET["fioinp"];
-    $lastinp=$_GET["lastinp"];
-    $svid=$_GET["svid"];
-    $date=$_GET["date"];
+
     $whens = $_GET["whens"];
     $types = $_GET['types'];
-    $daysprice = $_GET['daysprice'];
-    $sql1 = "insert into contract(name,put,price,types,days,date,daysprice,whens) value ('$nameinp','$fioinp','$lastinp','$types','$svid','$date','$daysprice','$whens')";
+
+    $sql1 = "insert into contract(name,types,whens) value ('$nameinp','$types','$whens')";
      if(mysql_query($sql1)){
         return "0";
     }

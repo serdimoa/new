@@ -14,7 +14,7 @@ if (!$_SESSION["login"]) {
 require_once("../config.php");
     $data = new JSONDataConnector($conn, $dbtype);
 
-    $data->render_table("contract","id","id, name, put, price, days, date");
+    $data->render_table("contract","id","id, name");
 
 
 }

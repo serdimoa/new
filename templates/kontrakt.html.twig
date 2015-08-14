@@ -36,12 +36,9 @@
             id: 'datatable',
             onContext:{},
             columns: [
-                { id: 'name',fillspace:true, header: ["Наименование учереждения", {content: 'textFilter'}], width: 300, sort: 'string'},
-                { id: 'put',header:"Количество путевок", width: 150, sort: 'int'},
-                { id: 'price', header: "Цена контракта", width: 150, sort: 'int'},
-                { id: 'days', header: "Дней &nbsp;прибывания", width: 150, sort: 'int'},
-                { id: 'date', header: ["Дата контракта", {content: 'textFilter'}], width: 150, sort: 'string',
-                    format: webix.Date.dateToStr('%Y-%m-%d')}],
+                { id: 'name',fillspace:true, header: ["Наименование учереждения", {content: 'textFilter'}], width: 300, sort: 'string'}
+                ],
+
                url: 'select/get_all_kontrakt.php',height:550, select: 'row',scrollX:false, on:{
                onBeforeLoad:function(){
                    this.showOverlay('Загрузка...');
