@@ -1,6 +1,7 @@
 {% extends "base.html" %} {% block title %}Профиль{% endblock %} {% block customheadjs %}
-<script>
-  function getQueryVariable(variable) {
+    <script>
+
+    function getQueryVariable(variable) {
     var query = window.location.search.substring(1);
     var vars = query.split("&");
     for (var i = 0; i < vars.length; i++) {
@@ -181,11 +182,25 @@
                 </div>
                 <div class="modal-body">
                   <div id="modaltable"></div>
-                    <div style="padding: 20px;">
-                        <input type="text" id="value" style="width:300px" value="new value">
-                        <input type="button" value="update selected" onclick="update()"><br>
-                        <input type="button" style="width:180px" value="add new row" onclick="add()">
-                        <input type="button" style="width:180px" value="remove selected row" onclick="remove_row()">
+
+                    <a class="btn btn-primary" style="margin-left:20px;margin-top: 25px;" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Добавить новый контракт
+                    </a>
+                    <div class="collapse" id="collapseExample">
+                        <div class="well" style=" background-color: transparent;  border: none; ">
+                    <div style=" width: 336px; border: solid 1px rgba(0,0,0,.3)" class="panel ">
+                        <div class="panel-heading">Добавление нового контракта</div>
+                        <div class="panel-body">
+                        <input type="text" id="namber" style="width:300px;margin-top: 5px;" placeholder="Номер контракта">
+                        <input type="text" id="summ" style="width:300px;margin-top: 5px;" placeholder="Количество путевок">
+                        <input type="text" id="price" style="width:300px;margin-top: 5px;" placeholder="Цена контракта">
+                        <input type="text" id="pricebyday" style="width:300px;margin-top: 5px;" placeholder="Стоимость одного дня">
+                        <div id="datescon"></div>
+                        </div>
+                        <input class="btn btn-success btn-lg text-center center-block" type="button" value="update selected" onclick="add()"><br>
+
+                    </div>
+                            </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -388,13 +403,16 @@ minWidth:900,
            on:{
                onItemClick:function(id){
                    var context = this.getContext();
+                   var contextobj = context.obj;
                    //delete
                    if(this.getItem(id).id=="Удалить"){
                        webix.ajax("delete/deletefromperiods.php?id="+context.id);
                        $$("datatable").remove(context.id);
                    }
                    if(this.getItem(id).id=="Детальнее"){
-                       $('#myModal').modal('toggle')
+                       $('#myModal').modal('toggle');
+                       $("#myModalLabel").text(contextobj.getItem(context.id).number);
+                       grid.load("select/getallkontractbysmena.php?ides="+context.id);
                    }
 
                }
@@ -480,23 +498,86 @@ minWidth:900,
         }
       );
     }
-
+    webix.ui({
+        container:"datescon",
+        view: 'datepicker',
+        name: 'datescon',
+        id: 'datescon',
+        width: 300,
+        labelWidth: 155,
+        label: 'Дата контракта',
+        stringResult: true
+    });
 
     var grid, dp;
     function positiveNumber(value){ return value > 0; }
+    function getObjects(obj, key, val) {
+        var objects = [];
+        for (var i in obj) {
+            if (!obj.hasOwnProperty(i)) continue;
+            if (typeof obj[i] == 'object') {
+                objects = objects.concat(getObjects(obj[i], key, val));
+            } else
+            //if key matches and value matches or if key matches and value is not passed (eliminating the case where key matches but passed value does not)
+            if (i == key && obj[i] == val || i == key && val == '') { //
+                objects.push(obj);
+            } else if (obj[i] == val && key == ''){
+                //only add if the object is not already in the array
+                if (objects.lastIndexOf(obj) == -1){
+                    objects.push(obj);
+                }
+            }
+        }
+        return objects;
+    }
+
+    //return an array of values that match on a certain key
+    function getValues(obj, key) {
+        var objects = [];
+        for (var i in obj) {
+            if (!obj.hasOwnProperty(i)) continue;
+            if (typeof obj[i] == 'object') {
+                objects = objects.concat(getValues(obj[i], key));
+            } else if (i == key) {
+                objects.push(obj[i]);
+            }
+        }
+        return objects;
+    }
+
+    //return an array of keys that match on a certain value
+    function getKeys(obj, val) {
+        var objects = [];
+        for (var i in obj) {
+            if (!obj.hasOwnProperty(i)) continue;
+            if (typeof obj[i] == 'object') {
+                objects = objects.concat(getKeys(obj[i], val));
+            } else if (obj[i] == val) {
+                objects.push(i);
+            }
+        }
+        return objects;
+    }
     webix.ready(function(){
         grid = webix.ui({
             container:"modaltable",
             view:"datatable",
             columns:[
-                { id:"id",	header:"#", width:150,	css:"rank"},
+                { id:"id",	header:"#", width:50,	css:"rank"},
                 { id:"namber", editor:"text", header:"Номер контракта",width:200},
                 { id:"date", editor:"date", format: webix.Date.dateToStr('%Y-%m-%d'),    header:"Дата контракта" , width:150},
                 { id:"summ", editor:"text", header:"Путевок", 	width:100},
-                { id:"price", editor:"text", header:"Цена контракта", 	width:100},
-                { id:"pricebyday", editor:"text", header:"Стоимость одного дня", 	width:100}
+                { id:"price", editor:"text", header:"Цена&nbsp;контракта", 	width:120},
+                { id:"pricebyday", editor:"text", header:"Цена 1 дня", 	width:100},
+                { 	id:"",
+                    template:"<input class='editbtns ' type='button' value='Изменить'>",
+                    css:"padding_less",
+                    width:100 },
+                { 	id:"",
+                    template:"<input class='deletebtns' type='button' value='Удалить'>",
+                    css:"padding_less",
+                    width:100 }
             ],
-            select:"cell",
             autowidth:true,
             editable:true,
             autoheight:true,
@@ -516,11 +597,23 @@ minWidth:900,
                 }
             }
         });
-        grid.load("./connector/data_connector.php", "xml");
-        dp = new webix.DataProcessor({
-            url: "connector->./config.php",
-            master: grid
-        });
+
+        grid.on_click.deletebtns=function(e, id, trg){
+            //id.column - column id
+            //id.row - row id
+            webix.message("Delete row: "+id);
+            //block default onclick event
+            return false;
+        };
+        grid.on_click.editbtns=function(e, ids, trg){
+            //ids.column - column id
+            //ids.row - row id
+            var gridser = JSON.stringify(grid.serialize());
+            gridser = JSON.parse(gridser);
+            console.log(getObjects(gridser,'id',ids.row));
+            //block default onclick event
+            return false;
+        };
 
     });
 
@@ -536,11 +629,8 @@ minWidth:900,
 
     function add() {
         var data = {
-            title: "",
-            year: "1998",
-            votes: 194865,
-            rating: "7.5",
-            rank: 12
+
+
         };
         grid.add(data);
     }
