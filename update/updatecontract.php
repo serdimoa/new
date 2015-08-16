@@ -14,4 +14,26 @@ if (!$_SESSION["login"]) {
 else {
     require_once("../config.php");
 
+    if(isset($_POST['categories'])) {
+        $json = $_POST['categories'];
+        $phpArray = json_decode($json);
+        $namber = $phpArray[0]->namber;
+        $date = $phpArray[0]->date;
+        $summ = $phpArray[0]->summ;
+        $price = $phpArray[0]->price;
+        $pricebyday = $phpArray[0]->pricebyday;
+        $id = $phpArray[0]->id;
+        $sql="UPDATE kontractdetail SET
+  namber = '$namber',
+  date='$date',
+  summ='$summ',
+  price='$price',
+  pricebyday='$pricebyday'  WHERE id =' $id'";
+        mysql_query($sql);
+        echo "Данные обновлены";
+
+    } else {
+        echo "Произошла ошибка";
+    }
+
 }
